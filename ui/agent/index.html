@@ -35,6 +35,62 @@
       </script>
     <script>window.__MICRO_APP_BASE_ROUTE__ = new URL('.', document.baseURI).pathname;</script>
     <script src="./static-mocks.js"></script>
-    <script src="./static/chunk-preload-B-gntM7F.js"></script><script src="./static/index-DnVseOiV.js" type="systemjs-module" ignore></script>
+    <script>
+      (function () {
+        var params = new URLSearchParams(location.search);
+        var seedCase3 = params.get('seedCase3') === '1';
+
+        function bootApplication() {
+          var preload = document.createElement('script');
+          preload.src = './static/chunk-preload-B-gntM7F.js';
+          preload.onload = function () {
+            System.import(new URL('./static/index-DnVseOiV.js', document.baseURI).href)
+              .catch(function (error) { console.error('[case3 demo] app startup failed', error); });
+          };
+          document.body.appendChild(preload);
+        }
+
+        async function seedCompletedCase3() {
+          var sessionId = 'case3-default-completed';
+          var prompt = '为秋冬换季策划一场老客召回活动，圈定近半年没下单、以前买过两次以上的会员，匹配策略后生成旅程画布。';
+          async function send(payload) {
+            var response = await fetch('/magic-agent/api/chat', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(Object.assign({ sessionId: sessionId }, payload))
+            });
+            if (!response.ok) throw new Error('演示数据初始化失败');
+            await response.text();
+          }
+
+          await fetch('/__demo-lanbu/speed?fast=1');
+          await send({ message: prompt });
+          await send({ resume: [{ request_id: 'demo-plan-confirm-1', answers: [['approve']] }] });
+          await send({ resume: [{ request_id: 'demo-strategy-confirm-1', answers: [['confirm_strategy']] }] });
+          await send({ resume: [{ request_id: 'demo-audience-draft-1', answers: [['confirm_audience']] }] });
+          var promoted = await fetch('/magic-agent/api/marketing-tasks/promote-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ session_id: sessionId, title: '秋冬换季老客召回' })
+          });
+          if (!promoted.ok) throw new Error('演示任务初始化失败');
+          await promoted.text();
+
+          var url = new URL(location.href);
+          url.searchParams.delete('seedCase3');
+          url.searchParams.set('sessionId', sessionId);
+          history.replaceState(null, '', url.pathname + url.search + url.hash);
+        }
+
+        if (seedCase3) {
+          seedCompletedCase3().then(bootApplication).catch(function (error) {
+            console.error('[case3 demo] failed to initialize completed session', error);
+            bootApplication();
+          });
+        } else {
+          bootApplication();
+        }
+      })();
+    </script>
   </body>
 </html>

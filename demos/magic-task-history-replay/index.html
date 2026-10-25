@@ -110,10 +110,11 @@
       var progressText = document.getElementById('playbar-progress-text');
       var progressAction = document.getElementById('playbar-progress-action');
       var timer = 0;
-      var warmupPoll = 0;
+      var readyPoll = 0;
       var parentTarget = '*';
       var state = 'ready';
       var warming = false;
+      var seededDefault = false;
 
       function setState(next) {
         state = next;
@@ -176,8 +177,9 @@
 
       function showCompletedProduct() {
         clearTimeout(timer);
-        clearInterval(warmupPoll);
+        clearInterval(readyPoll);
         warming = false;
+        seededDefault = true;
         document.documentElement.dataset.started = 'true';
         document.documentElement.dataset.error = 'false';
         document.documentElement.dataset.ready = 'true';
@@ -189,34 +191,37 @@
 
       function load(options) {
         warming = Boolean(options && options.warmup);
+        seededDefault = Boolean(options && options.seedComplete);
         clearTimeout(timer);
-        clearInterval(warmupPoll);
+        clearInterval(readyPoll);
         document.documentElement.dataset.ready = 'false';
-        document.documentElement.dataset.started = warming ? 'false' : 'true';
+        document.documentElement.dataset.started = seededDefault || warming ? 'false' : 'true';
         document.documentElement.dataset.productReady = 'false';
         document.documentElement.dataset.error = 'false';
-        statusText.textContent = '正在进入 MAGIC 活动策划演示…';
+        statusText.textContent = seededDefault ? '正在加载已完成的演示…' : '正在进入 MAGIC 活动策划演示…';
         var url = new URL(PRODUCT_URL, location.href);
         url.searchParams.set('route', 'task');
         url.searchParams.set('demo', 'case2');
         url.searchParams.set('theme', 'light');
         url.searchParams.set('fresh', String(Date.now()));
-        if (warming) url.searchParams.set('warmup', '1');
-        else url.searchParams.delete('warmup');
+        if (seededDefault) {
+          url.searchParams.set('seedCase3', '1');
+          url.searchParams.delete('warmup');
+        } else if (warming) url.searchParams.set('warmup', '1');
+        else {
+          url.searchParams.delete('warmup');
+          url.searchParams.delete('seedCase3');
+        }
         frame.src = url.href;
-        if (warming) {
-          warmupPoll = setInterval(function () {
+        if (seededDefault) {
+          readyPoll = setInterval(function () {
             if (productTaskIsComplete()) showCompletedProduct();
-          }, 300);
+          }, 250);
         }
         timer = setTimeout(function () {
-          if (warming && productTaskIsComplete()) {
-            showCompletedProduct();
-            return;
-          }
           document.documentElement.dataset.error = 'true';
           statusText.textContent = '回放资源加载失败，请刷新页面重试。';
-        }, warming ? 60000 : 20000);
+        }, 30000);
       }
 
       addEventListener('resize', fit);
@@ -230,6 +235,16 @@
           showCompletedProduct();
           return;
         }
+        if (seededDefault) {
+          if (event.data.phase === 'done') showCompletedProduct();
+          return;
+        }
+        if (event.data.phase === 'done') {
+          setState('loading');
+          statusText.textContent = '正在返回已完成的演示…';
+          load({ seedComplete: true });
+          return;
+        }
         clearTimeout(timer);
         document.documentElement.dataset.error = 'false';
         document.documentElement.dataset.ready = 'true';
@@ -240,7 +255,9 @@
         else setState('running');
         if (parent !== window) parent.postMessage({ type: 'magic-replay:ready' }, parentTarget);
       });
-      retry.addEventListener('click', load);
+      retry.addEventListener('click', function () {
+        load(seededDefault ? { seedComplete: true } : null);
+      });
       playbarAction.addEventListener('click', function () {
         if (state === 'ready') {
           setState('loading');
@@ -278,9 +295,8 @@
       document.documentElement.dataset.ready = 'true';
       setState('ready');
       if (parent !== window) parent.postMessage({ type: 'magic-replay:ready' }, parentTarget);
-      // Build the real completed task view once, then use the product UI as the
-      // default view. No screenshot cover is shown during initialization.
-      load({ warmup: true });
+      // Seed a completed mock task directly, without replaying its steps on entry.
+      load({ seedComplete: true });
     })();
   </script>
 </body>
