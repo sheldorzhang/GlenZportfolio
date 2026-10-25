@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920">
+<title>示意图模板 · 圆角版</title>
+<style>
+/* ============================================================
+   结构图模板 · 圆角版
+   灰底白卡、圆角、Buddy 紫。布局比例与直角版一致。
+   调细节只改下面 :root。样例内容是 Case 01「产品结构」。
+   ============================================================ */
+:root{
+  --fig-w:1920px;
+  --fig-h:1080px;
+  --fig-bg:#FAFAFA;
+  --fig-card:#FFFFFF;
+  --fig-ink:#1C1C1C;
+  --fig-ink-2:#5C5C5C;
+  --fig-ink-3:#8A8A8A;
+  --fig-line:#E6E6E6;
+  --fig-accent:#5555EC;       /* Buddy 主紫 */
+  --fig-accent-soft:#F1F0FF;  /* Buddy 淡紫 */
+  --fig-font:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+
+  --fig-table-w:100%;
+  --fig-side:96px;
+  --fig-label-w:300px;
+  --fig-rule-h:52px;
+  --fig-row-1:312px;
+  --fig-row-2:268px;
+  --fig-row-3:384px;
+  --fig-line-gap:32px;     /* 卡片到结构分割线 */
+  --fig-cell-pad:var(--fig-line-gap);
+  --fig-card-pad-y:28px;
+  --fig-card-pad-x:20px;
+  --fig-gap:16px;          /* 同一网格里的卡片间距 */
+  --fig-radius:18px;
+  --fig-card-border:none;
+  --fig-focus-border:2px solid var(--fig-accent);
+
+  --fig-tag:17px;
+  --fig-label:24px;
+  --fig-note:17px;
+  --fig-kicker:17px;
+  --fig-title:23px;
+  --fig-body:18px;
+  --fig-banner:18px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;background:#e8e8e8}
+body{min-height:100vh;display:grid;place-items:center;font-family:var(--fig-font);color:var(--fig-ink)}
+
+.canvas{
+  width:var(--fig-w);height:var(--fig-h);
+  box-sizing:border-box;
+  padding:52px var(--fig-side);
+  background:var(--fig-bg);
+  display:flex;
+  align-items:center;
+}
+
+.table{
+  width:var(--fig-table-w);
+  display:grid;
+  grid-template-columns:var(--fig-label-w) minmax(0,1fr);
+  column-gap:var(--fig-line-gap);
+}
+.row{
+  display:grid;
+  grid-template-columns:subgrid;
+  grid-column:1 / -1;
+  align-items:stretch;
+  border-bottom:1px solid var(--fig-line);
+  padding:var(--fig-line-gap) 0;
+}
+.row:last-child{border-bottom:0}
+.row-1{min-height:var(--fig-row-1)}
+.row-2{min-height:var(--fig-row-2)}
+.row-3{min-height:var(--fig-row-3)}
+
+.label{
+  grid-column:1;
+  align-self:stretch;
+  margin-top:calc(var(--fig-line-gap) * -1);
+  margin-bottom:calc(var(--fig-line-gap) * -1);
+  border-right:1px solid var(--fig-line);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 16px 0 4px;
+  gap:10px;
+}
+.label .tag{margin:0;color:var(--fig-accent);font-size:var(--fig-tag);font-weight:500;line-height:1}
+.label h2{margin:0;font-size:var(--fig-label);font-weight:600;line-height:1.35}
+.label p{margin:0;color:var(--fig-ink-3);font-size:var(--fig-note);line-height:1.45;font-weight:400;white-space:nowrap}
+
+.cells{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:var(--fig-gap);
+  min-width:0;
+  align-content:stretch;
+}
+.row-1 .cells{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
+.row-1 .span-2{grid-column:auto}
+.row-3 .cells{grid-template-rows:1fr auto}
+.span-2{grid-column:span 2}
+.sheet{
+  background:var(--fig-card);
+  border-radius:var(--fig-radius);
+  display:grid;
+  min-width:0;min-height:0;
+  overflow:hidden;
+}
+.sheet-5{grid-template-columns:repeat(5,1fr)}
+.sheet .cell{position:relative}
+.sheet .cell + .cell::before{
+  content:"";
+  position:absolute;left:0;top:50%;
+  width:1px;height:var(--fig-rule-h);
+  transform:translateY(-50%);
+  background:var(--fig-line);
+}
+.banner{grid-column:1 / -1}
+
+.card{
+  margin:0;
+  background:var(--fig-card);
+  border:var(--fig-card-border);
+  border-radius:var(--fig-radius);
+  min-height:0;
+}
+.card.focus{
+  background:var(--fig-accent-soft);
+  border:var(--fig-focus-border);
+}
+.card.soft{
+  background:var(--fig-accent-soft);
+  border-color:transparent;
+  display:grid;place-items:center;
+  min-height:56px;
+  padding:14px 28px;
+}
+.card.soft p{margin:0;color:var(--fig-accent);font-size:var(--fig-banner);font-weight:500;text-align:center}
+
+.stack{display:flex;flex-direction:column;justify-content:center;padding:var(--fig-card-pad-y) var(--fig-card-pad-x);gap:12px}
+.stack .kicker{margin:0;font-size:var(--fig-kicker);font-weight:500;line-height:1.2}
+.stack.focus .kicker,.card.focus .kicker{color:var(--fig-accent)}
+.stack h3{margin:0;font-size:var(--fig-title);font-weight:600;line-height:1.35}
+.stack p{margin:0;color:var(--fig-ink-2);font-size:var(--fig-body);line-height:1.45;font-weight:400;white-space:nowrap}
+
+.center{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:10px;padding:24px 28px;
+}
+.sheet .center{padding-left:20px;padding-right:20px}
+.center .kicker,.center h3{white-space:nowrap}
+.center .kicker{margin:0;color:var(--fig-ink-3);font-size:var(--fig-kicker);font-weight:500}
+.center h3{margin:0;font-size:var(--fig-title);font-weight:600}
+.center p{margin:0;color:var(--fig-ink-2);font-size:var(--fig-body);font-weight:400}
+</style>
+</head>
+<body>
+<main class="canvas" aria-label="产品结构示意图">
+  <section class="table">
+    <div class="row row-1">
+      <div class="label">
+        <p class="tag">上层</p>
+        <h2>AI 营销团队</h2>
+        <p>承接目标 · 分工协作 · 人在环</p>
+      </div>
+      <div class="cells">
+        <article class="card focus stack span-2">
+          <p class="kicker">用户与人在环</p>
+          <h3>先表达增长目标</h3>
+          <p>Agent 自主推进；策略、人群、权益与执行由人把关</p>
+        </article>
+        <div class="sheet sheet-5 span-2">
+          <article class="cell center"><p class="kicker">Mine</p><h3>发现机会</h3></article>
+          <article class="cell center"><p class="kicker">Architect</p><h3>设计方案</h3></article>
+          <article class="cell center"><p class="kicker">Generate</p><h3>生成内容</h3></article>
+          <article class="cell center"><p class="kicker">Interact</p><h3>互动触达</h3></article>
+          <article class="cell center"><p class="kicker">Check</p><h3>分析复盘</h3></article>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-2">
+      <div class="label">
+        <p class="tag">中层</p>
+        <h2>增长操作系统</h2>
+        <p>理解企业 · 形成判断 · 统一治理</p>
+      </div>
+      <div class="cells">
+        <article class="card stack span-2">
+          <p class="kicker" style="color:var(--fig-accent)">营销 Harness</p>
+          <h3>把企业经验变成 Agent 上下文</h3>
+          <p>数据 · 品牌知识 · 策略规则 · 权限 · 记忆 · 执行约束</p>
+        </article>
+        <article class="card stack span-2">
+          <p class="kicker" style="color:var(--fig-accent)">Customer AI</p>
+          <h3>形成更准确、更个性化的决策</h3>
+          <p>人群 × 商品 × 权益 × 内容 × 渠道 × 时机</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="row row-3">
+      <div class="label">
+        <p class="tag">下层</p>
+        <h2>营销云底座</h2>
+        <p>连接真实系统 · 执行任务 · 结果回写</p>
+      </div>
+      <div class="cells">
+        <article class="card center"><h3>CDP</h3><p>客户数据与人群</p></article>
+        <article class="card center"><h3>MA</h3><p>旅程编排与触达</p></article>
+        <article class="card center"><h3>SCRM</h3><p>企微互动与运营</p></article>
+        <article class="card center"><h3>FA</h3><p>融合分析与复盘</p></article>
+        <article class="card soft banner"><p>内容生成 · 预测模型 · 自动化编排共同支撑真实执行；结果与经验继续沉淀为下一次增长能力</p></article>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

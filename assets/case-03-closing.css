@@ -1,0 +1,125 @@
+/* Scoped to the Case 02 closing slide; shared deck styles remain unchanged. */
+.deck-slide.c3-closing {
+  padding: 66px 80px 48px;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 36px;
+  font-family: var(--font-sans);
+}
+.c3-closing .deck-kicker {
+  margin-bottom: 20px;
+  font: 400 20px/1.3 var(--font-sans);
+  letter-spacing: 0;
+}
+.c3-closing h1,
+.c3-closing h2,
+.c3-closing h3,
+.c3-closing p,
+.c3-closing dl,
+.c3-closing dd {
+  margin: 0;
+}
+.c3-closing h1 {
+  font: 600 49px/1.3 var(--font-sans);
+  letter-spacing: -.025em;
+}
+.c3-closing .c3-closing-lead {
+  margin-top: 18px;
+  color: #686c75;
+  font: 400 24px/1.6 var(--font-sans);
+}
+.c3-closing-body {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.55fr);
+  gap: 72px;
+}
+.c3-closing h2 {
+  color: #686c75;
+  font: 500 23px/1.4 var(--font-sans);
+}
+.c3-results {
+  min-width: 0;
+  padding-right: 48px;
+  border-right: 1px solid #dedfe3;
+}
+.c3-closing .c3-result-group {
+  margin-top: 26px;
+}
+.c3-result-group + .c3-result-group {
+  padding-top: 26px;
+  border-top: 1px solid #dedfe3;
+}
+.c3-result-group h3 {
+  font: 500 23px/1.4 var(--font-sans);
+}
+.c3-closing .c3-stats {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 24px;
+  margin-top: 20px;
+}
+.c3-stats > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.c3-stats dd {
+  order: -1;
+  color: #2873e7;
+  font: 500 68px/1.1 var(--font-sans);
+  letter-spacing: -.04em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.c3-stats dd span {
+  margin-left: 3px;
+  font-size: 38px;
+  letter-spacing: -.025em;
+}
+.c3-stats dt {
+  margin-top: 12px;
+  font: 400 22px/1.5 var(--font-sans);
+}
+.c3-closing .c3-stats p {
+  margin-top: 5px;
+  color: #777c86;
+  font: 400 19px/1.5 var(--font-sans);
+}
+.c3-closing .c3-data-note {
+  margin-top: 26px;
+  color: #777c86;
+  font: 400 18px/1.6 var(--font-sans);
+}
+.c3-reflections {
+  min-width: 0;
+}
+.c3-reflection {
+  margin-top: 26px;
+}
+.c3-reflection + .c3-reflection {
+  margin-top: 28px;
+}
+.c3-reflection h3 {
+  font: 600 30px/1.4 var(--font-sans);
+}
+.c3-closing .c3-reflection p,
+.c3-closing .c3-exploration p {
+  margin-top: 12px;
+  color: #686c75;
+  font: 400 25px/1.65 var(--font-sans);
+}
+.c3-exploration {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid #dedfe3;
+}
+.c3-exploration h3 {
+  color: #2873e7;
+  font: 500 23px/1.4 var(--font-sans);
+}
+.c3-closing-footer {
+  border-top: 1px solid #dedfe3;
+  padding-top: 23px;
+  font: 500 28px/1.5 var(--font-sans);
+}

@@ -1,0 +1,122 @@
+/* 字体替换说明（v6）：
+   - 拉丁正文 / 导航：DM Sans（OFL，CircularStd 的免费近似）；拉丁展示 / 姓名 / 标题 / 左侧导航：Young Serif 400（OFL，Gelica 的免费近似）；等宽：IBM Plex Mono（OFL）。
+   - 加载：各 HTML <head> 中的 Google Fonts <link>（display=swap）。
+   - 若日后购买 CircularStd / Gelica 授权：把 woff2 放到 assets/fonts/，在此文件顶部写 @font-face（font-family:"CircularStd" / "Gelica"），
+     再把下方 --p-font-sans / --p-font-serif 的第一项换成对应名字，并删掉 HTML 中 Google Fonts 里不再需要的家族。只改这里，不改组件。 */
+/* ============================================================
+   tokens.css v5.13 — 4 层令牌（唯一视觉/交互参数来源）
+   ① primitive  原始值：只写字面量，不随断点/主题变化；组件与 style.css 不直接引用（--p-*、--space-*）
+   ② semantic   语义：颜色角色、字号层级、间距角色、布局宽度、动效、层级；断点/主题只覆盖这一层
+   ③ component  组件：只引用 semantic / primitive，前缀 = 组件名（--nav- --dock- --card- --rail- --toc- --hero- --work-）
+   ④ interaction 交互参数：JS 读取的无单位数字（--ix-*），由 smooth.js 解析
+   命名：--{层/类别}-{角色}[-{变体}]；时长统一 ms；style.css 只能用 var(--*)，允许 0 / 1px 发丝线 / % / fr
+   ============================================================ */
+:root{
+ /* ① primitive -------------------------------------------------- */
+ --p-white:#fff; --p-gray-50:#f4f4f4; --p-ink:#171717;
+ --p-ink-a64:rgba(23,23,23,.64); --p-ink-a45:rgba(23,23,23,.45); --p-ink-a12:rgba(23,23,23,.12); --p-ink-a05:rgba(23,23,23,.05);
+ --p-white-a20:rgba(255,255,255,.2); --p-white-a97:rgba(255,255,255,.97);
+ --p-purple-500:#A855F7; --p-purple-700:#7E3AF2;
+ --p-amber-700:#B45309; --p-amber-50:#FFFBEB;
+ --p-shadow-a12:rgba(0,0,0,.12); --p-shadow-a14:rgba(0,0,0,.14);
+ --p-font-serif:"Noto Serif SC","Noto Serif CJK SC","Source Han Serif SC","Songti SC","STSong","SimSun",serif;
+ --p-font-sans:"DM Sans","PingFang SC","HarmonyOS Sans SC","Microsoft YaHei","Noto Sans SC",-apple-system,"Segoe UI",sans-serif;
+ --p-font-mono:"IBM Plex Mono","SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+ --p-fs-12:12px; --p-fs-13:13px; --p-fs-14:14px; --p-fs-16:16px; --p-fs-17:17px; --p-fs-18:18px; --p-fs-20:20px; --p-fs-24:24px; --p-fs-28:28px; --p-fs-32:32px; --p-fs-40:40px; --p-fs-48:48px;
+ --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px; --space-6:32px; --space-7:48px; --space-8:64px;
+ --space-9:96px; --space-10:120px; --space-11:160px; --space-12:180px;
+ --p-size-72:72px; --p-size-104:104px;
+ --p-radius-4:4px; --p-radius-10:10px; --p-radius-16:16px; --p-radius-22:22px; --p-radius-full:999px;
+ --p-dur-160:160ms; --p-dur-220:220ms; --p-dur-260:260ms; --p-dur-300:300ms; --p-dur-500:500ms;
+ --p-ease-standard:cubic-bezier(.2,.8,.2,1); --p-ease-expo:cubic-bezier(.22,1,.36,1);
+
+ /* ② semantic --------------------------------------------------- */
+ /* color */
+ --color-bg:var(--p-white); --color-surface:var(--p-white); --color-surface-sunken:var(--p-gray-50);
+ --color-fg:var(--p-ink); --color-fg-2:var(--p-ink-a64); --color-fg-3:var(--p-ink-a45); /* ≈#6B6B6B 5.3:1 / ≈#8F8F8F 3.2:1 */
+ --color-line:var(--p-ink-a12); --color-hover:var(--p-ink-a05);
+ --color-accent:var(--p-purple-500); /* 图形：线、圆点、进度 */ --color-accent-text:var(--p-purple-700); /* 文字：角色线、结果数字（≈5.9:1） */
+ --color-inverse-bg:var(--p-ink); --color-inverse-fg:var(--p-white); --color-inverse-line:var(--p-white-a20);
+ --color-scrim:var(--p-white-a97);
+ --color-placeholder:var(--p-amber-700); --color-placeholder-bg:var(--p-amber-50);
+ /* type —— 限定字阶（约 1.2 比例，7 级 + 数字/等宽两个特例）。规则：≥17px 可用 300，≤14px 一律 400；行高随字号递减 */
+ --font-serif:var(--p-font-serif); --font-sans:var(--p-font-sans); --font-mono:var(--p-font-mono); --font-serif-mixed:var(--p-font-serif);
+ --fs-hero:var(--p-fs-40);  --lh-hero:1.25;  /* 首页名字 / 详情标题  serif 700 */
+ --fs-h1:var(--p-fs-32);    --lh-h1:1.3;     /* 简历姓名、引言、结语  serif 700 */
+ --fs-h2:var(--p-fs-24);    --lh-h2:1.4;     /* 区块 / 章节标题       serif 700 */
+ --fs-h3:var(--p-fs-20);    --lh-h3:1.45;    /* 条目标题              sans 400 */
+ --fs-body:var(--p-fs-18);  --lh-body:1.75;  --lh-read:1.85; /* 正文 sans 400 */
+ --fs-chapter:var(--p-fs-12); /* 章节小标题：01 产品与体验 */
+ --fs-small:var(--p-fs-14); --lh-small:1.6;  /* 次要文字、按钮、元信息 sans 400 */
+ --fs-label:var(--p-fs-13); --lh-label:1.5;  --ls-label:.04em; /* 标签、页码、栏目名 sans 400/500 */
+ --fs-mono:var(--p-fs-12);  --ls-mono:.08em; /* 等宽小标签（大写/数字） 400 */
+ --fs-stat:var(--p-fs-48);  --lh-stat:1.1;   /* 数字卡 serif 700 */
+ --lh-snug:1.3; --lh-tight:1;                /* 菜单多行 / 单行控件 */
+ --fw-light:300; --fw-regular:400; --fw-medium:500; --fw-bold:700;--fw-display:500;
+ /* spacing roles */
+ --article-pad-top:80px; /* 探索文章与 Case 01 标题距顶；Be4D / Intent UI / case-01 共用 */
+ --space-block:var(--space-9);   /* 统一 96 节奏：作品条目、详情块 */
+ --space-hero:var(--space-12);   /* 大段首尾留白 */
+ --gap-item:40px; --gap-section:var(--space-9); /* 96 */
+ /* layout */
+ --gutter:32px; --header-offset:96px; --col-label:240px;
+ --w-content:1040px; --w-media:1440px; --w-page:1200px;
+ --w-home:780px;   /* 首页唯一居中容器 */
+ --w-col:680px;    --w-cv:960px; --w-cv-line:34em;
+ --cv-label:40%; --cv-body:60%; --cv-label-md:30%; --cv-body-md:70%;
+ --w-read:720px;   /* 阅读列：详情正文 + 简历纸张（原 w-paper 合并） */
+ --w-media-read:1040px;
+ /* radius / elevation */
+ --radius-sm:var(--p-radius-4); --radius-md:var(--p-radius-10); --radius-pill:var(--p-radius-full); --radius-round:50%;
+ --shadow-float:0 2px 10px var(--p-shadow-a12); --shadow-pop:0 8px 30px var(--p-shadow-a14);
+ /* controls / icon */
+ --size-touch:44px; --icon-sm:16px; --icon-md:20px; --icon-stroke:1.5;
+ --avatar-lg:56px; --avatar-md:48px;
+ --ring-focus-w:2px; --ring-focus-offset:3px;
+ /* motion */
+ --ease:var(--p-ease-standard); --ease-emph:var(--p-ease-expo);
+ --dur-fast:var(--p-dur-160); --dur-base:var(--p-dur-300); --dur-slow:var(--p-dur-500); --dur-morph:var(--p-dur-260);
+ /* z */
+ --z-content:1; --z-nav:30; --z-pill:45; --z-overlay:50; --z-overlay-ui:55; --z-sheet:70;
+
+ /* ③ component -------------------------------------------------- */
+ --nav-ring-w:2px; --nav-ring-gap:3px; --nav-ring-color:var(--color-fg); --nav-ring-track:var(--color-line);
+ --nav-panel-w:240px; --nav-panel-radius:var(--p-radius-22); /* = size-touch/2，面板从圆按钮“长”出来 */
+ --dock-h:44px; --dock-offset:20px;
+ --hero-pt:calc(var(--size-touch) + var(--space-2)); --work-mt:var(--space-7); /* 48 */
+ --card-w:640px; --card-ratio:16/9; --card-radius:var(--p-radius-16); --card-pad:var(--space-4); --card-bg:var(--color-surface-sunken); --card-border:var(--color-line); --card-off-scale:.9;
+ --card-pill-h:36px; --card-pill-dur:var(--p-dur-220); --card-pill-ease:var(--ease-emph); --card-pill-shift:6px; --card-pill-shadow:var(--shadow-float);
+ /* 首页作品灰卡：左文案 + 右叠图，悬停扇开（参照 cv.rocorgi.wang showreel-entry 的交互，按钮用本站墨色） */
+ --reel-bg:rgba(0,0,0,.03); --reel-bg-hover:rgba(0,0,0,.05); --reel-radius:var(--p-radius-16);
+ --reel-pad-y:20px; --reel-pad-x:24px; --reel-gap:var(--space-7);
+ --reel-stack-w:313px; --reel-stack-h:229px; --reel-shot-w:269px; --reel-shot-h:151px;
+ --reel-shot-shadow:0 10px 28px rgba(0,0,0,.14); --reel-fan:450ms;
+ --rail-gap:32px; --rail-pad-end:80px;
+ --toc-w:200px;
+
+ /* ④ interaction（smooth.js 读取；推荐值见 design.md）------------ */
+ --ix-scroll-lerp:.1; --ix-scroll-wheel:1;
+ --ix-rail-lerp:.12; --ix-rail-wheel-mult:.6; --ix-rail-tp-mult:1; --ix-rail-tp-lerp:.35; --ix-rail-tp-max:40;
+ --ix-rail-power:.2; --ix-rail-time:400; --ix-rail-snap-v:400; --ix-rail-idle:150; --ix-rail-snap-dur:500;
+ --ix-rail-max-cards:1; --ix-rail-snap:1; --ix-rail-snap-zone:24; --ix-rail-drag-th:6;--ix-nav-reveal-scale:.9;
+ /* glen logo 动效（main.js 读取；默认值与原硬编码一致） */
+ --ix-glen-eye-max:8.2; --ix-glen-eye-dx:8.5; --ix-glen-eye-dy:.2; --ix-glen-eye-lerp:.18; --ix-glen-eye-range:.65;
+ --ix-glen-near:28; --ix-glen-near-ratio:.55; --ix-glen-wave-dur:620; --ix-glen-wave-deg:18; --ix-glen-wave-peak:.4;
+ --glen-hero-scale:1.5; --glen-hero-inset:calc(-18 / 128); --glen-spell-palette:#e53935,#f57c00,#c9a227,#43a047,#1e88e5,#3949ab,#8e24aa;
+--nav-list-top:var(--page-inset);--ix-nav-list-shift:calc(var(--size-touch) + var(--space-5));
+}
+/* 断点覆盖：只动 semantic / component */
+@media (max-width:767px){
+ :root{
+  --fs-hero:var(--p-fs-28); --fs-h1:var(--p-fs-24); --fs-h2:var(--p-fs-20); --fs-h3:var(--p-fs-17); --fs-stat:var(--p-fs-32);
+  --space-block:var(--p-size-72); --space-hero:var(--p-size-104);
+  --gap-item:40px; --gap-section:var(--p-size-72); --gutter:20px;
+  --card-w:86vw; --card-pad:var(--space-3); --rail-gap:16px; --dock-offset:12px;
+  --reel-pad-y:18px; --reel-pad-x:20px; --reel-gap:var(--space-5);
+  --reel-stack-w:227px; --reel-stack-h:177px; --reel-shot-w:195px; --reel-shot-h:109px;
+ }
+}
+
+/* v6 节奏尺度（首页）：页面顶距 / 分区间距 / 大分区间距 / 标题到内容 / 页面边距 */
+:root{--space-page-top:var(--space-10);--space-section:var(--space-10);--space-section-lg:var(--space-11);--space-title:var(--space-6);--page-inset:var(--space-6);--fs-hero-name:32px;--topbar-h:calc(var(--size-touch) + var(--space-2) * 2)}
+@media(max-width:767px){:root{--space-page-top:var(--space-8);--space-section:var(--space-8);--space-section-lg:var(--space-9);--space-title:var(--space-5);--fs-hero-name:24px}}

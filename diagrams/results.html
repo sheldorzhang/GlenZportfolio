@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>示意图 · 结果可用</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fig-w:1440px;
+  --fig-h:810px;
+  --page:#e8e8e8;
+  --fig-bg:#FAFAFA;
+  --fig-card:#FFFFFF;
+  --fig-ink:#1C1C1C;
+  --fig-ink-2:#5C5C5C;
+  --fig-line:#E6E6E6;
+  --fig-accent:#5555EC;
+  --fig-font:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+  --fig-side:72px;
+  --fig-radius:18px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--page);overflow:hidden}
+body{font-family:var(--fig-font);color:var(--fig-ink)}
+.en{font-family:var(--fig-font)}
+.canvas{
+  position:absolute;left:0;top:0;
+  width:var(--fig-w);height:var(--fig-h);
+  padding:48px var(--fig-side);
+  background:var(--fig-bg);
+  display:flex;align-items:center;
+  overflow:hidden;transform-origin:0 0;
+}
+.board{
+  width:100%;
+  display:grid;
+  grid-template-columns:1400fr 800fr 800fr;
+  grid-template-rows:auto auto auto;
+  column-gap:24px;
+  row-gap:24px;
+  align-items:start;
+}
+.item{display:contents}
+.item header{
+  grid-row:1;
+  display:flex;flex-direction:column;gap:10px;
+}
+.item small{
+  display:block;
+  color:var(--fig-accent);
+  font-size:20px;font-weight:600;line-height:1.2;
+}
+.item h2{
+  margin:0;
+  font-size:24px;font-weight:600;line-height:1.35;
+}
+.shot{
+  grid-row:2;
+  align-self:end;
+  background:var(--fig-card);
+  border:1px solid var(--fig-line);
+  border-radius:var(--fig-radius);
+  box-shadow:0 8px 24px rgba(28,28,28,.07);
+  overflow:hidden;
+}
+.shot img{display:block;width:100%;height:auto}
+.note{
+  grid-row:3;
+  margin:0;
+  padding-top:10px;
+  color:var(--fig-ink-2);
+  font-size:21px;line-height:1.55;
+}
+.note::before{
+  content:"";
+  display:block;
+  width:40px;height:3px;
+  margin-bottom:16px;
+  background:var(--fig-accent);
+  border-radius:999px;
+}
+</style>
+</head>
+<body>
+<main class="canvas" aria-label="节点打开抽屉，产出提炼任务知识，策划生成素材">
+  <div class="board">
+    <article class="item">
+      <header>
+        <small>编排</small>
+        <h2>结果可核对</h2>
+      </header>
+      <div class="shot"><img src="../assets/c1-ch4-result-10.png" alt="点开编排节点后，右侧抽屉展开执行结果"></div>
+      <p class="note">将执行结果关联到对应节点，用户无需在对话中回溯即可查看。</p>
+    </article>
+    <article class="item">
+      <header>
+        <small>产出</small>
+        <h2>经验可复用</h2>
+      </header>
+      <div class="shot"><img src="../assets/c1-ch4-result-20.png" alt="从任务文件里提炼值得保留和需要改进的做法"></div>
+      <p class="note">经确认的有效做法与待改进项进入企业知识库，<br>供后续任务调用。</p>
+    </article>
+    <article class="item">
+      <header>
+        <small>策划</small>
+        <h2>生成物回到使用它的节点</h2>
+      </header>
+      <div class="shot"><img src="../assets/c1-ch4-result-30.png" alt="按风格生成视觉素材，并应用到画布"></div>
+      <p class="note">素材应用到画布节点，<br>成为任务中可执行的企业资产。</p>
+    </article>
+  </div>
+</main>
+<script src="../assets/diagram-fit.js"></script>
+</body>
+</html>

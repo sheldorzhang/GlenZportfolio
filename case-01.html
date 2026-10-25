@@ -1,0 +1,498 @@
+<!doctype html><html lang="zh-CN"><head><script src="assets/page-entry.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="portfolio-version" content="2026-10-16"><meta name="portfolio-status" content="final-copy-v1"><title>AI Agent 营销智能平台：从功能驱动到意图驱动 · 张耕 Glen</title><link rel="icon" href="data:,"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=Noto+Serif+SC:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap"><link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/style.css?v=20261025-loading"><style>
+/* 局部：待补配图占位框，定稿后删除 */
+.ph-box{aspect-ratio:16/9;width:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;box-sizing:border-box;background:#f4f4f5;border:2px dashed #c4c4c8;border-radius:8px;color:#8a8a90;font-size:15px;line-height:1.6}
+/* 返回按钮直接回首页，不再展开下拉 */
+body.c1 .nav-panel{display:none}
+body.detail.c1 .case-head{padding-top:var(--article-pad-top)}
+body.c1 .case-head .c1-subtitle{
+  margin:10px 0 0;
+  color:var(--color-muted,#6b7280);
+  font-size:clamp(18px,2vw,26px);
+  line-height:1.45;
+}
+body.c1 .c1-disclaimer{
+  max-width:var(--c1-col);
+  width:auto;
+  margin:48px var(--c1-right) 24px var(--c1-left);
+  padding-left:var(--gutter);
+  padding-right:var(--gutter);
+  box-sizing:border-box;
+  font-size:12px;
+  line-height:1.6;
+  color:var(--color-muted, #8a8a90);
+  text-align:center;
+}
+body.c1 #intro .c1-demo-cover{
+  container-type:inline-size;
+}
+body.c1 #intro .c1-demo-base{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  width:100%;
+  height:100%;
+  border-radius:inherit;
+  object-fit:cover;
+}
+@media(max-width:767px){
+  body.c1 #intro .c1-demo-base{object-fit:contain}
+}
+body.c1 #intro .c1-demo-mascot{
+  position:absolute;
+  z-index:1;
+  top:20.56%;
+  left:50%;
+  width:16.7%;
+  aspect-ratio:1;
+  transform:translateX(-50%);
+}
+body.c1 #intro .c1-demo-mascot img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+body.c1 #intro .c1-demo-title,
+body.c1 #intro .c1-demo-copy,
+body.c1 #intro .c1-demo-cta{
+  position:absolute;
+  z-index:1;
+  left:50%;
+  transform:translateX(-50%);
+  white-space:nowrap;
+}
+body.c1 #intro .c1-demo-title{
+  top:48.75%;
+  color:#1c1c1c;
+  font-size:clamp(18px,2.4vw,24px);
+  font-weight:500;
+  line-height:1.4;
+}
+body.c1 #intro .c1-demo-copy{
+  top:56.05%;
+  color:#1c1c1c;
+  font-size:clamp(13px,1.7vw,16px);
+  line-height:1.4;
+}
+body.c1 #intro .c1-demo-cta{
+  z-index:2;
+  top:64.889%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:7.223%;
+  min-width:76px;
+  max-width:104px;
+  height:clamp(32px,3.056cqw,44px);
+  padding:0 10px 1px;
+  box-sizing:border-box;
+  border-radius:999px;
+  background:#101010;
+  color:#fff;
+  font-size:clamp(11px,.972cqw,14px);
+  font-weight:700;
+  line-height:1;
+  transition:background .18s ease,transform .18s ease;
+}
+body.c1 #intro .c1-demo-cover:hover .c1-demo-cta,
+body.c1 #intro .c1-demo-cover:focus-visible .c1-demo-cta{
+  background:#2c2c2c;
+  transform:translateX(-50%) translateY(-1px);
+}
+@media(max-width:560px){
+  body.c1 #intro .c1-demo-mascot{width:20%}
+  body.c1 #intro .c1-demo-title{top:48%;font-size:18px}
+  body.c1 #intro .c1-demo-copy{top:56%;font-size:12px}
+  body.c1 #intro .c1-demo-cta{top:64.889%}
+}
+
+/* bg-after spacing */
+body.c1 #background .chap-body.bg-after{
+  margin-top: var(--space-5, 24px);
+  margin-bottom: var(--space-6, 32px);
+}
+body.c1 #background .chap-body.bg-after p{margin-bottom:0}
+/* case-01 原生信息图：用图替代框架性长段落 */
+body.c1 .c1-diagram{background:#fff;border:1px solid rgba(15,23,42,.1);border-radius:16px;padding:20px;margin-top:24px;margin-bottom:24px;box-sizing:border-box}
+body.c1 .c1-diagram figcaption{margin-top:20px;color:var(--color-muted,#6b7280);font-size:13px;line-height:1.6}
+body.c1 .c1-node{border:1px solid rgba(15,23,42,.12);border-radius:10px;background:#fff;padding:14px 16px;text-align:center;color:#111827;line-height:1.45}
+body.c1 .c1-node strong{display:block;margin-bottom:3px}
+body.c1 .c1-node small{display:block;color:#6b7280;font-size:12px}
+body.c1 .c1-node.is-key{background:#111827;color:#fff;border-color:#111827}
+body.c1 .c1-node.is-key small{color:#d1d5db}
+body.c1 .c1-arrow{text-align:center;color:#7c8aa0;font-size:20px;line-height:1;padding:10px 0}
+body.c1 .c1-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+body.c1 .c1-shift{display:grid;grid-template-columns:minmax(0,1fr) 52px minmax(0,1fr);align-items:stretch;gap:16px}
+body.c1 .c1-shift-arrow{display:flex;align-items:center;justify-content:center;color:#2563eb;font-size:28px}
+body.c1 .c1-shift-side{display:flex;flex-direction:column;gap:10px}
+body.c1 .c1-shift-side>strong{font-size:18px}
+body.c1 .c1-tags{display:flex;flex-wrap:wrap;gap:8px}
+body.c1 .c1-tag{display:inline-flex;padding:6px 10px;border-radius:999px;background:#e8eef9;color:#28456f;font-size:12px}
+body.c1 .c1-principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+body.c1 .c1-principle{background:#fff;border:1px solid rgba(15,23,42,.12);border-radius:12px;padding:18px}
+body.c1 .c1-principle b{display:block;margin-bottom:8px;font-size:16px}
+body.c1 .c1-principle p{margin:0;color:#5f6672;font-size:13px;line-height:1.65}
+body.c1 .c1-evidence{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+body.c1 .c1-evidence>div{background:#fff;border:1px solid rgba(15,23,42,.12);border-radius:12px;padding:18px}
+body.c1 .c1-evidence b{display:block;margin-bottom:8px}
+body.c1 .c1-evidence p{margin:0;color:#5f6672;font-size:13px;line-height:1.65}
+body.detail.c1 .case .fig.fig-shared>img,body.detail.c1 .case .fig.fig-shared>.c1-zoom-image-hit>img{padding:0;background:transparent}
+body.c1 .c1-component-shots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+body.c1 .c1-component-shot{margin:0;min-width:0}
+body.c1 .c1-component-shot img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border:1px solid rgba(15,23,42,.1);border-radius:10px;background:#f7f7f7;cursor:zoom-in}
+body.c1 .c1-component-shot b{display:block;margin-top:8px;font-size:13px;font-weight:500}
+body.c1 .c1-component-shot span{display:block;margin-top:2px;color:#6b7280;font-size:12px;line-height:1.45}
+body.c1 .c1-insight-grid,body.c1 .c1-goal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:24px 0;border-top:1px solid rgba(15,23,42,.14);border-bottom:1px solid rgba(15,23,42,.1)}
+body.c1 .c1-insight,body.c1 .c1-goal{padding:18px;border-right:1px solid rgba(15,23,42,.1)}
+body.c1 .c1-insight:last-child,body.c1 .c1-goal:last-child{border-right:0}
+body.c1 .c1-insight small,body.c1 .c1-goal small{display:block;color:#7e3af2;font:500 11px/1.3 var(--font-mono);letter-spacing:.04em}
+body.c1 .c1-insight b,body.c1 .c1-goal b{display:block;margin-top:8px;font-size:15px;font-weight:500}
+body.c1 .c1-goal b{margin-top:0}
+body.c1 .c1-goal b span{margin-right:8px;color:#8a8a8a;font-weight:500}
+body.c1 .c1-iter{display:grid;gap:12px;margin:12px 0 0}
+body.c1 .c1-iter.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.c1 .c1-iter.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+body.c1 .c1-iter figure{margin:0;min-width:0}
+body.c1 .c1-iter img{display:block;width:100%;aspect-ratio:16/10;object-fit:contain;background:#f3f3f3;border:1px solid rgba(15,23,42,.1);border-radius:10px;cursor:zoom-in}
+body.c1 .c1-iter.cards img{aspect-ratio:8/9;background:#fff}
+body.c1 .c1-iter figcaption{margin-top:8px;color:#5f6672;font-size:12px;line-height:1.45}
+body.c1 .c1-iter figcaption b{display:block;margin-bottom:2px;color:#171717;font-weight:500;font-size:13px}
+body.c1 .c1-insight p,body.c1 .c1-goal p{margin:6px 0 0;color:#5f6672;font-size:12px;line-height:1.55}
+body.c1 .c1-goal-grid{gap:12px;margin:16px 0 0;border:0}
+body.c1 .c1-goal{padding:18px 20px;border:0;border-radius:10px;background:#fafafa}
+body.c1 .c1-strategy-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:12px;border:0;border-radius:10px;background:#fafafa}
+body.c1 .c1-strategy-grid>div{position:relative;padding:18px 22px 20px;border-right:0}
+body.c1 .c1-strategy-grid>div:first-child::after{content:"";position:absolute;right:0;top:50%;width:1px;height:52px;transform:translateY(-50%);background:rgba(15,23,42,.16)}
+body.c1 .c1-strategy-grid small{display:block;color:var(--color-muted,#6b7280);font:500 11px/1.3 var(--font-mono);letter-spacing:.04em}
+body.c1 .c1-strategy-grid p{margin:8px 0 0;color:#5f6672;font-size:13px;line-height:1.65}
+body.c1 .c1-strategy-grid p b{color:var(--color-fg,#171717);font-weight:var(--fw-medium)}
+body.c1 .c1-define-map{background:#fff;border:1px solid rgba(15,23,42,.1);border-radius:16px;padding:20px;margin-top:24px;margin-bottom:24px;box-sizing:border-box}
+body.c1 .c1-define-lenses{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+body.c1 .c1-define-lens{padding:18px;border:1px solid rgba(15,23,42,.1);border-radius:12px;background:#fff}
+body.c1 .c1-define-lens small{display:block;margin-bottom:6px;color:#315b96;font:500 12px/1.4 var(--font-mono)}
+body.c1 .c1-define-lens strong{display:block;margin-bottom:8px;font-size:17px}
+body.c1 .c1-define-lens p{margin:0;color:#5f6672;font-size:13px;line-height:1.6}
+body.c1 .c1-define-signals{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+body.c1 .c1-define-signals span{padding:5px 8px;border-radius:999px;background:#eef2f7;color:#526173;font-size:11px;line-height:1}
+body.c1 .c1-define-merge{display:grid;place-items:center;padding:14px 0;color:#7c8aa0;font-size:20px;line-height:1}
+body.c1 .c1-define-tension{padding:15px 18px;border-radius:10px;background:#111827;color:#fff;text-align:center;font-size:15px;line-height:1.5}
+body.c1 .c1-define-tension small{display:block;margin-top:4px;color:#d1d5db;font-size:12px}
+body.c1 .c1-define-loop{display:grid;grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr) 24px minmax(0,1fr) 24px minmax(0,1fr);align-items:stretch;gap:8px;margin-top:16px}
+body.c1 .c1-define-step{display:flex;flex-direction:column;justify-content:center;min-height:88px;padding:13px;border:1px solid rgba(15,23,42,.1);border-radius:10px;background:#fff;text-align:center}
+body.c1 .c1-define-step b{margin-bottom:5px;color:#315b96;font-size:12px}
+body.c1 .c1-define-step span{color:#374151;font-size:12px;line-height:1.5}
+body.c1 .c1-define-loop-arrow{display:grid;place-items:center;color:#7c8aa0;font-size:18px}
+body.c1 .c1-define-conditions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px}
+body.c1 .c1-define-condition{padding:10px;border-radius:8px;background:#e8eef9;color:#28456f;text-align:center;font-size:12px}
+body.c1 .c1-define-map figcaption{margin-top:16px;color:var(--color-muted,#6b7280);font-size:13px;line-height:1.6}
+/* 功能驱动 ↔ 意图驱动：与产品矩阵同一套圆角、描边，点击进灯箱看大图 */
+body.c1 .c1-shift-hit{position:relative;display:block;border:1px solid var(--color-line);border-radius:var(--radius-md);overflow:hidden;background:#fafafa;cursor:zoom-in}
+body.c1 .c1-shift-frame{display:block;width:100%;height:auto;aspect-ratio:1920/1636;border:0;background:#fafafa;pointer-events:none}
+body.c1 .c1-strategy-frame,body.c1 .c1-paradigm-frame{aspect-ratio:16/9}
+body.c1 .c1-shift-zoom{position:absolute;inset:0;border:0;padding:0;background:transparent;cursor:zoom-in}
+/* 说明图将核心判断置于图面中央；放大入口仅在图片区域交互时出现。 */
+body.c1 .c1-explain-figure .c1-shift-hit{background:#fff}
+body.c1 .c1-figure-overlay{position:absolute;z-index:1;right:136px;bottom:26px;left:136px;pointer-events:none}
+body.c1 .c1-figure-overlay p{margin:0;color:var(--color-fg,#171717);font-size:16px;line-height:1.5;font-weight:var(--fw-medium);text-align:center}
+body.c1 .c1-explain-figure figcaption{display:none}
+/* 所有可放大的图统一在悬停时给出轻量入口，不占常规阅读空间。 */
+body.c1 .c1-zoom-image-hit{position:relative;display:block;cursor:zoom-in}
+/* 组件图原素材右侧留白偏窄，补齐灰边后整体等比缩放。 */
+body.detail.c1 .case .c1-components-figure > .c1-zoom-image-hit{padding-right:2.6%;background:#f7f7f7;border:1px solid var(--color-line);border-radius:var(--radius-md);overflow:hidden}
+body.detail.c1 .case .c1-components-figure > .c1-zoom-image-hit > img{display:block;width:100%;max-width:100%;height:auto;object-fit:contain;border:0;border-radius:0}
+
+body.c1 .c1-shift-hit::after,body.c1 .c1-zoom-image-hit::after{content:"";position:absolute;z-index:3;right:24px;bottom:22px;width:46px;height:46px;border:1px solid rgba(15,23,42,.06);border-radius:14px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%23171717' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M3 16v3a2 2 0 0 0 2 2h3'/%3E%3C/svg%3E") center/22px 22px no-repeat;box-shadow:0 8px 20px rgba(15,23,42,.12);opacity:0;transform:translateY(4px);transition:opacity .18s ease,transform .18s ease;pointer-events:none}
+body.c1 .c1-shift-hit:hover::after,body.c1 .c1-shift-hit:focus-within::after,body.c1 .c1-zoom-image-hit:hover::after{opacity:1;transform:translateY(0)}
+body.c1 .c1-intent-live .c1-shift-frame{pointer-events:auto}
+body.c1 .c1-intent-live .c1-shift-zoom{clip-path:polygon(evenodd,0 0,100% 0,100% 100%,0 100%,34% 18%,66% 18%,66% 82%,34% 82%)}
+@media(max-width:700px){
+  body.c1 .c1-diagram{padding:20px;border-radius:12px}
+  body.c1 .c1-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  body.c1 .c1-shift{grid-template-columns:1fr}
+  body.c1 .c1-shift-arrow{transform:rotate(90deg);padding:0}
+  body.c1 .c1-principles,body.c1 .c1-evidence,body.c1 .c1-component-shots,body.c1 .c1-insight-grid,body.c1 .c1-goal-grid,body.c1 .c1-strategy-grid{grid-template-columns:1fr}
+  body.c1 .c1-insight,body.c1 .c1-goal,body.c1 .c1-strategy-grid>div{border-right:0;border-bottom:1px solid rgba(15,23,42,.1)}
+  body.c1 .c1-insight:last-child,body.c1 .c1-goal:last-child,body.c1 .c1-strategy-grid>div:last-child{border-bottom:0}
+  body.c1 .c1-goal,body.c1 .c1-goal:last-child{border:0}
+  body.c1 .c1-strategy-grid>div,body.c1 .c1-strategy-grid>div:last-child{border:0}
+  body.c1 .c1-strategy-grid>div:first-child::after{top:auto;right:auto;bottom:0;left:50%;width:48px;height:1px;transform:translateX(-50%)}
+  body.c1 .c1-iter.cols-3,body.c1 .c1-iter.cols-2{grid-template-columns:1fr}
+  body.c1 .c1-define-map{padding:18px}
+  body.c1 .c1-define-lenses,body.c1 .c1-define-conditions{grid-template-columns:1fr}
+  body.c1 .c1-define-loop{grid-template-columns:1fr}
+  body.c1 .c1-define-loop-arrow{transform:rotate(90deg);min-height:20px}
+  body.c1 .c1-figure-overlay{right:20px;bottom:20px;left:20px}
+  body.c1 .c1-figure-overlay p{font-size:14px}
+  body.c1 .c1-shift-hit::after,body.c1 .c1-zoom-image-hit::after{right:16px;bottom:16px}
+}
+
+/* Case 01 导航节奏：返回、章节与模式切换分组，保持文字轴线一致。 */
+body.detail.c1 .toc{
+  top:calc(var(--c1-rail-y) + var(--size-touch) + var(--space-5));
+  max-height:calc(100dvh - var(--c1-rail-y) - var(--size-touch) - 2 * var(--space-5));
+}
+body.detail.c1 .toc-list{display:flex;flex-direction:column;gap:var(--space-1)}
+body.detail.c1 .toc-list a{min-height:40px;align-items:center;padding:10px 0}
+body.detail.c1 .toc-mode{min-height:var(--size-touch);margin-top:var(--space-5);flex-shrink:0}
+@media(min-width:1440px){
+  body.detail.c1 .toc-mode{column-gap:var(--space-3)}
+}
+
+/* 文章窄屏：目录收进顶栏，正文不再为侧栏预留宽度。 */
+.c1-mobile-bar{display:none}
+@media(max-width:1000px){
+  body.detail.c1{--c1-left:0px;--c1-right:0px;--c1-rail-x:var(--gutter);--c1-rail-y:calc(env(safe-area-inset-top) + 8px)}
+  body.c1 .c1-mobile-bar{display:flex;align-items:center;position:fixed;inset:0 0 auto;height:calc(60px + env(safe-area-inset-top));padding:env(safe-area-inset-top) var(--gutter) 0;z-index:29;background:rgba(255,255,255,.96);backdrop-filter:blur(12px)}
+  body.c1 .c1-menu-toggle{display:inline-flex;align-items:center;justify-content:center;margin-left:56px;width:var(--size-touch);height:var(--size-touch);padding:0;border:0;border-radius:var(--radius-round);background:var(--color-surface);box-shadow:var(--shadow-float);color:var(--color-fg);cursor:pointer}
+  body.c1 .c1-menu-toggle:hover{background:var(--color-hover)}
+  body.c1 .c1-nav-title{flex:1;min-width:0;margin:0 0 0 16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:var(--fw-display) 16px/1.4 var(--font-serif);color:var(--color-fg);opacity:0;transform:translateY(4px);transition:opacity var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease);pointer-events:none}
+  body.c1 .c1-nav-title.is-visible{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){body.c1 .c1-nav-title{transition:none}}
+
+  body.detail.c1 .toc{display:none;top:calc(68px + env(safe-area-inset-top));left:var(--gutter);width:min(264px,calc(100vw - 2 * var(--gutter)));max-height:calc(100dvh - 92px - env(safe-area-inset-top));padding:var(--space-1);align-items:stretch;z-index:46;background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-md);box-shadow:var(--shadow-pop)}
+  body.detail.c1 .toc.is-open{display:flex}
+  body.detail.c1 .toc-list{gap:0}
+  body.detail.c1 .toc-list a{width:100%;grid-template-columns:32px minmax(0,1fr);column-gap:0;justify-items:stretch;min-height:40px;padding:8px 12px;font-size:var(--fs-label);line-height:1.3;border-radius:var(--radius-sm)}
+  body.detail.c1 .toc-list a span{width:auto;justify-content:flex-start}
+  body.detail.c1 .toc-list a:hover{background:var(--color-hover)}
+  body.detail.c1 .toc-mode{width:100%;justify-content:flex-start;gap:12px;margin-top:8px;padding:8px 12px;min-height:44px;border-top:1px solid var(--color-line)}
+  body.detail.c1 .toc-mode span{position:static;width:auto;height:auto;clip:auto;overflow:visible;font-size:var(--fs-label)}
+  body.detail.c1 .case-head{padding-top:calc(60px + var(--article-pad-top) + env(safe-area-inset-top))}
+  body.detail.c1 .chap-head h2{scroll-margin-top:calc(84px + env(safe-area-inset-top))}
+  body.c1 .c1-menu-toggle:focus-visible,body.c1 .toc a:focus-visible,body.c1 .toc-mode:focus-visible{outline:2px solid var(--color-accent-text);outline-offset:2px}
+}
+</style><script>document.documentElement.className="js"</script></head><body class="detail c1" data-slides-href="case-01-deck.html"><!-- icons: Lucide v1.55.0 (ISC) · assets/icons/LICENSE-lucide.txt --><svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7" /> <path d="M19 12H5" /></symbol><symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /></symbol><symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10" /> <path d="M7 17 17 7" /></symbol><symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></symbol><symbol id="i-layout-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1" /> <rect width="7" height="7" x="14" y="3" rx="1" /> <rect width="7" height="7" x="14" y="14" rx="1" /> <rect width="7" height="7" x="3" y="14" rx="1" /></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z" /></symbol><symbol id="i-list" viewBox="0 0 24 24"><path d="M3 5h.01" /> <path d="M3 12h.01" /> <path d="M3 19h.01" /> <path d="M8 5h13" /> <path d="M8 12h13" /> <path d="M8 19h13" /></symbol><symbol id="i-move-horizontal" viewBox="0 0 24 24"><path d="m18 8 4 4-4 4" /> <path d="M2 12h20" /> <path d="m6 8-4 4 4 4" /></symbol><symbol id="i-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" /></symbol><symbol id="i-pen-line" viewBox="0 0 24 24"><path d="M13 21h8" /> <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" /></symbol><symbol id="i-file-text" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /> <path d="M14 2v5a1 1 0 0 0 1 1h5" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /></symbol><symbol id="i-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /> <rect x="2" y="4" width="20" height="16" rx="2" /></symbol><symbol id="i-message-circle" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719" /></symbol><symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /></symbol><symbol id="i-download" viewBox="0 0 24 24"><path d="M12 15V3" /> <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /> <path d="m7 10 5 5 5-5" /></symbol></svg>
+<!-- 统一详情模板：平铺叙事 + 图集幻灯片（detail.js）；演示版见 case-01-deck.html -->
+
+<nav class="nav" id="nav" data-mode="detail" aria-label="案例导航"><button class="nav-btn" type="button" aria-label="返回首页"><span class="nav-icon" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg></span><span class="vh"><span class="nav-name">概览</span> <span class="nav-pct">0%</span></span></button><div class="nav-panel" role="menu"><a class="nav-home" href="index.html"><svg class="icon icon-16" aria-hidden="true"><use href="#i-arrow-left"/></svg>返回首页</a><div class="nav-head">章节</div><div class="nav-menu"></div><button class="nav-mode" aria-pressed="false"><svg class="icon icon-16 i-off" aria-hidden="true"><use href="#i-play"/></svg><svg class="icon icon-16 i-on" aria-hidden="true"><use href="#i-list"/></svg><span class="nav-mode-t">幻灯片</span></button><button class="nav-mode nav-resume" type="button" data-resume><svg class="icon icon-16" aria-hidden="true"><use href="#i-file-text"/></svg>完整简历</button><a class="nav-mode nav-contact" href="index.html#contact"><svg class="icon icon-16" aria-hidden="true"><use href="#i-mail"/></svg>联系</a></div></nav><div class="c1-mobile-bar"><button class="c1-menu-toggle" type="button" aria-label="打开章节目录" aria-expanded="false" aria-controls="c1-article-toc"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h.01M3 12h.01M3 19h.01M8 5h13M8 12h13M8 19h13"/></svg></button><p class="c1-nav-title" aria-hidden="true"></p></div><main class="case"><aside class="toc" id="c1-article-toc" aria-label="目录"><div class="toc-h">目录</div><nav class="toc-list"></nav><button class="toc-mode" type="button" aria-label="幻灯片浏览"><svg class="icon icon-16" aria-hidden="true"><use href="#i-play"/></svg><span>幻灯片</span></button></aside><div class="case-main"><header class="wrap case-head"><div><h1>腾讯企点营销云 MAGIC AI</h1><p class="c1-subtitle">从功能驱动到意图驱动，探索 Agent-first 的交互体验范式</p><div class="case-meta"><dl><dt>产品</dt><dd>腾讯企点营销云 MAGIC AI —— 面向企业增长的 AI 原生营销智能体平台</dd><dt>角色</dt><dd>负责 Agent 配置和对话体验；主导营销云 AI 设计体系搭建</dd><dt>时间</dt><dd>2024 — 至今</dd><dt>关键词</dt><dd>AI 产品体验设计 / 意图驱动 / Agent-first / Multi-Agent / HITL（人在回路）</dd></dl></div></div></header>
+
+<section class="chap" id="intro" data-chapter="intro" data-nav="产品与体验"><div class="wrap chap-head"><div><p class="c1-chapter-label">01 产品与体验</p><h2>MAGIC AI：把分散的营销能力组织成完整增长任务</h2></div><div class="txt">
+<p><b>从营销工具集合，到智能增长操作系统。</b> 企业通常并不缺少营销工具，真正困难的是如何把分散的数据、策略、知识和执行能力持续组织起来，形成可以重复使用的增长能力。</p>
+<p>先从一场秋冬换季沉默会员召回活动，看看 Agent 如何把增长目标变成可执行方案。</p>
+</div></div>
+<figure class="fig block" data-embed-src="demos/magic-task-replay/index.html">
+  <button class="embed-cover c1-demo-cover" type="button" aria-label="立即体验营销活动策划任务">
+    <img class="c1-demo-base" src="assets/c1-intro-demo-cover.png" width="1440" height="900" alt="MAGIC AI 营销活动策划任务启动页">
+    <span class="c1-demo-cta" aria-hidden="true">立即体验</span>
+  </button>
+  <figcaption class="embed-caption"><b>表达增长目标 → Agent 组织任务 → 人确认关键决策 → 交付可执行方案</b></figcaption>
+</figure>
+<div class="wrap chap-body c1-intro-positioning">
+<p><b>MAGIC AI 把企业数据、营销经验和执行工具组织成可协作、可治理的智能增长系统。</b></p>
+</div>
+<figure class="fig fig-shared"><div class="c1-zoom-image-hit"><img data-zoom loading="lazy" width="1920" height="1080" src="assets/c1-shared-product-model.png?v=matrix2" alt="AI 营销团队、智能增长操作系统与营销云底座构成的上中下三层产品结构"></div><figcaption><b>MAGIC AI 三层结构：上层由五类 Agent 承接增长目标，中层结合企业上下文形成判断，下层调用营销云完成真实执行。</b></figcaption></figure>
+<div class="wrap chap-body c1-intro-takeaway">
+<p><b>Agent-first：从找功能，到提目标。</b></p>
+<p>面对适合智能体承接的增长任务，用户先表达目标，由 Agent 组织执行步骤，人保留关键决策权。让这种协作方式更易理解、可控、可复用，是 MAGIC AI 持续探索的体验方向。</p>
+</div>
+</section>
+
+<section class="chap" id="background" data-chapter="problem" data-nav="发现与定义"><div class="wrap chap-head"><div><p class="c1-chapter-label">02 发现与定义</p><h2>为什么“意图”成为产品转型的核心问题</h2></div><div class="txt">
+<p>产品转型的目标，不是把每个功能都改造成对话入口，而是让 Agent 承接跨模块的完整营销任务。对运营人员来说，关键体验问题是：目标、人群、规则和修改记录能否在任务推进中持续被理解、确认与沿用。</p>
+</div></div>
+<div class="wrap chap-body c1-subhead">
+<h3>从一场大促旅程，看见完整意图如何损耗</h3>
+<p>以会员运营做一场大促为例，看同一份业务目标如何在整条链路里损耗。</p>
+</div>
+<figure class="fig fig-shared"><div class="c1-zoom-image-hit"><img data-zoom loading="lazy" width="1920" height="1051" src="assets/c1-shared-journey.png?v=journey17" alt="一场大促的现状体验地图：编排、执行、复盘中的页面、回环，以及目标、上下文和修改如何损耗"></div><figcaption><b>用户体验地图发现：完整营销能力已经存在，但意图仍由运营人工串联。</b> 调研来源：业务流程走查、行业交付反馈与典型营销任务拆解。</figcaption></figure>
+<div class="wrap chap-body">
+<p>核心发现是，传统 SaaS 按功能组织能力，会员运营必须自己维持一条跨模块的完整意图。</p>
+<p>设计机会是，让系统从业务目标出发组织步骤，把分散能力串成可理解、可确认、可复用的任务链。</p>
+</div>
+<div class="wrap chap-body c1-subhead">
+<h3 id="conflict">从产品转型到双向意图对齐</h3>
+<p>产品侧让用户从经营目标而不是功能入口发起任务；体验侧让 Agent 解释自己理解的目标与约束，允许用户在执行前补充、修正并确认。两者共同解决跨模块任务的上下文断点。</p>
+</div>
+<figure class="fig fig-shared c1-shift-figure" aria-label="双向意图对齐，以及功能驱动到意图驱动">
+  <div class="c1-shift-hit">
+    <iframe class="c1-shift-frame" src="diagrams/shift.html" title="双向意图对齐，以及功能驱动到意图驱动" tabindex="-1"></iframe>
+    <button type="button" class="c1-shift-zoom" data-zoom-src="frame:diagrams/shift.html" data-zoom-ratio="16/9" aria-label="查看大图：双向意图对齐"></button>
+  </div>
+</figure>
+<div class="wrap chap-body c1-goals">
+<p>落到 AI 产品设计上，有三点需要注意。</p>
+<div class="c1-goal-grid" aria-label="AI 产品设计需要注意的三点">
+  <div class="c1-goal"><b><span>1</span>意图完整</b><p>说清要服务谁、遵守什么规则、做到什么结果。</p></div>
+  <div class="c1-goal"><b><span>2</span>过程可控</b><p>AI 先讲出理解和依据，关键步骤再由人确认。</p></div>
+  <div class="c1-goal"><b><span>3</span>结果可用</b><p>方案能改、能执行，经验和产出落到企业知识库与资产。</p></div>
+</div>
+</div>
+</section>
+
+<section class="chap" id="strategy" data-chapter="strategy" data-nav="体验策略"><div class="wrap chap-head"><div><p class="c1-chapter-label">03 体验策略</p><h2>从增长任务出发，选择 AI 的介入方式</h2></div><div class="txt">
+<p>产品层先判断增长任务发生在持续洞察、策略决策还是跨步骤执行；体验层再根据任务由谁发起、意图是否明确、复杂度和出错代价，选择内嵌式 AI、协作式 Copilot（AI 协作助手）或 Multi-Agent（多智能体协作）。三者不是线性升级关系，而是面向不同任务条件的协作选择。</p>
+</div></div>
+<figure class="fig fig-shared c1-strategy-figure c1-explain-figure" aria-label="三种增长任务对应的设计介入">
+  <div class="c1-shift-hit">
+    <iframe class="c1-shift-frame c1-strategy-frame" src="diagrams/strategy.html" title="三种增长任务对应的设计介入" tabindex="-1"></iframe>
+    <div class="c1-figure-overlay"><p>AI 的介入方式应匹配用户的决策责任与操作风险。</p></div>
+    <button type="button" class="c1-shift-zoom" data-zoom-src="frame:diagrams/strategy.html" data-zoom-ratio="16/9" aria-label="查看大图：三种设计介入"></button>
+  </div>
+  <figcaption>三种增长任务对应的信息提示、协作确认与任务代理。</figcaption>
+</figure>
+<div class="wrap chap-body c1-strategy-note">
+<p>结合业务流程与行业交付反馈，三类策略分别对应持续发现机会、共同澄清规则和完成复杂任务。设计重点不是展示 AI 能做多少事，而是匹配用户当前的决策责任与操作成本。</p>
+</div>
+<div class="wrap chap-body c1-subhead">
+<h3 id="embedded">1. 洞察：用内嵌式 AI 帮用户看清经营机会</h3>
+</div>
+<div class="wrap chap-body c1-strategy-modules">
+<div class="c1-strategy-grid" aria-label="洞察的需求洞察与产品体验">
+  <div><small>需求洞察</small><p>增长要持续判断哪些人群值得经营、上一场复盘能否复用。判断散落在多个模块，运营自行串联的门槛高。</p></div>
+  <div><small>产品体验</small><p>针对持续性、低打扰的经营洞察，将 AI 建议嵌入已有工作台，而不是要求运营反复发起对话。将人群信号、复盘结果与建议动作集中呈现，保留判断依据和进入下一步的选择权。</p></div>
+</div>
+</div>
+<figure
+  class="fig block"
+  data-embed-src="demos/magic-embedded-replay/index.html"
+  data-embed-autoplay
+  data-embed-title="工作台首页，AI 主动更新运营洞察"
+>
+  <div class="embed-cover">
+    <img src="demos/magic-embedded-replay/frame.png" width="1440" height="900" alt="">
+  </div>
+  <figcaption class="embed-caption"><b>工作台首页，AI 主动更新运营洞察</b></figcaption>
+</figure>
+<div class="wrap chap-body c1-subhead">
+<h3 id="copilot">2. 决策：用协作式 Copilot 形成可信方案</h3>
+</div>
+<div class="wrap chap-body c1-strategy-modules">
+<div class="c1-strategy-grid" aria-label="决策的需求洞察与产品体验">
+  <div><small>需求洞察</small><p>前场交付要大量协助企业整理并配置规则。材料如何拆解、冲突和适用范围如何处理，需要一起澄清。</p></div>
+  <div><small>产品体验</small><p>规则材料可能存在歧义与冲突，因此采用人机协作而非直接自动执行：AI 负责提取信息、提示冲突和适用范围，运营负责澄清与确认；只有确认后的规则才进入策略库，供后续任务复用。</p></div>
+</div>
+</div>
+<figure
+  class="fig block"
+  data-embed-src="demos/magic-copilot-replay/index.html"
+  data-embed-autoplay
+  data-embed-title="活动策略库，AI 拆解企业规则"
+>
+  <div class="embed-cover">
+    <img src="assets/c1-copilot-replay-cover.png" width="2880" height="1800" alt="">
+  </div>
+  <figcaption class="embed-caption"><b>活动策略库，AI 拆解企业规则</b></figcaption>
+</figure>
+<div class="wrap chap-body c1-subhead">
+<h3 id="agent">3. 行动与验证：用 Multi-Agent 完成复杂增长任务</h3>
+</div>
+<div class="wrap chap-body c1-strategy-modules">
+<div class="c1-strategy-grid" aria-label="行动与验证的需求洞察与产品体验">
+  <div><small>需求洞察</small><p>真实任务里过程信息过多，活动分支也比演示更复杂。潜在诉求是中途可改，失败不必退出重做。</p></div>
+  <div><small>产品体验</small><p>面对跨步骤的长任务，由主 Agent 维护整体目标、专业 Agent 分工处理。界面优先展示任务状态、关键产物和待确认事项，低价值过程默认折叠；当条件变化或执行失败时，支持用户调整后继续，而非从头重做。</p></div>
+</div>
+</div>
+<figure
+  class="fig block"
+  data-embed-src="demos/magic-task-replay/index.html"
+  data-embed-autoplay
+  data-embed-title="Agent工作台，AI 完成活动策划"
+>
+  <div class="embed-cover">
+    <img src="assets/c1-09-three-pane.png" width="3200" height="2000" alt="">
+  </div>
+  <figcaption class="embed-caption"><b>Agent工作台，AI 完成活动策划</b></figcaption>
+</figure>
+</section>
+
+<section class="chap" id="design" data-chapter="mechanisms" data-nav="基础体验"><div class="wrap chap-head"><div><p class="c1-chapter-label">04 基础体验</p><h2>Agent 交互体验范式</h2></div><div class="txt">
+<p>三种 AI 介入方式不同，但用户始终需要回答三个问题：Agent 能做什么、目前准备怎么做、交付结果是否可信且可用。因此，将任务发起、协作确认和结果验收中的共性决策，沉淀为一致的交互范式。</p>
+</div></div>
+<figure class="fig fig-shared" aria-label="用户交互路径、用户可见界面与 Agent 基础体验范式的对应关系">
+  <div class="c1-shift-hit">
+    <iframe class="c1-shift-frame c1-paradigm-frame" src="diagrams/paradigm.html" title="一次任务里，人如何与 Agent 协作" tabindex="-1"></iframe>
+    <button type="button" class="c1-shift-zoom" data-zoom-src="frame:diagrams/paradigm.html" data-zoom-ratio="16/9" aria-label="查看大图：Agent 交互体验范式"></button>
+  </div>
+</figure>
+<div class="wrap chap-body c1-subhead">
+<h3>1. 意图可见</h3>
+<p>通过任务示例、能力范围和输入引导，帮助用户明确可提出什么目标，以及需要补充哪些人群、条件与约束。</p>
+</div>
+<figure class="fig fig-shared" aria-label="提供明确的意图预期，帮用户找到怎么开口">
+  <div class="c1-shift-hit c1-intent-live">
+    <iframe class="c1-shift-frame c1-paradigm-frame" src="diagrams/intent.html" title="意图可见的三组引导" tabindex="-1"></iframe>
+    <button type="button" class="c1-shift-zoom" data-zoom-src="frame:diagrams/intent.html" data-zoom-ratio="16/9" aria-label="查看大图：意图可见"></button>
+  </div>
+</figure>
+<div class="wrap chap-body c1-subhead">
+<h3>2. 过程可介入</h3>
+<p>非关键执行过程默认收起，关键计划、待确认动作与异常状态保持可见；用户能够查看、修改或确认下一步。</p>
+</div>
+<figure class="fig fig-shared" aria-label="计划确认卡和通用确认卡的前后对比">
+  <div class="c1-shift-hit">
+    <iframe class="c1-shift-frame c1-paradigm-frame" src="diagrams/confirm.html" title="计划确认卡与通用确认卡" tabindex="-1"></iframe>
+    <button type="button" class="c1-shift-zoom" data-zoom-src="frame:diagrams/confirm.html" data-zoom-ratio="16/9" aria-label="查看大图：过程可介入"></button>
+  </div>
+</figure>
+<div class="wrap chap-body c1-subhead">
+<h3>3. 结果可用与沉淀</h3>
+<p>结果不仅要能查看，还应支持核对与调整；经用户确认的规则和产物再进入企业知识与资产体系，供后续任务复用。</p>
+</div>
+<figure class="fig fig-shared" aria-label="编排打开抽屉、产出提炼任务知识、策划生成素材">
+  <div class="c1-shift-hit">
+    <iframe class="c1-shift-frame c1-paradigm-frame" src="diagrams/results.html" title="编排、产出与策划" tabindex="-1"></iframe>
+    <button type="button" class="c1-shift-zoom" data-zoom-src="frame:diagrams/results.html" data-zoom-ratio="16/9" aria-label="查看大图：结果可用"></button>
+  </div>
+</figure>
+<div class="wrap chap-body c1-subhead">
+<h3>主路径上的共性解法</h3>
+<p>将任务表达、协作确认与结构化产物抽象为三类基础组件，统一不同 Agent 的状态反馈、确认方式与结果呈现，降低跨场景使用时的学习成本。</p>
+</div>
+<figure class="fig fig-shared c1-components-figure" aria-label="表达、协作、产物三类组件">
+  <div class="c1-zoom-image-hit"><img data-zoom loading="lazy" width="2957" height="1311" src="assets/c1-ch4-components.png?v=4" alt="Compose 表达、Collaborate 协作、Artifact 产物三类核心组件"></div>
+</figure>
+</section>
+
+<section class="chap" id="evidence" data-chapter="evidence" data-nav="验证与总结"><div class="wrap chap-head"><div><p class="c1-chapter-label">05 验证与总结</p><h2>验证意图驱动，沉淀可复用的体验能力</h2></div><div class="txt">
+<p>从功能驱动走向意图驱动，要在真实任务中检验 Agent 是否准确理解意图、交付结果是否可用。用户愿意持续使用，产品才有健康增长的基础。</p>
+</div></div>
+<div class="wrap chap-body c1-subhead">
+<h3>1. 从交付反馈到体验迭代</h3>
+<p>交付反馈暴露了规则分散、过程信息冗余与复杂分支难处理的问题，推动规则配置 Copilot、三栏任务空间和结构化产物的迭代。体验验证则围绕任务完成、关键操作质量与业务效果展开。</p>
+</div>
+<figure class="fig fig-shared c1-explain-figure" aria-label="真实任务、交付反馈、体验改版与下一次任务构成的反馈闭环和三层验证框架">
+  <div class="c1-shift-hit">
+    <iframe class="c1-shift-frame c1-strategy-frame" src="diagrams/c5-square.html#delivery" title="从交付反馈到可复用沉淀" tabindex="-1"></iframe>
+    <button type="button" class="c1-shift-zoom" data-zoom-src="frame:diagrams/c5-square.html#delivery" data-zoom-ratio="16/9" aria-label="查看大图：从交付反馈到可复用沉淀"></button>
+  </div>
+  <figcaption>反馈闭环与三层验证框架。</figcaption>
+</figure>
+<div class="wrap chap-body c1-subhead">
+<h3>2. 把 AI 融入团队设计工作流</h3>
+<p>利用 AI 辅助资料归纳、方案探索与规范检查，让团队聚焦业务判断和设计取舍；再将有效方法沉淀为组件、规范与工具，支持后续项目复用。</p>
+</div>
+<figure class="fig fig-shared c1-explain-figure" aria-label="从真实资料到团队复用的五步设计协作流程，以及四类实践示例">
+  <div class="c1-shift-hit">
+    <iframe class="c1-shift-frame c1-strategy-frame" src="diagrams/c5-square.html#workflow" title="把 AI 融入日常工作" tabindex="-1"></iframe>
+    <button type="button" class="c1-shift-zoom" data-zoom-src="frame:diagrams/c5-square.html#workflow" data-zoom-ratio="16/9" aria-label="查看大图：把 AI 融入日常工作"></button>
+  </div>
+  <figcaption>五步协作流程与四类实践示例。</figcaption>
+</figure>
+<div class="wrap chap-body c1-subhead">
+<h3>3. 从设计 Agent 产品，到设计人和 AI 的工作方式</h3>
+</div>
+<figure class="fig fig-shared c1-explain-figure" aria-label="从企业上下文、协作原则到 Agent-first 使用习惯的总结框架">
+  <div class="c1-shift-hit">
+    <iframe class="c1-shift-frame c1-strategy-frame" src="diagrams/c5-square.html#summary" title="从设计 Agent 产品，到设计人和 AI 的工作方式" tabindex="-1"></iframe>
+    <button type="button" class="c1-shift-zoom" data-zoom-src="frame:diagrams/c5-square.html#summary" data-zoom-ratio="16/9" aria-label="查看大图：从设计 Agent 产品，到设计人和 AI 的工作方式"></button>
+  </div>
+  <figcaption>企业上下文、协作原则与 Agent-first 使用习惯。</figcaption>
+</figure>
+<div class="wrap chap-body c1-summary-close">
+<p>围绕企业增长任务，MAGIC AI 持续探索意图驱动的协作体验，并推动产品在多个营销场景中落地。<b>2026 年营销云整体业务签约金额增速 +35%，已签约订阅制 KA 客户 160+ 家。</b></p>
+<p>在产品体验层面，持续关注 KA 客户的实际采用、有效任务完成与后续复用，并结合关键确认、异常恢复等交互反馈，优化 Agent 的可理解性、可控性与任务完成体验。</p>
+<p><b>Agent-first 的核心，不是让所有操作都变成对话，而是让 AI 在合适的任务中承接复杂过程，让用户专注于判断和决策。</b></p>
+</div>
+</section>
+<p class="c1-disclaimer">演示场景中的品牌、人物与样例数据均已替换或使用示例；产品界面保留真实设计形态。商业数据统计范围为营销云产品线。</p>
+<div class="wrap next-case"><small>下一个案例</small><a href="case-03-deck.html">让通用 IM 支撑行业业务协作<svg class="icon icon-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div></div></main><script src="assets/main.js"></script><script src="assets/detail.js"></script><script src="assets/case-01-nav.js"></script><script src="assets/resume.js?v=20261025-pdf-sync"></script><script src="assets/smooth.js"></script><script src="assets/embed.js?v=20261025-loading" defer></script><script src="assets/case-01-diagrams.js"></script><script>
+/* 左上返回：直接回首页首屏，不打开菜单 */
+(function(){
+  var back=document.querySelector('.nav-btn');
+  if(!back) return;
+  back.addEventListener('click',function(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    location.href='index.html';
+  },true);
+})();
+</script></body></html>

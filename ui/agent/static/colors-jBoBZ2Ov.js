@@ -1,0 +1,2 @@
+System.register([],function(e,t){"use strict";return{execute:function(){e({c:function(e,t){return t?`var(${e}, ${t})`:`var(${e})`},r:function(e,n){if("undefined"==typeof window)return n;const u=t();if(!u)return n;return window.getComputedStyle(u).getPropertyValue(e).trim()||n}});const t=()=>"undefined"==typeof document?null:document.getElementById("app")||document.documentElement}}});
+//# sourceMappingURL=colors-jBoBZ2Ov.js.map

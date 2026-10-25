@@ -1,0 +1,2 @@
+System.register(["./bootstrapApplication-zlOO6zKC.js"],function(t,r){"use strict";var e;return{setters:[t=>{e=t.$}],execute:function(){t({a:function(t){const r=e(n),i=(t??"").trim();return i?`${i} · ${r}`:r},d:function(t){const i=t.trim();return r.test(i)?e(n):t}});t("A","ad-delivery-anomaly");const r=/^(F3 AI report\b|F3诊断|RTA诊断报告)/i,n="异常诊断 AI 报告"}}});
+//# sourceMappingURL=sessionTitle-CI7lh_8M.js.map

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<rect width="1920" height="1080" fill="#FAFAFA"/>
+<line x1="180" y1="228" x2="1740" y2="228" stroke="#E6E6E6" stroke-width="1"/>
+<line x1="180" y1="438" x2="1740" y2="438" stroke="#E6E6E6" stroke-width="1"/>
+<line x1="180" y1="606" x2="1740" y2="606" stroke="#E6E6E6" stroke-width="1"/>
+<line x1="180" y1="868" x2="1740" y2="868" stroke="#E6E6E6" stroke-width="1"/>
+<line x1="348" y1="228" x2="348" y2="868" stroke="#E6E6E6" stroke-width="1"/>
+<text x="202.0" y="305.0" fill="#5555EC" font-size="12" font-weight="500" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">上层</text>
+<text x="202.0" y="335.0" fill="#1C1C1C" font-size="16" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">AI 营销团队</text>
+<text x="202.0" y="357.0" fill="#8A8A8A" font-size="11" font-weight="400" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">承接目标 · 分工协作</text>
+<text x="202.0" y="373.0" fill="#8A8A8A" font-size="11" font-weight="400" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">· 人在环</text>
+<text x="202.0" y="494.0" fill="#5555EC" font-size="12" font-weight="500" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">中层</text>
+<text x="202.0" y="520.0" fill="#1C1C1C" font-size="16" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">增长操作</text>
+<text x="202.0" y="540.0" fill="#1C1C1C" font-size="16" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">系统</text>
+<text x="202.0" y="564.0" fill="#8A8A8A" font-size="11" font-weight="400" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">理解企业 · 形成判断</text>
+<text x="202.0" y="580.0" fill="#8A8A8A" font-size="11" font-weight="400" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">· 统一治理</text>
+<text x="202.0" y="709.0" fill="#5555EC" font-size="12" font-weight="500" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">下层</text>
+<text x="202.0" y="739.0" fill="#1C1C1C" font-size="16" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">营销云底座</text>
+<text x="202.0" y="761.0" fill="#8A8A8A" font-size="11" font-weight="400" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">连接真实系统 · 执行任务</text>
+<text x="202.0" y="777.0" fill="#8A8A8A" font-size="11" font-weight="400" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">· 结果回写</text>
+<rect x="362.0" y="242.0" width="409.0" height="182.0" rx="10" fill="#F1F0FF" stroke="#5555EC" stroke-width="1.5"/>
+<text x="378.0" y="278.0" fill="#5555EC" font-size="12" font-weight="500" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">用户与人在环</text>
+<text x="378.0" y="310.0" fill="#1C1C1C" font-size="16" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">先表达增长目标</text>
+<text x="378.0" y="338.0" fill="#5C5C5C" font-size="12" font-weight="400" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">Agent 自主推进；策略、人群、</text>
+<text x="378.0" y="356.0" fill="#5C5C5C" font-size="12" font-weight="400" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">权益与执行由人把关</text>
+<rect x="781.0" y="242.0" width="181.0" height="182.0" rx="10" fill="#FFFFFF" stroke="#E6E6E6" stroke-width="1"/>
+<text x="871.5" y="323.0" fill="#8A8A8A" font-size="12" font-weight="500" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">Mine</text>
+<text x="871.5" y="349.0" fill="#1C1C1C" font-size="15" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">发现机会</text>
+<rect x="972.0" y="242.0" width="181.0" height="182.0" rx="10" fill="#FFFFFF" stroke="#E6E6E6" stroke-width="1"/>
+<text x="1062.5" y="323.0" fill="#8A8A8A" font-size="12" font-weight="500" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">Architect</text>
+<text x="1062.5" y="349.0" fill="#1C1C1C" font-size="15" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">设计方案</text>
+<rect x="1163.0" y="242.0" width="181.0" height="182.0" rx="10" fill="#FFFFFF" stroke="#E6E6E6" stroke-width="1"/>
+<text x="1253.5" y="323.0" fill="#8A8A8A" font-size="12" font-weight="500" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">Generate</text>
+<text x="1253.5" y="349.0" fill="#1C1C1C" font-size="15" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">生成内容</text>
+<rect x="1354.0" y="242.0" width="181.0" height="182.0" rx="10" fill="#FFFFFF" stroke="#E6E6E6" stroke-width="1"/>
+<text x="1444.5" y="323.0" fill="#8A8A8A" font-size="12" font-weight="500" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">Interact</text>
+<text x="1444.5" y="349.0" fill="#1C1C1C" font-size="15" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">互动触达</text>
+<rect x="1545.0" y="242.0" width="181.0" height="182.0" rx="10" fill="#FFFFFF" stroke="#E6E6E6" stroke-width="1"/>
+<text x="1635.5" y="323.0" fill="#8A8A8A" font-size="12" font-weight="500" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">Check</text>
+<text x="1635.5" y="349.0" fill="#1C1C1C" font-size="15" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">分析复盘</text>
+<rect x="362.0" y="452.0" width="676.0" height="140.0" rx="10" fill="#FFFFFF" stroke="#E6E6E6" stroke-width="1"/>
+<text x="382.0" y="488.0" fill="#5555EC" font-size="12" font-weight="500" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">营销 Harness</text>
+<text x="382.0" y="520.0" fill="#1C1C1C" font-size="16" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">把企业经验变成 Agent 上下文</text>
+<text x="382.0" y="548.0" fill="#5C5C5C" font-size="12" font-weight="400" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">数据 · 品牌知识 · 策略规则 · 权限 · 记忆 · 执行约束</text>
+<rect x="1050.0" y="452.0" width="676.0" height="140.0" rx="10" fill="#FFFFFF" stroke="#E6E6E6" stroke-width="1"/>
+<text x="1070.0" y="488.0" fill="#5555EC" font-size="12" font-weight="500" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">Customer AI</text>
+<text x="1070.0" y="520.0" fill="#1C1C1C" font-size="16" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">形成更准确、更个性化的决策</text>
+<text x="1070.0" y="548.0" fill="#5C5C5C" font-size="12" font-weight="400" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="start">人群 × 商品 × 权益 × 内容 × 渠道 × 时机</text>
+<rect x="362.0" y="620.0" width="333.5" height="121.7" rx="10" fill="#FFFFFF" stroke="#E6E6E6" stroke-width="1"/>
+<text x="528.8" y="674.8" fill="#1C1C1C" font-size="16" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">CDP</text>
+<text x="528.8" y="696.8" fill="#5C5C5C" font-size="12" font-weight="400" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">客户数据与人群</text>
+<rect x="705.5" y="620.0" width="333.5" height="121.7" rx="10" fill="#FFFFFF" stroke="#E6E6E6" stroke-width="1"/>
+<text x="872.2" y="674.8" fill="#1C1C1C" font-size="16" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">MA</text>
+<text x="872.2" y="696.8" fill="#5C5C5C" font-size="12" font-weight="400" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">旅程编排与触达</text>
+<rect x="1049.0" y="620.0" width="333.5" height="121.7" rx="10" fill="#FFFFFF" stroke="#E6E6E6" stroke-width="1"/>
+<text x="1215.8" y="674.8" fill="#1C1C1C" font-size="16" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">SCRM</text>
+<text x="1215.8" y="696.8" fill="#5C5C5C" font-size="12" font-weight="400" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">企微互动与运营</text>
+<rect x="1392.5" y="620.0" width="333.5" height="121.7" rx="10" fill="#FFFFFF" stroke="#E6E6E6" stroke-width="1"/>
+<text x="1559.2" y="674.8" fill="#1C1C1C" font-size="16" font-weight="600" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">FA</text>
+<text x="1559.2" y="696.8" fill="#5C5C5C" font-size="12" font-weight="400" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">融合分析与复盘</text>
+<rect x="362.0" y="751.7" width="1364.0" height="102.3" rx="10" fill="#F1F0FF" stroke="#F1F0FF" stroke-width="1"/>
+<text x="1044.0" y="807.8" fill="#5555EC" font-size="13" font-weight="500" font-family="'PingFang SC','Hiragino Sans GB',sans-serif" text-anchor="middle">内容生成 · 预测模型 · 自动化编排共同支撑真实执行；结果与经验继续沉淀为下一次增长能力</text>
+</svg>

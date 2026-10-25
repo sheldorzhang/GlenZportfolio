@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <link rel="icon" href="data:,">
+  <title>MAGIC 活动策划回放</title>
+  <style>
+    html,body{position:fixed;inset:0;margin:0;width:100%;height:100%;overflow:hidden;background:#fff}
+    #stage{position:absolute;inset:0;overflow:hidden;background:#fff}
+    #product{
+      position:absolute;left:50%;top:50%;width:1440px;height:900px;border:0;background:#fff;
+      opacity:0;transform-origin:center;transition:opacity .42s ease;
+    }
+    html[data-ready="true"] #product{opacity:1}
+    #status{
+      position:absolute;inset:0;z-index:2;display:grid;place-content:center;gap:14px;
+      padding:24px;text-align:center;background:linear-gradient(145deg,#f8f9fc,#eef1f7);
+      color:#747982;font:13px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+      transition:opacity .28s ease,visibility .28s ease;
+    }
+    html[data-ready="true"] #status{opacity:0;visibility:hidden;pointer-events:none}
+    .spinner{width:26px;height:26px;margin:auto;border:2px solid rgba(82,78,235,.16);border-top-color:#524eeb;border-radius:50%;animation:spin .8s linear infinite}
+    #status p{margin:0}
+    #retry{display:none;justify-self:center;min-height:38px;padding:0 17px;border:0;border-radius:999px;background:#17181a;color:#fff;font:600 13px/1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;cursor:pointer}
+    html[data-error="true"] .spinner{display:none}
+    html[data-error="true"] #retry{display:block}
+    #expand{
+      position:absolute;right:24px;bottom:22px;top:auto;left:auto;z-index:3;display:grid;place-items:center;
+      width:46px;height:46px;padding:0;border:0;border-radius:14px;background:rgba(255,255,255,.9);
+      color:#303236;box-shadow:0 4px 16px rgba(29,34,48,.14);cursor:pointer;
+      opacity:0;visibility:hidden;transform:translateY(4px);
+      transition:opacity .2s ease,transform .2s ease,background .2s ease;
+    }
+    @media(max-width:767px){#expand{right:16px;bottom:16px}}
+    #expand:hover{background:#fff}
+    #expand:focus-visible{outline:2px solid #5555ec;outline-offset:2px}
+    #expand svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    #expand .icon-collapse{display:none}
+    html[data-ready="true"] #expand{opacity:1;visibility:visible;transform:none}
+    html[data-expanded="true"] #expand{opacity:0;visibility:hidden;pointer-events:none}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @media(prefers-reduced-motion:reduce){#product,#status,#expand{transition:none}.spinner{animation:none}}
+  </style>
+</head>
+<body>
+  <div id="stage">
+    <iframe id="product" title="MAGIC Agent 活动策划交互回放" allow="autoplay; fullscreen"></iframe>
+    <button id="expand" type="button" aria-label="放大回放窗口" title="放大回放窗口">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg>
+    </button>
+    <div id="status" role="status" aria-live="polite">
+      <span class="spinner" aria-hidden="true"></span>
+      <p id="status-text">正在进入 MAGIC 活动策划演示…</p>
+      <button id="retry" type="button">重新加载</button>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var PRODUCT_URL = '../../ui/agent/index.html';
+      var W = 1440;
+      var H = 900;
+      var frame = document.getElementById('product');
+      var statusText = document.getElementById('status-text');
+      var retry = document.getElementById('retry');
+      var expand = document.getElementById('expand');
+      var timer = 0;
+      var parentTarget = '*';
+
+      function fit() {
+        var w = document.documentElement.clientWidth || innerWidth;
+        var h = document.documentElement.clientHeight || innerHeight;
+        var inset = w < 520 ? 12 : 0;
+        var scale = Math.min((w - inset * 2) / W, (h - inset * 2) / H);
+        frame.style.transform = 'translate(-50%, -50%) scale(' + scale + ')';
+      }
+
+      function load() {
+        clearTimeout(timer);
+        document.documentElement.dataset.ready = 'false';
+        document.documentElement.dataset.error = 'false';
+        statusText.textContent = '正在进入 MAGIC 活动策划演示…';
+        var url = new URL(PRODUCT_URL, location.href);
+        url.searchParams.set('route', 'task');
+        url.searchParams.set('demo', 'replay');
+        url.searchParams.set('theme', 'light');
+        url.searchParams.set('fresh', String(Date.now()));
+        frame.src = url.href;
+        timer = setTimeout(function () {
+          document.documentElement.dataset.error = 'true';
+          statusText.textContent = '回放资源加载失败，请刷新页面重试。';
+        }, 20000);
+      }
+
+      addEventListener('resize', fit);
+      if (window.visualViewport) visualViewport.addEventListener('resize', fit);
+      addEventListener('message', function (event) {
+        if (event.source !== frame.contentWindow || !event.data) return;
+        if (event.data.type !== 'magic-demo:ready' && event.data.type !== 'magic-demo:state') return;
+        clearTimeout(timer);
+        document.documentElement.dataset.error = 'false';
+        document.documentElement.dataset.ready = 'true';
+        document.documentElement.dataset.replayState = event.data.phase || 'running';
+        if (parent !== window) parent.postMessage({ type: 'magic-replay:ready' }, parentTarget);
+      });
+      retry.addEventListener('click', load);
+      expand.addEventListener('click', function () {
+        if (parent !== window) {
+          parent.postMessage({ type: 'magic-replay:toggle-expand' }, parentTarget);
+        }
+      });
+      addEventListener('message', function (event) {
+        if (event.source !== parent || !event.data) return;
+        if (event.data.type !== 'magic-replay:expanded') return;
+        document.documentElement.dataset.expanded = String(Boolean(event.data.value));
+      });
+      fit();
+      load();
+    })();
+  </script>
+</body>
+</html>

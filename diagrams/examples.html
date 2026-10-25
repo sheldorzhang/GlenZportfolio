@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>示意图 · 三个基础体验</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fig-w:1920px;--fig-h:1080px;
+  --page:#e8e8e8;--fig-bg:#FAFAFA;--fig-ink:#1C1C1C;
+  --fig-ink-2:#5C5C5C;--fig-ink-3:#8A8A8A;--fig-line:#E6E6E6;
+  --fig-font:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+  --fig-serif:"Noto Serif SC","Songti SC","STSong",serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--page);overflow:hidden}
+body{font-family:var(--fig-font);color:var(--fig-ink)}
+.en{font-family:var(--fig-font)}
+.canvas{
+  position:absolute;left:0;top:0;width:var(--fig-w);height:var(--fig-h);
+  padding:52px 96px;background:var(--fig-bg);
+  display:flex;align-items:center;overflow:hidden;transform-origin:0 0;
+}
+.board{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.col{display:flex;flex-direction:column;min-width:0}
+.col h3{margin:0;font:600 28px/1.3 var(--fig-serif);white-space:nowrap}
+.col h3 span{margin-right:10px;color:var(--fig-ink-3);font-family:var(--fig-font);font-size:18px;font-weight:500}
+.pair{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr);align-items:center;gap:8px;margin-top:28px}
+.arrow{text-align:center;color:var(--fig-ink);font-size:22px}
+.sk{min-width:0}
+.sk small{display:block;margin-top:10px;color:var(--fig-ink-3);font-size:16px;text-align:center}
+.ui{height:360px;border:1px solid var(--fig-ink);background:#fff;padding:22px;overflow:hidden}
+.field{height:36px;border:1px solid #E0E0E0;background:#F7F7F7}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chips i{height:22px;border-radius:0;background:#F0F0F0}
+.chips i:nth-child(1){width:72px}.chips i:nth-child(2){width:56px}.chips i:nth-child(3){width:64px}
+.ip{width:42px;height:42px;margin:0 auto 12px;border-radius:50%;background:#E4E4E4;border:1px solid var(--fig-ink)}
+.prompt{margin-top:8px;height:28px;border:1px solid #E0E0E0}
+.prompt.s{width:78%}
+.heavy{background:#2C2C2C;color:#fff;border-color:#2C2C2C}
+.heavy .line{height:8px;background:rgba(255,255,255,.35);margin-top:8px}
+.heavy .line.l{width:100%}.heavy .line.m{width:86%}.heavy .line.s{width:70%}
+.heavy em{display:block;margin-top:16px;margin-left:auto;width:72px;height:22px;background:#fff}
+.light .act{height:28px;border:1px solid #E6E6E6;margin-top:8px}
+.light em{display:inline-block;margin-top:14px;padding:4px 10px;background:var(--fig-ink);color:#fff;font-style:normal;font-size:13px}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:28px}
+.mini{height:360px;border:1px solid var(--fig-ink);background:#fff;padding:16px}
+.mini b{display:block;margin-bottom:10px;font-size:14px;font-weight:500;color:var(--fig-ink-3)}
+.node{height:28px;border:1px solid #E0E0E0;margin-top:8px}
+.node.on{background:#F4F4F4}
+.num{font:600 22px/1 var(--fig-font)}
+.num span{display:block;margin-top:4px;color:var(--fig-ink-3);font-size:12px;font-weight:400}
+.rule{height:10px;background:#F3F3F3;margin-top:8px}
+.rule.m{width:80%}.rule.s{width:62%}
+.cap{margin:22px 0 0;color:var(--fig-ink-2);font-size:18px;line-height:1.5}
+</style>
+</head>
+<body>
+<main class="canvas" aria-label="意图可见、过程可介入、结果可用三个方向">
+  <div class="board">
+    <section class="col">
+      <h3><span>01</span>意图可见</h3>
+      <div class="pair">
+        <div class="sk">
+          <div class="ui">
+            <div class="field"></div>
+            <div class="chips" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+          <small>文字入口</small>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="sk">
+          <div class="ui">
+            <div class="ip" aria-hidden="true"></div>
+            <div class="prompt"></div>
+            <div class="prompt s"></div>
+            <div class="chips" aria-hidden="true"><i></i><i></i></div>
+          </div>
+          <small>引导 + <span class="en">IP</span></small>
+        </div>
+      </div>
+      <p class="cap">从文字卡片，到把能做的事和示例问题摆出来。</p>
+    </section>
+    <section class="col">
+      <h3><span>02</span>过程可介入</h3>
+      <div class="pair">
+        <div class="sk">
+          <div class="ui heavy">
+            <div class="line l"></div><div class="line m"></div><div class="line s"></div><div class="line m"></div>
+            <em></em>
+          </div>
+          <small>重色整段确认</small>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="sk">
+          <div class="ui light">
+            <div class="act"></div><div class="act"></div><div class="act"></div>
+            <em>确认</em>
+          </div>
+          <small>浅色任务确认</small>
+        </div>
+      </div>
+      <p class="cap">关键决定留下，过程信息不再铺满卡片。</p>
+    </section>
+    <section class="col">
+      <h3><span>03</span>结果可用</h3>
+      <div class="trio">
+        <div class="mini"><b>编排</b><div class="node on"></div><div class="node"></div><div class="node"></div></div>
+        <div class="mini"><b>数据</b><div class="num">1,988<span>人群</span></div><div class="node on"></div></div>
+        <div class="mini"><b>规则</b><div class="rule"></div><div class="rule m"></div><div class="rule s"></div></div>
+      </div>
+      <p class="cap">结果收成可查看、可回看的结构化对象。</p>
+    </section>
+  </div>
+</main>
+<script>
+(function(){
+  var canvas=document.querySelector('.canvas');
+  var embedded=!!window.frameElement;
+  if(embedded) document.documentElement.style.background=document.body.style.background='#fafafa';
+  function fit(){
+    var margin=embedded?0:72;
+    var s=embedded?innerWidth/1920:Math.min((innerWidth-margin*2)/1920,(innerHeight-margin*2)/1080,1);
+    canvas.style.left=((innerWidth-1920*s)/2)+'px';
+    canvas.style.top=((innerHeight-1080*s)/2)+'px';
+    canvas.style.transform='scale('+s+')';
+  }
+  addEventListener('resize',fit);
+  fit();
+})();
+</script>
+</body>
+</html>

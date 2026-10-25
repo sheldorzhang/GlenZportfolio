@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet">
+<title>第五章说明图 · 直角版</title>
+<style>
+:root{
+  --fig-w:1920px;
+  --fig-bg:#FAFAFA;--fig-card:#fff;--fig-ink:#1C1C1C;
+  --fig-ink-2:#5C5C5C;--fig-ink-3:#8A8A8A;
+  --fig-font:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+  --fig-serif:"Noto Serif SC","Songti SC",serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#e8e8e8}
+body{display:flex;flex-direction:column;align-items:center;gap:48px;padding:40px 0;font-family:var(--fig-font);color:var(--fig-ink)}
+h3{margin:0;font-family:var(--fig-serif);font-weight:600}
+.en{font-family:var(--fig-font)}
+.canvas{
+  width:var(--fig-w);height:auto;
+  padding:64px 96px;
+  background:var(--fig-bg);
+  display:flex;flex-direction:column;gap:28px;
+}
+.flow{display:grid;grid-template-columns:1fr 28px 1fr 28px 1fr 28px 1fr;gap:0;align-items:stretch}
+.flow5{display:grid;grid-template-columns:1fr 28px 1fr 28px 1fr 28px 1fr 28px 1fr;gap:0;align-items:stretch}
+.link{margin:0;text-align:center;color:var(--fig-ink);font-family:var(--fig-serif);font-size:20px;font-weight:600}
+.step{
+  border:1px solid var(--fig-ink);background:var(--fig-card);
+  padding:22px 18px 20px;display:flex;flex-direction:column;gap:10px;
+}
+.step small{color:var(--fig-ink-3);font-size:15px;font-weight:500;line-height:1}
+.step h3{font-size:24px;line-height:1.35}
+.step p{margin:0;color:var(--fig-ink-2);font-size:16px;line-height:1.5}
+.step.focus{background:var(--fig-ink);color:#fff}
+.step.focus small,.step.focus p{color:rgba(255,255,255,.72)}
+.step.focus h3{color:#fff}
+.arrow{display:flex;align-items:center;justify-content:center;color:var(--fig-ink);font-size:22px}
+.back{
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;
+  color:var(--fig-ink-2);font-size:16px;font-weight:500;
+}
+.back b{border-top:1.5px dashed var(--fig-ink);height:0}
+.back i{border-top:1.5px dashed var(--fig-ink);height:0;position:relative}
+.back i::before{content:"";position:absolute;left:0;top:-5px;width:8px;height:8px;border-left:1.5px solid var(--fig-ink);border-bottom:1.5px solid var(--fig-ink);transform:rotate(45deg)}
+#delivery{height:1080px;justify-content:center;gap:22px}
+.sheet{display:flex;flex-direction:column}
+.sheet .row{
+  display:grid;grid-template-columns:1fr 1.15fr 2.6fr;gap:40px;align-items:center;
+  min-height:116px;padding:0 4px;
+  border-bottom:1px solid #E6E6E6;
+}
+.sheet .row.th{min-height:68px;border-bottom:1px solid var(--fig-ink)}
+.sheet .th span{color:var(--fig-ink-3);font-size:16px;font-weight:500}
+.sheet b{font-family:var(--fig-serif);font-size:28px;font-weight:600;line-height:1.3}
+.sheet .ask{color:var(--fig-ink-2);font-size:20px}
+.sheet .nums{
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  color:var(--fig-ink-3);font-size:18px;line-height:1.45;
+}
+.sheet .nums i{font-style:normal}
+.note{margin:0;text-align:center;font-family:var(--fig-serif);font-size:20px;font-weight:600;line-height:1.5}
+#delivery{height:1080px;justify-content:center;gap:24px}
+#delivery .flow{align-items:stretch}
+#delivery .step{min-height:184px;padding:28px 22px 24px;gap:12px}
+#delivery .step small{font-size:17px}
+#delivery .step h3{font-size:30px;line-height:1.35}
+#delivery .step p{font-size:18px;line-height:1.55}
+#delivery .back{font-size:18px}
+#delivery .link{display:flex;align-items:baseline;gap:24px;text-align:left;font-size:28px;line-height:1.35}
+#delivery .link small{color:var(--fig-ink-3);font-family:var(--fig-font);font-size:17px;font-weight:500;letter-spacing:.08em;white-space:nowrap}
+#delivery .metrics{width:100%;border-collapse:collapse;table-layout:fixed;border-top:1px solid var(--fig-ink);border-bottom:1px solid var(--fig-ink)}
+#delivery .metrics col:nth-child(1){width:25%}
+#delivery .metrics col:nth-child(2){width:32%}
+#delivery .metrics col:nth-child(3){width:43%}
+#delivery .metrics th,#delivery .metrics td{padding:0 28px;text-align:left;vertical-align:middle}
+#delivery .metrics thead tr{height:54px;border-bottom:1px solid #E6E6E6}
+#delivery .metrics thead th{color:var(--fig-ink-2);font-size:19px;font-weight:500}
+#delivery .metrics tbody tr{height:128px;border-bottom:1px solid #E6E6E6}
+#delivery .metrics tbody tr:last-child{border-bottom:0}
+#delivery .metrics tbody th{color:var(--fig-ink-2);font-size:20px;font-weight:500}
+#delivery .metrics .question{font-family:var(--fig-serif);font-size:32px;font-weight:600;line-height:1.35}
+#delivery .metrics .signals{color:var(--fig-ink-2);font-size:22px;line-height:1.5}
+#delivery .note{font-family:var(--fig-font);font-size:20px;font-weight:500;color:var(--fig-ink-2)}
+.takeaway{margin:0;text-align:center;font-size:30px;font-weight:600;line-height:1.4}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.split article{border:1px solid var(--fig-ink);background:#fff;padding:24px 28px;display:flex;flex-direction:column;gap:10px}
+.split small{color:var(--fig-ink-3);font-size:15px;font-weight:500}
+.split h3{font-size:26px;line-height:1.35}
+.split p{margin:0;color:var(--fig-ink-2);font-size:17px;line-height:1.55}
+#summary{
+  height:1080px;
+  padding:64px 96px;
+  justify-content:center;
+  gap:34px;
+}
+#summary .af{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;
+  align-items:stretch;
+}
+#summary .af article{
+  border:1px solid var(--fig-ink);
+  background:#fff;
+  min-height:260px;
+  padding:32px 30px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+#summary .af article.focus{background:var(--fig-ink);color:#fff}
+#summary .af small{color:var(--fig-ink-3);font-size:18px;font-weight:500;line-height:1}
+#summary .af .focus small,#summary .af .focus p{color:rgba(255,255,255,.72)}
+#summary .af h3{font-size:32px;line-height:1.35}
+#summary .af p{margin:0;color:var(--fig-ink-2);font-size:20px;line-height:1.55}
+#summary .path{
+  display:grid;
+  grid-template-columns:180px minmax(0,1fr);
+  align-items:center;
+  gap:24px;
+  padding:18px 24px;
+  border-top:1px solid var(--fig-ink);
+  border-bottom:1px solid var(--fig-ink);
+}
+#summary .path p{margin:0;color:var(--fig-ink-3);font-size:17px;font-weight:500;letter-spacing:.08em;white-space:nowrap}
+#summary .path div{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:center}
+#summary .path span{
+  position:relative;
+  padding:12px 16px;
+  text-align:center;
+  font-family:var(--fig-serif);
+  font-size:24px;
+  font-weight:500;
+}
+#summary .path span + span::before{
+  content:"→";
+  position:absolute;
+  left:-10px;top:50%;
+  transform:translateY(-50%);
+  color:var(--fig-ink-3);
+  font-family:var(--fig-font);
+  font-size:22px;
+  font-weight:400;
+}
+#summary .pair{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+#summary .pair article{
+  border:1px solid var(--fig-ink);
+  background:#fff;
+  min-height:190px;
+  padding:28px 30px;
+}
+#summary .pair small{display:block;margin-bottom:12px;color:var(--fig-ink-3);font-size:17px;font-weight:500}
+#summary .pair h3{margin-bottom:10px;font-size:28px;line-height:1.35}
+#summary .pair p{margin:0;color:var(--fig-ink-2);font-size:20px;line-height:1.58}
+#workflow{
+  height:1080px;
+  padding:58px 80px;
+  gap:26px;
+  justify-content:center;
+}
+#workflow .flow5{grid-template-columns:1fr 32px 1fr 32px 1fr 32px 1fr 32px 1fr}
+#workflow .step{min-height:140px;padding:20px 20px 18px;gap:10px}
+#workflow .step small{font-size:17px}
+#workflow .step h3{font-size:28px;line-height:1.35}
+#workflow .step p{font-size:18px;line-height:1.45}
+#workflow .shots{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;
+  align-items:start;
+}
+#workflow .shots figure{margin:0;min-width:0;display:flex;flex-direction:column;gap:10px}
+#workflow .shots figcaption{font-family:var(--fig-serif);font-size:22px;font-weight:600;line-height:1.3}
+#workflow .shots .frame{
+  aspect-ratio:auto;border:1px solid var(--fig-ink);background:#fff;overflow:hidden;
+}
+#workflow .shots img{display:block;width:100%;height:auto;object-fit:contain;object-position:center}
+#workflow .roles{
+  margin:0;display:grid;grid-template-columns:1fr 1fr;gap:24px;
+}
+#workflow .roles article{
+  border:1px solid var(--fig-ink);background:#fff;
+  min-height:76px;padding:0 24px;
+  display:grid;grid-template-columns:132px 1fr;gap:24px;align-items:center;
+}
+#workflow .roles b{font-family:var(--fig-serif);font-size:25px;font-weight:600;line-height:1.3}
+#workflow .roles .bits{
+  display:block;
+  color:var(--fig-ink-2);font-size:20px;line-height:1.4;
+}
+.principles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--fig-ink);background:#fff}
+.principles span{padding:18px 12px;text-align:center;font-size:18px;border-right:1px solid var(--fig-ink)}
+.principles span:last-child{border-right:0}
+.bottom{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.bottom p{margin:0;color:var(--fig-ink-2);font-size:17px;line-height:1.6}
+.bottom small{display:block;margin-bottom:8px;color:var(--fig-ink);font-family:var(--fig-serif);font-size:18px;font-weight:600}
+</style>
+</head>
+<body>
+<main class="canvas" id="delivery">
+  <section class="flow">
+    <article class="step"><small>01</small><h3>真实任务</h3><p>在实际使用中检验规则与复杂分支。</p></article>
+    <div class="arrow">→</div>
+    <article class="step"><small>02</small><h3>交付反馈</h3><p>规则分散、过程冗余、复杂分支难覆盖。</p></article>
+    <div class="arrow">→</div>
+    <article class="step focus"><small>03</small><h3>体验改版</h3><p><span class="en">Copilot</span>、三栏任务空间与结构化产物。</p></article>
+    <div class="arrow">→</div>
+    <article class="step"><small>04</small><h3>下一次任务</h3><p>保留判断与产物，供后续任务复用。</p></article>
+  </section>
+  <div class="back"><i></i><span>循环验证</span><b></b></div>
+  <p class="link">三层价值验证</p>
+  <table class="metrics" aria-label="三层价值验证">
+    <colgroup><col><col><col></colgroup>
+    <thead><tr><th scope="col">验证层级</th><th scope="col">核心问题</th><th scope="col">观察信号</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">01 产品体验</th><td class="question">任务有没有完成</td><td class="signals">首次价值 · 重复使用 · 真实任务渗透</td></tr>
+      <tr><th scope="row">02 体验护栏</th><td class="question">质量有没有守住</td><td class="signals">建议采纳 · 人工修改 · 规则纠错</td></tr>
+      <tr><th scope="row">03 业务效果</th><td class="question">结果有没有出现</td><td class="signals">触达转化 · <span class="en">ROI</span> · 实验复盘</td></tr>
+    </tbody>
+  </table>
+  <p class="note">团队交付口径：活动搭建 2–3 天 → 约 10 分钟 · 相关环节准确率 90%+</p>
+  <p class="takeaway">让交付反馈进入下一次任务，持续验证体验是否有效。</p>
+</main>
+
+<main class="canvas" id="workflow">
+  <section class="flow5">
+    <article class="step"><small>01 输入</small><h3>真实资料与设计问题</h3><p>流程、规则、交付反馈</p></article>
+    <div class="arrow">→</div>
+    <article class="step"><small>02 <span class="en">AI</span> 辅助</small><h3>整理、探索与检查</h3><p>信息归纳、假设探索、状态检查</p></article>
+    <div class="arrow">→</div>
+    <article class="step"><small>03 团队判断</small><h3>确认方向与边界</h3><p>业务取舍、人机分工、风险边界</p></article>
+    <div class="arrow">→</div>
+    <article class="step"><small>04 方法沉淀</small><h3>组件、规范与工具</h3><p>设计评审与国际化适配</p></article>
+    <div class="arrow">→</div>
+    <article class="step"><small>05 团队复用</small><h3>提高效率与质量</h3><p>在后续项目中复用</p></article>
+  </section>
+  <section class="shots">
+    <figure>
+      <figcaption><span class="en">AI</span> 工作流</figcaption>
+      <div class="frame"><img class="fill" src="../assets/c1-wf-overview.png" alt="营销云体验设计 AI 工作流"></div>
+    </figure>
+    <figure>
+      <figcaption>设计规范</figcaption>
+      <div class="frame"><img src="../assets/c1-wf-component.png" alt="在 IDE 中整理面向 AI 的组件库"></div>
+    </figure>
+    <figure>
+      <figcaption>页面范式</figcaption>
+      <div class="frame"><img src="../assets/c1-wf-paradigm.png" alt="在 IDE 中查看页面范式"></div>
+    </figure>
+    <figure>
+      <figcaption>需求选型</figcaption>
+      <div class="frame"><img class="fill" src="../assets/c1-wf-requirement.png" alt="在 IDE 中完成需求选型"></div>
+    </figure>
+  </section>
+  <section class="roles">
+    <article><b><span class="en">AI</span> 提供</b><span class="bits">整理信息、探索方案、检查规范</span></article>
+    <article><b>团队负责</b><span class="bits">判断优先级、做出设计取舍、对结果负责</span></article>
+  </section>
+  <p class="takeaway">AI 辅助整理与检查，团队聚焦判断，再将有效方法沉淀复用。</p>
+</main>
+
+<main class="canvas" id="summary">
+  <section class="af">
+    <article>
+      <small>01 产品基础</small>
+      <h3>让企业上下文可被调用</h3>
+      <p>规则、数据、知识与真实流程，为 <span class="en">Agent</span> 完成任务提供依据。</p>
+    </article>
+    <article>
+      <small>02 协作原则</small>
+      <h3>让 <span class="en">AI</span> 在合适的边界内自主</h3>
+      <p>低风险步骤自主推进；策略、人群、权益与执行仍由人确认。</p>
+    </article>
+    <article>
+      <small>03 行为结果</small>
+      <h3>遇到任务先表达目标</h3>
+      <p>理解、确认与结果进入业务界面，逐步形成 <span class="en">Agent-first</span> 习惯。</p>
+    </article>
+  </section>
+  <div class="path">
+    <p>价值闭环</p>
+    <div><span>发现潜在意图</span><span>交付可用结果</span><span>效果反馈复用</span><span>场景持续扩展</span></div>
+  </div>
+  <div class="pair">
+    <article>
+      <small>产品形态</small>
+      <h3><span class="en">Agent</span> 组织增长任务</h3>
+      <p><span class="en">Agent</span> 发现机会、形成方案并组织执行；<span class="en">SaaS</span> 承担数据、权限、审批、执行和审计。</p>
+    </article>
+    <article>
+      <small>下一步</small>
+      <h3>扩展已验证的协作方式</h3>
+      <p>把已验证的人机协作方式扩展到更多增长场景，让洞察、决策、执行与复盘持续产生可用结果。</p>
+    </article>
+  </div>
+  <p class="takeaway">让 AI 承接复杂过程，让用户专注判断与决策。</p>
+</main>
+<script>
+if(location.hash==='#workflow'||location.hash==='#delivery'||location.hash==='#summary'){
+  var keep=location.hash.slice(1);
+  document.querySelectorAll('.canvas').forEach(function(el){ if(el.id!==keep) el.remove(); });
+  document.documentElement.style.cssText='margin:0;background:#fafafa';
+  document.body.style.cssText='margin:0;padding:0;gap:0;background:#fafafa;display:block;overflow:hidden';
+
+}
+</script>
+<script src="../assets/diagram-fit.js"></script>
+</body>
+</html>

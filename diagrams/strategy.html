@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>示意图 · 三种设计介入</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<style>
+/* 直角研究推导表：保留「意图与行为」作为从用户研究到产品介入的证据链。 */
+:root{
+  --fig-w:1920px;
+  --fig-h:1080px;
+  --page:#e8e8e8;
+  --fig-bg:#FAFAFA;
+  --fig-ink:#1C1C1C;
+  --fig-ink-2:#5C5C5C;
+  --fig-ink-3:#8A8A8A;
+  --fig-line:#E6E6E6;
+  --fig-font:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+  --fig-serif:"Noto Serif SC","Songti SC","STSong",serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--page);overflow:hidden}
+body{font-family:var(--fig-font);color:var(--fig-ink)}
+.en{font-family:var(--fig-font)}
+.canvas{
+  position:absolute;left:0;top:0;
+  width:var(--fig-w);height:var(--fig-h);
+  padding:72px 96px;
+  background:var(--fig-bg);
+  display:flex;align-items:center;
+  overflow:hidden;
+  transform-origin:0 0;
+}
+.table{
+  position:relative;
+  width:100%;
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,1.05fr) minmax(0,1.15fr) minmax(0,1.55fr) minmax(0,1.3fr);
+  column-gap:32px;
+}
+.head,.row{display:grid;grid-template-columns:subgrid;grid-column:1 / -1;align-items:center}
+.head{
+  padding-bottom:20px;
+  border-bottom:1px solid var(--fig-ink);
+  color:var(--fig-ink-3);
+  font-size:22px;
+  font-weight:500;
+}
+.head > span:nth-child(4){color:var(--fig-ink);position:relative}
+.head > span:nth-child(4)::after{content:"";position:absolute;left:0;bottom:-21px;width:100%;height:4px;background:var(--fig-ink)}
+/* Nudge the intervention column toward the preceding decision context without changing the table's other columns. */
+.head > span:nth-child(4),.row > .mode{transform:translateX(-24px)}
+.row{min-height:224px;border-bottom:1px solid var(--fig-line)}
+.task small{display:block;color:var(--fig-ink-3);font-size:20px;font-weight:500}
+.task h3{margin:10px 0 0;font:600 32px/1.35 var(--fig-serif);white-space:nowrap}
+.cell b,.mode b{display:block;font-size:27px;font-weight:600;line-height:1.32;white-space:nowrap}
+.cell span,.mode .sub{display:block;margin-top:8px;color:var(--fig-ink-2);font-size:20px;line-height:1.45;white-space:normal}
+.mode{display:flex;align-items:center;gap:20px;min-width:0;padding-right:28px}
+.mode > div:last-child{min-width:0}
+.mode b{white-space:nowrap}
+.thumb{flex:none;width:136px;height:88px;border:1px solid #E0E0E0;background:#fff;overflow:hidden}
+.face{width:100%;height:100%;position:relative}
+.face i{display:block}
+.face-in{background:#F3F4F6;padding:10px}
+.face-in .ln{height:6px;background:#E4E6EA;margin-bottom:6px}
+.face-in .ln.s{width:62%}
+.face-in .mid{display:flex;gap:4px;margin-top:6px}
+.face-in .mid i{width:34px;height:6px;background:#2C2C2C}
+.face-in .mid i.g{width:14px;background:#3DDC97}
+.face-in .bar{position:absolute;left:10px;right:10px;bottom:8px;height:8px;background:linear-gradient(90deg,#7AA2FF,#3D6BFF)}
+.face-co{display:grid;grid-template-columns:1.15fr .85fr;height:100%;background:#F4F5F7}
+.face-co .l{padding:12px 8px}
+.face-co .l i{width:28px;height:6px;background:#2C2C2C;margin-bottom:6px}
+.face-co .l i.s{width:48px;background:#E4E6EA}
+.face-co .r{background:linear-gradient(180deg,#8EB0FF,#3D6BFF)}
+.face-ag{height:100%;background:linear-gradient(160deg,#8EB4FF,#3A68F0);padding:12px 10px}
+.face-ag i{height:7px;margin-bottom:6px}
+.face-ag .a{width:72%;background:#F6D48A}
+.face-ag .b{width:42%;background:#F3E2B0}
+.face-ag .c{position:absolute;left:10px;right:16px;bottom:10px;width:auto;margin:0;background:#D9DDF8}
+</style>
+</head>
+<body>
+<main class="canvas" aria-label="三种增长任务对应的设计介入">
+  <div class="table">
+    <div class="head"><span>增长任务</span><span>谁先发起</span><span>意图与行为</span><span>设计介入</span><span><span class="en">MAGIC</span> 方案</span></div>
+    <div class="row">
+      <div class="task"><small>01 · 洞察</small><h3>看清经营机会</h3></div>
+      <div class="cell"><b>AI 主动发现</b><span>从环境信号识别机会</span></div>
+      <div class="cell"><b>意图尚未成形</b><span>需要被提醒</span></div>
+      <div class="mode">
+        <div class="thumb" aria-hidden="true"><div class="face face-in"><i class="ln"></i><i class="ln s"></i><div class="mid"><i></i><i class="g"></i></div><i class="bar"></i></div></div>
+        <div><b>内嵌式 <span class="en">AI</span></b><span class="sub">低干扰呈现经营信号，用户决定是否行动</span></div>
+      </div>
+      <div class="cell"><b>智能首页面板</b><span>洞察 → 依据 → 下一步</span></div>
+    </div>
+    <div class="row">
+      <div class="task"><small>02 · 决策</small><h3>形成可信方案</h3></div>
+      <div class="cell"><b>用户主动发起</b><span>带着业务方向进入协作</span></div>
+      <div class="cell"><b>方向明确</b><span>企业上下文待补全</span></div>
+      <div class="mode">
+        <div class="thumb" aria-hidden="true"><div class="face face-co"><div class="l"><i></i><i class="s"></i></div><div class="r"></div></div></div>
+        <div><b>协作式 <span class="en">Copilot</span></b><span class="sub">澄清规则与冲突，确认后采纳</span></div>
+      </div>
+      <div class="cell"><b>企业规则配置</b><span>提取 → 冲突 → 确认写入</span></div>
+    </div>
+    <div class="row">
+      <div class="task"><small>03 · 行动与验证</small><h3>完成复杂任务</h3></div>
+      <div class="cell"><b>用户给出目标</b><span>把完整任务委托给系统</span></div>
+      <div class="cell"><b>目标清晰</b><span>执行复杂且高风险</span></div>
+      <div class="mode">
+        <div class="thumb" aria-hidden="true"><div class="face face-ag"><i class="a"></i><i class="b"></i><i class="c"></i></div></div>
+        <div><b>智能体式 <span class="en">Multi-Agent</span></b><span class="sub">状态与风险可见，关键节点可修改、恢复</span></div>
+      </div>
+      <div class="cell"><b>活动策划任务</b><span>过程可查 → 产物可改 → 进入执行</span></div>
+    </div>
+  </div>
+</main>
+<script src="../assets/diagram-fit.js"></script>
+</body>
+</html>

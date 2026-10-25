@@ -1,0 +1,826 @@
+{
+  "version": 1,
+  "id": "magic-recall",
+  "title": "秋冬换季老客召回",
+  "note": "品牌为虚构，数字为示例。界面为作品集重绘。",
+  "meta": {
+    "totalMs": 66915,
+    "stepCount": 9,
+    "defaultSpeed": 1,
+    "speeds": [
+      1,
+      1.5,
+      2
+    ],
+    "autoplayOnVisible": true
+  },
+  "chapters": [
+    {
+      "id": "plan",
+      "title": "计划",
+      "startStep": "s1",
+      "startMs": 0,
+      "durationMs": 7100
+    },
+    {
+      "id": "strategy",
+      "title": "策略",
+      "startStep": "s3",
+      "startMs": 7100,
+      "durationMs": 18100
+    },
+    {
+      "id": "audience",
+      "title": "人群",
+      "startStep": "s5",
+      "startMs": 25200,
+      "durationMs": 27360
+    },
+    {
+      "id": "journey",
+      "title": "旅程",
+      "startStep": "s7",
+      "startMs": 52560,
+      "durationMs": 12855
+    },
+    {
+      "id": "done",
+      "title": "完成",
+      "startStep": "s9",
+      "startMs": 65415,
+      "durationMs": 1500
+    }
+  ],
+  "flow": {
+    "nodes": [
+      {
+        "id": 1,
+        "title": "策略匹配",
+        "deps": []
+      },
+      {
+        "id": 2,
+        "title": "人群圈选",
+        "deps": [
+          1
+        ]
+      },
+      {
+        "id": 3,
+        "title": "商品检索",
+        "deps": [
+          1
+        ]
+      },
+      {
+        "id": 4,
+        "title": "分支条件字段对照",
+        "deps": [
+          1
+        ]
+      },
+      {
+        "id": 5,
+        "title": "旅程生成",
+        "deps": [
+          2,
+          3,
+          4
+        ]
+      }
+    ],
+    "layout": {
+      "1": [
+        0,
+        1
+      ],
+      "2": [
+        1,
+        0
+      ],
+      "3": [
+        1,
+        1
+      ],
+      "4": [
+        1,
+        2
+      ],
+      "5": [
+        2,
+        1
+      ]
+    }
+  },
+  "journey": {
+    "nodes": [
+      {
+        "id": "trigger",
+        "kind": "trigger",
+        "title": "单次事件驱动启动流程"
+      },
+      {
+        "id": "d0",
+        "kind": "action",
+        "title": "D0 短信"
+      },
+      {
+        "id": "wait",
+        "kind": "delay",
+        "title": "等待 4 天"
+      },
+      {
+        "id": "check",
+        "kind": "decision",
+        "title": "是否已购买",
+        "outcomes": [
+          "已购买",
+          "未购买"
+        ]
+      },
+      {
+        "id": "d4",
+        "kind": "action",
+        "title": "D4 企微"
+      }
+    ]
+  },
+  "steps": [
+    {
+      "id": "s1",
+      "role": "user",
+      "chapter": "plan",
+      "parts": [
+        {
+          "type": "text",
+          "text": "为秋冬换季策划一场老客召回活动，圈定近半年没下单、以前买过两次以上的会员，匹配策略后生成旅程画布。",
+          "estMs": 600
+        }
+      ],
+      "estMs": 900,
+      "startMs": 0
+    },
+    {
+      "id": "s2",
+      "role": "assistant",
+      "chapter": "plan",
+      "parts": [
+        {
+          "type": "status",
+          "label": "活动策划",
+          "state": "running",
+          "desc": "为霍格沃茨秋冬换季老客召回整理执行计划：先匹配策略，再圈人、选品、确认分支条件，最后生成旅程。",
+          "estMs": 300
+        },
+        {
+          "type": "thinking",
+          "title": "深度思考",
+          "text": "目标是秋冬换季召回老会员，人群口径已给出。按策略匹配、圈人选品、生成旅程的顺序执行。",
+          "collapsed": true,
+          "estMs": 1440
+        },
+        {
+          "type": "text",
+          "stream": true,
+          "text": "好的，计划如下，确认后开始执行。",
+          "estMs": 860
+        },
+        {
+          "type": "plan",
+          "title": "秋冬换季老客召回",
+          "objective": "10/20–10/31 召回近半年未下单、累计购买 2 次以上的会员，主推秋冬新款。",
+          "rationale": "先匹配策略，再同时圈人、选品、确认分支条件，最后生成旅程。",
+          "assumptions": [
+            "老会员专属 8 折",
+            "触达渠道：短信 + 企微"
+          ],
+          "tasks": [
+            {
+              "id": 1,
+              "title": "策略匹配",
+              "desc": "语义匹配秋冬换季老客召回相关策略"
+            },
+            {
+              "id": 2,
+              "title": "人群圈选",
+              "desc": "圈定近半年未下单、累计购买 2 次以上的会员"
+            },
+            {
+              "id": 3,
+              "title": "商品检索",
+              "desc": "圈选秋冬换季主推商品，确认利益点"
+            },
+            {
+              "id": 4,
+              "title": "分支条件字段对照",
+              "desc": "把策略里的分支条件对应到数据字段"
+            },
+            {
+              "id": 5,
+              "title": "旅程生成",
+              "desc": "创建旅程结构和各节点文案"
+            }
+          ],
+          "estMs": 1500
+        },
+        {
+          "type": "confirm",
+          "title": "请确认执行计划：秋冬换季老客召回",
+          "options": [
+            {
+              "id": "approve",
+              "text": "确认并执行 5 个步骤"
+            },
+            {
+              "id": "modify",
+              "text": "修改执行计划"
+            },
+            {
+              "id": "cancel",
+              "text": "取消本次计划"
+            }
+          ],
+          "pick": "approve",
+          "autoPick": true,
+          "autoPickMs": 1200,
+          "afterStatus": "confirmed",
+          "estMs": 1800
+        },
+        {
+          "type": "status",
+          "label": "活动策划",
+          "state": "pending",
+          "desc": "为霍格沃茨秋冬换季老客召回整理执行计划：先匹配策略，再圈人、选品、确认分支条件，最后生成旅程。",
+          "reason": "执行计划待赫敏确认",
+          "estMs": 300
+        }
+      ],
+      "estMs": 6200,
+      "startMs": 900
+    },
+    {
+      "id": "s3",
+      "role": "user",
+      "chapter": "strategy",
+      "parts": [
+        {
+          "type": "status",
+          "label": "活动策划",
+          "state": "confirmed",
+          "estMs": 300
+        },
+        {
+          "type": "text",
+          "text": "确认并执行 5 个步骤",
+          "estMs": 600
+        }
+      ],
+      "estMs": 900,
+      "startMs": 7100
+    },
+    {
+      "id": "s4",
+      "role": "assistant",
+      "chapter": "strategy",
+      "parts": [
+        {
+          "type": "status",
+          "label": "活动策划",
+          "state": "running",
+          "desc": "正在匹配秋冬换季老客召回可用的策略。",
+          "estMs": 300
+        },
+        {
+          "type": "flow",
+          "ops": [
+            {
+              "op": "add",
+              "node": 1,
+              "state": "running"
+            }
+          ],
+          "progress": {
+            "done": 0,
+            "total": 5
+          },
+          "estMs": 500
+        },
+        {
+          "type": "thinking",
+          "title": "深度思考",
+          "text": "先匹配策略，策略定了再圈人、选品、确认分支条件。",
+          "collapsed": true,
+          "estMs": 1080
+        },
+        {
+          "type": "worker",
+          "task": 1,
+          "title": "策略匹配",
+          "desc": "语义匹配秋冬换季老客召回相关策略",
+          "state": "done",
+          "collapsed": true,
+          "children": [
+            {
+              "type": "tool",
+              "label": "读取能力说明",
+              "input": "策略匹配 · 能力说明",
+              "output": "已读取执行要求和输出格式"
+            },
+            {
+              "type": "thinking",
+              "title": "深度思考",
+              "text": "赫敏要召回的是近半年没下单的老会员，季节是秋冬换季。先看策略库里和「换季」「召回」都相关的几套，比较触达节奏和结束条件。",
+              "collapsed": true
+            },
+            {
+              "type": "tool",
+              "label": "检索策略库",
+              "input": "秋冬换季老客召回",
+              "output": "找到约 4 套候选策略（示例）"
+            },
+            {
+              "type": "text",
+              "stream": true,
+              "text": "候选策略如下（匹配度为示例）：\n\n| 策略名 | 匹配度 | 理由 |\n| --- | --- | --- |\n| 换季老客召回 | 约 90%（示例） | 季节和人群都对得上，节奏是短信加企微两步 |\n| 沉睡会员唤醒 | 约 75%（示例） | 人群相近，但没有换季商品推荐 |\n| 新品首发种草 | 约 60%（示例） | 有新品内容，但面向全体会员 |\n| 会员生日关怀 | 约 40%（示例） | 触发条件不同，只作参考 |\n\n建议采用「换季老客召回」。"
+            }
+          ],
+          "result": "匹配到「换季老客召回」策略：D0 短信，等待 4 天，未购买再发企微。",
+          "estMs": 12720
+        },
+        {
+          "type": "flow",
+          "ops": [
+            {
+              "op": "update",
+              "node": 1,
+              "state": "done"
+            }
+          ],
+          "progress": {
+            "done": 1,
+            "total": 5
+          },
+          "estMs": 500
+        },
+        {
+          "type": "confirm",
+          "title": "请选择要采用的策略",
+          "options": [
+            {
+              "id": "confirm_strategy",
+              "text": "采用「换季老客召回」"
+            },
+            {
+              "id": "modify",
+              "text": "调整"
+            }
+          ],
+          "pick": "confirm_strategy",
+          "autoPick": true,
+          "autoPickMs": 1200,
+          "afterStatus": "confirmed",
+          "estMs": 1800
+        },
+        {
+          "type": "status",
+          "label": "活动策划",
+          "state": "pending",
+          "desc": "正在匹配秋冬换季老客召回可用的策略。",
+          "reason": "候选策略待赫敏选择",
+          "estMs": 300
+        }
+      ],
+      "estMs": 17200,
+      "startMs": 8000
+    },
+    {
+      "id": "s5",
+      "role": "user",
+      "chapter": "audience",
+      "parts": [
+        {
+          "type": "status",
+          "label": "活动策划",
+          "state": "confirmed",
+          "estMs": 300
+        },
+        {
+          "type": "text",
+          "text": "采用「换季老客召回」",
+          "estMs": 600
+        }
+      ],
+      "estMs": 900,
+      "startMs": 25200
+    },
+    {
+      "id": "s6",
+      "role": "assistant",
+      "chapter": "audience",
+      "parts": [
+        {
+          "type": "status",
+          "label": "活动策划",
+          "state": "running",
+          "desc": "已采用「换季老客召回」，正在同时圈人、选品、确认分支条件。",
+          "estMs": 300
+        },
+        {
+          "type": "flow",
+          "ops": [
+            {
+              "op": "add",
+              "node": 2,
+              "state": "running"
+            },
+            {
+              "op": "add",
+              "node": 3,
+              "state": "running"
+            },
+            {
+              "op": "add",
+              "node": 4,
+              "state": "running"
+            }
+          ],
+          "progress": {
+            "done": 1,
+            "total": 5
+          },
+          "estMs": 500
+        },
+        {
+          "type": "thinking",
+          "title": "深度思考",
+          "text": "已采用「换季老客召回」。人群、商品、分支条件互不依赖，同时执行。",
+          "collapsed": true,
+          "estMs": 1240
+        },
+        {
+          "type": "worker",
+          "task": 2,
+          "title": "人群圈选",
+          "desc": "圈定近半年未下单、累计购买 2 次以上的会员",
+          "state": "done",
+          "collapsed": true,
+          "children": [
+            {
+              "type": "tool",
+              "label": "读取能力说明",
+              "input": "人群圈选 · 能力说明",
+              "output": "已读取执行要求和输出格式"
+            },
+            {
+              "type": "thinking",
+              "title": "深度思考",
+              "text": "人群条件有三条：近半年未下单、累计购买 2 次以上、近 7 天没收到过营销消息。前两条用订单标签，第三条用触达记录排除。",
+              "collapsed": true
+            },
+            {
+              "type": "tool",
+              "label": "圈选人群",
+              "input": "近半年未下单；累计购买 2 次以上；近 7 天收到过营销消息的不再打扰",
+              "output": "秋冬换季待唤醒老客，约 2.6 万人（示例）"
+            },
+            {
+              "type": "text",
+              "stream": true,
+              "text": "圈定「秋冬换季待唤醒老客」约 2.6 万人（示例），比只按未下单圈少了约三成（示例），打扰更少。"
+            },
+            {
+              "type": "artifact",
+              "id": "f2",
+              "name": "人群圈选报告 - 秋冬换季待唤醒老客",
+              "ext": "md",
+              "preview": "# 人群圈选报告 - 秋冬换季待唤醒老客\n\n## 圈选条件\n- 近半年未下单\n- 累计购买 2 次以上\n- 排除近 7 天收到过营销消息的会员\n\n## 结果\n- 人数：约 2.6 万人（示例）\n- 以前主要买冲锋衣的约占一半，其余多为抓绒、羽绒\n\n> 品牌虚构，数据为示例。"
+            }
+          ],
+          "result": "圈定秋冬换季待唤醒老客，约 2.6 万人（示例），已排除近 7 天触达过的会员。",
+          "estMs": 6680
+        },
+        {
+          "type": "worker",
+          "task": 3,
+          "title": "商品检索",
+          "desc": "圈选秋冬换季主推商品，确认利益点",
+          "state": "done",
+          "collapsed": true,
+          "children": [
+            {
+              "type": "tool",
+              "label": "读取能力说明",
+              "input": "商品检索 · 能力说明",
+              "output": "已读取执行要求和输出格式"
+            },
+            {
+              "type": "thinking",
+              "title": "深度思考",
+              "text": "秋冬换季主推冲锋衣、抓绒、轻羽绒。优先选库存充足、老会员以前买过同品类的款，利益点用老会员专属 8 折。",
+              "collapsed": true
+            },
+            {
+              "type": "tool",
+              "label": "检索商品",
+              "input": "秋冬换季 · 冲锋衣 / 抓绒 / 轻羽绒",
+              "output": "约 12 款（示例），老会员专属 8 折"
+            },
+            {
+              "type": "text",
+              "stream": true,
+              "text": "选出约 12 款（示例）秋冬新款，冲锋衣占一半左右（示例），利益点为老会员专属 8 折。"
+            },
+            {
+              "type": "artifact",
+              "id": "f3",
+              "name": "秋冬换季商品清单",
+              "ext": "md",
+              "preview": "# 秋冬换季商品清单\n\n| 品类 | 款数 | 说明 |\n| --- | --- | --- |\n| 冲锋衣 | 5 | 秋冬新款，防风防水 |\n| 抓绒 | 4 | 轻便保暖 |\n| 轻羽绒 | 3 | 可单穿可内搭 |\n\n利益点：老会员专属 8 折，10/31 截止。\n\n> 品牌虚构，数据为示例。"
+            }
+          ],
+          "result": "选出约 12 款（示例）秋冬新款（冲锋衣、抓绒、轻羽绒），利益点为老会员专属 8 折。",
+          "estMs": 6380
+        },
+        {
+          "type": "worker",
+          "task": 4,
+          "title": "分支条件字段对照",
+          "desc": "把策略里的分支条件对应到数据字段",
+          "state": "done",
+          "collapsed": true,
+          "children": [
+            {
+              "type": "tool",
+              "label": "读取能力说明",
+              "input": "分支条件字段对照 · 能力说明",
+              "output": "已读取执行要求和输出格式"
+            },
+            {
+              "type": "thinking",
+              "title": "深度思考",
+              "text": "策略里有一个分支「是否已购买」，另外人群条件用到最近下单时间和历史订单数，需要逐个找到对应的数据字段。",
+              "collapsed": true
+            },
+            {
+              "type": "tool",
+              "label": "对应数据字段",
+              "input": "是否已购买 / 近半年未下单 / 累计购买次数",
+              "output": "3 个条件均已对应"
+            },
+            {
+              "type": "text",
+              "stream": true,
+              "text": "3 个条件都找到了对应字段，「是否已购买」用订单支付成功事件判断。"
+            },
+            {
+              "type": "artifact",
+              "id": "f4",
+              "name": "分支条件字段对照",
+              "ext": "md",
+              "preview": "# 分支条件字段对照\n\n| 分支条件 | 数据字段 | 说明 |\n| --- | --- | --- |\n| 是否已购买 | 订单事件 · 支付成功 | 活动开始后有支付成功订单 |\n| 近半年未下单 | 最近下单时间 | 早于 180 天前 |\n| 累计购买次数 | 历史订单数 | 不少于 2 |\n\n> 品牌虚构，数据为示例。"
+            }
+          ],
+          "result": "「是否已购买」对应订单事件，活动期内下单即视为已购买。",
+          "estMs": 5975
+        },
+        {
+          "type": "flow",
+          "ops": [
+            {
+              "op": "update",
+              "node": 2,
+              "state": "done"
+            },
+            {
+              "op": "update",
+              "node": 3,
+              "state": "done"
+            },
+            {
+              "op": "update",
+              "node": 4,
+              "state": "done"
+            }
+          ],
+          "progress": {
+            "done": 4,
+            "total": 5
+          },
+          "estMs": 500
+        },
+        {
+          "type": "text",
+          "stream": true,
+          "text": "人群草稿：秋冬换季待唤醒老客，约 2.6 万人（示例）。条件：近半年未下单，累计购买 2 次以上，近 7 天没收到过营销消息。确认后生成旅程。",
+          "estMs": 2785
+        },
+        {
+          "type": "confirm",
+          "title": "确认人群草稿",
+          "options": [
+            {
+              "id": "confirm_audience",
+              "text": "确认人群，生成旅程"
+            },
+            {
+              "id": "modify",
+              "text": "调整人群"
+            }
+          ],
+          "pick": "confirm_audience",
+          "autoPick": true,
+          "autoPickMs": 1200,
+          "afterStatus": "confirmed",
+          "estMs": 1800
+        },
+        {
+          "type": "status",
+          "label": "活动策划",
+          "state": "pending",
+          "desc": "已采用「换季老客召回」，正在同时圈人、选品、确认分支条件。",
+          "reason": "人群草稿待赫敏确认",
+          "estMs": 300
+        }
+      ],
+      "estMs": 26460,
+      "startMs": 26100
+    },
+    {
+      "id": "s7",
+      "role": "user",
+      "chapter": "journey",
+      "parts": [
+        {
+          "type": "status",
+          "label": "活动策划",
+          "state": "confirmed",
+          "estMs": 300
+        },
+        {
+          "type": "text",
+          "text": "确认人群，生成旅程",
+          "estMs": 600
+        }
+      ],
+      "estMs": 900,
+      "startMs": 52560
+    },
+    {
+      "id": "s8",
+      "role": "assistant",
+      "chapter": "journey",
+      "parts": [
+        {
+          "type": "flow",
+          "ops": [
+            {
+              "op": "add",
+              "node": 5,
+              "state": "running"
+            }
+          ],
+          "progress": {
+            "done": 4,
+            "total": 5
+          },
+          "estMs": 500
+        },
+        {
+          "type": "status",
+          "label": "活动策划",
+          "state": "running",
+          "desc": "按「换季老客召回」生成一条旅程，并为企微节点配图。",
+          "estMs": 300
+        },
+        {
+          "type": "thinking",
+          "title": "深度思考",
+          "text": "按匹配到的策略生成一条旅程，企微节点需要配图。",
+          "collapsed": true,
+          "estMs": 1060
+        },
+        {
+          "type": "worker",
+          "task": 5,
+          "title": "旅程生成",
+          "desc": "创建旅程结构和各节点文案",
+          "state": "done",
+          "collapsed": true,
+          "children": [
+            {
+              "type": "tool",
+              "label": "读取能力说明",
+              "input": "旅程生成 · 能力说明",
+              "output": "已读取执行要求和输出格式"
+            },
+            {
+              "type": "thinking",
+              "title": "深度思考",
+              "text": "策略、人群、商品都已确认。按 D0 短信、等待 4 天、判断是否已购买、未购买发企微的顺序生成旅程，每个触达节点写两版文案。",
+              "collapsed": true
+            },
+            {
+              "type": "tool",
+              "label": "生成旅程结构",
+              "input": "秋冬换季待唤醒老客",
+              "output": "旅程结构已生成，5 个节点"
+            },
+            {
+              "type": "tool",
+              "label": "选择配图风格",
+              "input": "企微节点",
+              "output": "换季焕新 / 户外场景 / 专属权益"
+            },
+            {
+              "type": "tool",
+              "label": "生成配图样图",
+              "input": "风格：换季焕新",
+              "output": "2 张样图（占位）"
+            },
+            {
+              "type": "text",
+              "stream": true,
+              "text": "旅程已生成，共 5 个节点，短信和企微各两版文案，企微节点需要配图。"
+            }
+          ],
+          "result": "旅程已生成：D0 短信 → 等待 4 天 → 是否已购买 → 未购买发企微 / 已购买结束。",
+          "estMs": 7630
+        },
+        {
+          "type": "flow",
+          "ops": [
+            {
+              "op": "update",
+              "node": 5,
+              "state": "done"
+            }
+          ],
+          "progress": {
+            "done": 5,
+            "total": 5
+          },
+          "estMs": 500
+        },
+        {
+          "type": "text",
+          "stream": true,
+          "text": "旅程和各节点文案已在右侧生成，企微节点的配图样图也已备好，确认后即可生成画布。",
+          "estMs": 1665
+        },
+        {
+          "type": "status",
+          "label": "活动策划",
+          "state": "done",
+          "desc": "按「换季老客召回」生成一条旅程，并为企微节点配图。",
+          "estMs": 300
+        }
+      ],
+      "estMs": 11955,
+      "startMs": 53460
+    },
+    {
+      "id": "s9",
+      "role": "assistant",
+      "chapter": "done",
+      "parts": [
+        {
+          "type": "summary",
+          "title": "为霍格沃茨秋冬换季策划老客召回，圈定近半年未下单的复购会员，匹配换季策略并生成旅程画布",
+          "files": [
+            {
+              "type": "fileRef",
+              "ref": "f2",
+              "name": "人群圈选报告 - 秋冬换季待唤醒老客",
+              "ext": "md"
+            },
+            {
+              "type": "fileRef",
+              "ref": "f3",
+              "name": "秋冬换季商品清单",
+              "ext": "md"
+            },
+            {
+              "type": "fileRef",
+              "ref": "f4",
+              "name": "分支条件字段对照",
+              "ext": "md"
+            },
+            {
+              "type": "fileRef",
+              "ref": "f5",
+              "name": "旅程方案 - 秋冬换季老客召回",
+              "ext": "md"
+            }
+          ],
+          "link": {
+            "label": "查看全部产物 (4)",
+            "target": "artifacts"
+          },
+          "estMs": 1500
+        }
+      ],
+      "estMs": 1500,
+      "startMs": 65415
+    }
+  ]
+}

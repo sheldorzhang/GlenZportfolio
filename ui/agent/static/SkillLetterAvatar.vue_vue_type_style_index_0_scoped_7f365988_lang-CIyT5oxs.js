@@ -1,0 +1,2 @@
+System.register([],function(e,t){"use strict";return{execute:function(){var e=document.createElement("style");e.textContent=".skill-letter-avatar[data-v-7f365988]{display:inline-flex;align-items:center;justify-content:center;font-weight:600;line-height:1;-webkit-user-select:none;user-select:none;flex-shrink:0;font-family:var(--m-font-family, inherit);letter-spacing:0}\n/*$vite$:1*/",document.head.appendChild(e)}}});
+//# sourceMappingURL=SkillLetterAvatar.vue_vue_type_style_index_0_scoped_7f365988_lang-CIyT5oxs.js.map

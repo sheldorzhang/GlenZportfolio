@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>示意图 · 功能驱动与意图驱动</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<style>
+/* 与其他说明图共用 1920 × 1080 画板。 */
+:root{
+  --fig-w:1920px;
+  --fig-h:1080px;
+  --page:#e8e8e8;
+  --fig-bg:#FAFAFA;
+  --fig-ink:#1C1C1C;
+  --fig-ink-3:#8A8A8A;
+  --fig-line:#E6E6E6;
+  --fig-side:96px;
+  --fig-pad-y:52px;
+  --fig-gap:40px;
+  --fig-title:34px;
+  --fig-sub:22px;
+  --fig-body:32px;
+  --fig-font:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+  --fig-serif:"Noto Serif SC","Songti SC","STSong",serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--page);overflow:hidden}
+body{display:grid;place-items:center;font-family:var(--fig-font);color:var(--fig-ink)}
+.en{font-family:var(--fig-font)}
+.canvas{
+  position:absolute;left:0;top:0;
+  width:var(--fig-w);height:auto;
+  padding:var(--fig-pad-y) var(--fig-side);
+  background:var(--fig-bg);
+  transform-origin:0 0;
+}
+.note{
+  background:#fff;border:1px solid var(--fig-ink);
+  padding:32px 36px;
+}
+.note .kicker,.chance .kicker{margin:0;color:var(--fig-ink-3);font-size:20px;font-weight:400}
+.note h3{margin:12px 0 0;font:600 30px/1.45 var(--fig-serif)}
+.note p{margin:14px 0 0;color:#5c5c5c;font-size:22px;line-height:1.55}
+.down{grid-column:1 / -1;text-align:center;font-size:28px;line-height:1;padding:8px 0}
+.chance{
+  grid-column:1 / -1;
+  background:#fff;border:1px solid var(--fig-ink);
+  padding:40px 48px;text-align:center;
+}
+.chance h3{margin:10px 0 0;font:600 36px/1.4 var(--fig-serif)}
+.chance .flow{margin:16px 0 0;font-size:22px;line-height:1.5}
+.tail{margin-top:72px}
+.board{
+  width:100%;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) var(--fig-gap) minmax(0,1fr);
+  row-gap:20px;
+  align-items:stretch;
+}
+.card{
+  display:flex;align-items:center;gap:18px;
+  height:84px;padding:0 32px;
+  background:#fff;border:1px solid var(--fig-ink);min-width:0;
+}
+.card b{font:600 var(--fig-title)/1.3 var(--fig-serif)}
+.card span{color:var(--fig-ink-3);font-size:var(--fig-sub)}
+.card.is-focus{background:var(--fig-ink);color:#fff;border-color:var(--fig-ink)}
+.card.is-focus span{color:rgba(255,255,255,.72)}
+.shot{
+  width:100%;aspect-ratio:16/9;height:auto;
+  border:1px solid #E0E0E0;border-radius:16px;background:#fff;overflow:hidden;
+}
+.shot img{display:block;width:100%;height:100%;object-fit:contain}
+.gutter{display:grid;place-items:center}
+.mark{font-size:40px;line-height:1}
+.rows{
+  grid-column:1 / -1;
+  display:grid;
+  grid-template-columns:subgrid;
+  margin-top:12px;
+  background:none;border:0;
+  border-top:1px solid var(--fig-line);
+}
+.row{display:contents}
+.side,.text,.rows .gutter{
+  min-height:108px;
+  border-bottom:1px solid var(--fig-line);
+  font-size:var(--fig-body);line-height:1.45;
+  background:none;
+}
+.side{display:grid;grid-template-columns:160px minmax(0,1fr);gap:28px;align-items:center}
+.side b{color:var(--fig-ink-3);font-weight:400;font-size:28px}
+.text{display:flex;align-items:center;padding-left:188px}
+.rows .gutter{font-size:36px}
+/* 对照图占据画板主体，调研推导沿底部收束。 */
+.canvas{height:var(--fig-h);padding:64px 72px;display:block;overflow:hidden}
+.shift-layout{height:100%;display:grid;grid-template-rows:minmax(0,1fr) 178px;gap:24px}
+.compare{min-width:0;display:grid;grid-template-rows:64px 420px minmax(0,1fr);gap:18px}
+.compare-head,.compare-media{display:grid;grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr);gap:16px}
+.compare-head .card{height:64px;padding:0 24px;gap:12px}
+.compare-head .card b{font-size:30px}
+.compare-head .card span{font-size:19px}
+.compare-media .shot{height:420px;aspect-ratio:auto;border-radius:12px}
+.compare-rows{display:grid;align-content:stretch;grid-template-rows:repeat(3,minmax(0,1fr));border-top:1px solid var(--fig-line)}
+.compare-row{display:grid;grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr);gap:16px;align-items:center;border-bottom:1px solid var(--fig-line)}
+.compare-row .side,.compare-row .text,.compare-row .gutter{min-height:0;border:0;font-size:24px;line-height:1.42}
+.compare-row .side{grid-template-columns:140px minmax(0,1fr);gap:20px}
+.compare-row .side b{font-size:21px}
+.compare-row .text{padding:0}
+.compare-row .gutter{font-size:28px;text-align:center}
+.insights{display:grid;grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr) 34px minmax(0,1.12fr);align-items:stretch;gap:12px;min-width:0}
+.insights .note,.insights .chance{grid-column:auto;margin:0;padding:20px 24px;text-align:left;border-color:var(--fig-line)}
+.insights .note .kicker,.insights .chance .kicker{font-size:17px}
+.insights .note h3,.insights .chance h3{margin-top:7px;font-size:27px;line-height:1.28}
+.insights .note p,.insights .chance .flow{margin-top:8px;font-size:19px;line-height:1.42}
+.insights .equation{display:grid;place-items:center;color:var(--fig-ink-3);font-size:34px}
+.insights .chance{display:flex;flex-direction:column;justify-content:center;background:var(--fig-ink);color:#fff;border-color:var(--fig-ink)}
+.insights .chance .kicker{color:rgba(255,255,255,.62)}
+.insights .chance .flow{color:rgba(255,255,255,.78)}
+</style>
+</head>
+<body>
+<main class="canvas" aria-label="双向意图对齐，以及功能驱动到意图驱动">
+  <div class="shift-layout">
+  <section class="compare" aria-label="功能驱动与意图驱动的体验对照">
+    <div class="compare-head"><div class="card"><b>功能驱动</b><span>传统 <span class="en">SaaS</span> 智能化 · 用户组织任务</span></div><div class="gutter" aria-hidden="true"></div><div class="card is-focus"><b>意图驱动</b><span>独立 <span class="en">Agent</span> 平台 · <span class="en">Agent</span> 组织任务</span></div></div>
+    <div class="compare-media"><div class="shot"><img src="../assets/c1-functional-drive.png?v=white" alt="功能驱动下用户寻找功能并跨模块串联任务"></div><div class="gutter" aria-hidden="true"></div><div class="shot"><img src="../assets/c1-intent-drive.png?v=white" alt="意图驱动下用户表达目标并确认关键决策"></div></div>
+    <div class="compare-rows">
+      <div class="compare-row"><div class="side"><b>产品体验</b><span>寻找功能、跨模块串联</span></div><div class="gutter">→</div><span class="text">表达目标、确认关键决策</span></div>
+      <div class="compare-row"><div class="side"><b>AI 价值</b><span>局部环节单点提效</span></div><div class="gutter">→</div><span class="text">承接并交付完整任务</span></div>
+      <div class="compare-row"><div class="side"><b>人的角色</b><span>操作与整合结果</span></div><div class="gutter">→</div><span class="text">判断、审核与授权</span></div>
+    </div>
+  </section>
+  <aside class="insights" aria-label="调研发现与设计机会">
+    <article class="note"><p class="kicker">业务观察调研</p><h3>完整任务仍跨模块</h3><p>同一目标要靠运营跨工具维持。</p></article>
+    <span class="equation" aria-hidden="true">＋</span>
+    <article class="note"><p class="kicker"><span class="en">AI</span> 使用学习</p><h3>目标和约束逐步明确</h3><p>服务对象、规则与交付标准在过程中对齐。</p></article>
+    <span class="equation" aria-hidden="true">→</span>
+    <article class="chance"><p class="kicker">设计机会</p><h3>双向意图对齐</h3><p class="flow">人说明目标与约束 → <span class="en">AI</span> 讲出理解与依据 → 人确认或修正</p></article>
+  </aside>
+  </div>
+</main>
+<script src="../assets/diagram-fit.js"></script>
+</body>
+</html>

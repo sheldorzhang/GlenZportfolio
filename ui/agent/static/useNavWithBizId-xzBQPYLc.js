@@ -1,0 +1,2 @@
+System.register(["./vendor-B0fr4FZK.js","./index-DnVseOiV.js"],function(t,e){"use strict";var r,s,n,u;return{setters:[t=>{r=t.aU,s=t.aV},t=>{n=t.g,u=t.w}],execute:function(){t("u",function(){const t=r(),i=s();function o(t,r){if(e.some(e=>t===e||t.startsWith(`${e}/`)))return t;const s=n(i);let o=t;if(s){const e=t.startsWith("/")?t:`/${t}`;o="/"===e?`/${s}/task`:`/${s}${e}`}return r?.preserveEmbed?u(o,i.query):o}return{push:function(e){return t.push(u(o(e),i.query))},resolvePath:o}});const e=["/login","/register"]}}});
+//# sourceMappingURL=useNavWithBizId-xzBQPYLc.js.map

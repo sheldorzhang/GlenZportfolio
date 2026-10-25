@@ -1,0 +1,35 @@
+{
+  "shell": [
+    "chunk-preload-B-gntM7F.js",
+    "index-CCIXTVf8.js"
+  ],
+  "shellModules": [
+    "\u0000vite/preload-helper.js",
+    "src/app/firstPaintShell.css?inline",
+    "src/app/bootstrapShell.css?inline",
+    "src/styles/base.less?inline",
+    "src/locales/initialLocale.ts",
+    "src/locales/bootstrapMessages.ts",
+    "src/shared/theme/preference.ts",
+    "src/shared/client-source/config.ts",
+    "src/shared/client-source/query.ts",
+    "src/shared/client-source/sidebar.ts",
+    "src/shared/constants/routeSegments.ts",
+    "src/shared/space-context/spaceContext.ts",
+    "src/shared/lib/frontendAppKey.ts",
+    "src/shared/lib/productHome.ts",
+    "src/app/bootstrapShell.ts",
+    "src/app/bootstrapLifecycle.ts",
+    "src/demo/demoStage.ts",
+    "src/main.ts"
+  ],
+  "application": "static/bootstrapApplication-Cd9a9N87.js",
+  "startup": [
+    "index-CCIXTVf8.js",
+    "chunk-preload-B-gntM7F.js",
+    "bootstrapApplication-Cd9a9N87.js",
+    "vendor-B0fr4FZK.js",
+    "vendor-qd-BoORLObV.js",
+    "useAppBoot-QPAgsmZ-.js"
+  ]
+}

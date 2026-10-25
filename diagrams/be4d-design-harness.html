@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1400">
+<title>Be4D · Design Harness 工作机制</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../assets/be4d-diagrams.css">
+</head>
+<body>
+<main class="canvas harness-board" aria-label="Design Harness 工作机制">
+<div class="harness-inputs">
+  <article class="harness-node"><h2>工作规则</h2><p>操作方式、工具与行为边界</p></article>
+  <article class="harness-node"><h2>设计知识</h2><p>设计值语义、组件用法与页面范式</p></article>
+</div>
+<div class="harness-arrow" aria-hidden="true">↓</div>
+<article class="harness-node harness-stage harness-agent"><h2>Coding Agent</h2><p>基于设计规则与真实参考执行任务</p></article>
+<div class="harness-arrow" aria-hidden="true">↓</div>
+<article class="harness-node harness-stage harness-review"><h2>可交互方案与人工评审</h2><p>预览、比较、修正，确认设计结果</p></article>
+<div class="harness-arrow" aria-hidden="true">↓</div>
+<article class="harness-node harness-stage harness-learning"><h2>规则与案例积累</h2><p>经确认的设计经验进入下一轮工作</p></article>
+<p class="harness-note">设计知识、AI 执行、人工评审与经验积累，形成持续迭代的工作过程。此图为方法示意，完整效果仍待验证。</p>
+</main>
+<script src="../assets/diagram-fit.js"></script>
+</body>
+</html>

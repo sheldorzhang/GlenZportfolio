@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>示意图 · 过程可介入</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fig-w:1440px;
+  --fig-h:810px;
+  --page:#e8e8e8;
+  --fig-bg:#FAFAFA;
+  --fig-card:#FFFFFF;
+  --fig-ink:#1C1C1C;
+  --fig-ink-2:#5C5C5C;
+  --fig-line:#E6E6E6;
+  --fig-accent:#5555EC;
+  --fig-font:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+  --fig-side:72px;
+  --fig-radius:18px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--page);overflow:hidden}
+body{font-family:var(--fig-font);color:var(--fig-ink)}
+.canvas{
+  position:absolute;left:0;top:0;
+  width:var(--fig-w);height:var(--fig-h);
+  padding:48px var(--fig-side);
+  background:var(--fig-bg);
+  display:flex;align-items:center;
+  overflow:hidden;transform-origin:0 0;
+}
+.board{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:auto auto auto;
+  column-gap:48px;
+  row-gap:24px;
+  align-items:start;
+}
+.group{display:contents}
+.copy{
+  grid-row:1;
+  display:flex;flex-direction:column;gap:10px;
+}
+.copy small{color:var(--fig-accent);font-size:20px;font-weight:600;line-height:1.2}
+.copy h2{margin:0;font-size:24px;font-weight:600;line-height:1.35}
+.pics{
+  grid-row:2;
+  align-self:center;
+  position:relative;
+  width:100%;
+  height:550px;
+}
+.card{
+  display:block;
+  height:auto;
+  background:var(--fig-card);
+  border:1px solid var(--fig-line);
+  border-radius:var(--fig-radius);
+  box-shadow:0 10px 28px rgba(28,28,28,.08);
+}
+.plan-after{position:absolute;right:0;top:50%;width:75%;transform:translateY(-50%);z-index:2}
+.plan-before{position:absolute;left:0;top:50%;width:48%;transform:translateY(-50%);z-index:1}
+.options{position:absolute;left:0;top:50%;width:52%;transform:translateY(-50%);z-index:1}
+.outcomes{position:absolute;right:0;top:50%;width:72%;transform:translateY(-50%);z-index:2;display:flex;flex-direction:column;gap:16px}
+.outcomes .card{width:100%}
+.note{
+  grid-row:3;
+  margin:0;
+  padding-top:10px;
+  color:var(--fig-ink-2);
+  font-size:21px;line-height:1.55;
+}
+.note::before{
+  content:"";
+  display:block;
+  width:40px;height:3px;
+  margin-bottom:16px;
+  background:var(--fig-accent);
+  border-radius:999px;
+}
+</style>
+</head>
+<body>
+<main class="canvas" aria-label="计划确认卡和通用确认卡的横向前后对比">
+  <div class="board">
+    <section class="group">
+      <header class="copy">
+        <small>计划确认卡</small>
+        <h2>先说明理解与依据</h2>
+      </header>
+      <div class="pics">
+        <img class="card plan-after" src="../assets/c1-ch4-plan-before.png" alt="后来的营销计划确认单：规则和重要信息重组">
+        <img class="card plan-before" src="../assets/c1-ch4-plan-after.png" alt="之前的确认卡：场景、人群、目标和流程">
+      </div>
+      <p class="note">先说明准备做什么、依据哪些条件与影响范围，让用户在执行前判断是否调整。</p>
+    </section>
+    <section class="group">
+      <header class="copy">
+        <small>通用确认卡</small>
+        <h2>只暴露关键确认</h2>
+      </header>
+      <div class="pics">
+        <div class="outcomes">
+          <img class="card" src="../assets/c1-ch4-general-before.png" alt="点其他操作后才出现输入和提交">
+          <img class="card" src="../assets/c1-ch4-general-after.png" alt="选完后留下确认记录">
+        </div>
+        <img class="card options" src="../assets/c1-ch4-general-options.png" alt="确认、修改、查看画像和其他操作">
+      </div>
+      <p class="note">仅在涉及策略取舍、外部执行或风险时请求确认；用户可补充条件、调整方案后继续。</p>
+    </section>
+  </div>
+</main>
+<script src="../assets/diagram-fit.js"></script>
+</body>
+</html>

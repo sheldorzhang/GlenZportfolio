@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>示意图 · Agent 交互体验范式</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fig-w:1920px;
+  --fig-h:1080px;
+  --page:#e8e8e8;
+  --fig-bg:#FAFAFA;
+  --fig-ink:#1C1C1C;
+  --fig-ink-2:#5C5C5C;
+  --fig-ink-3:#8A8A8A;
+  --fig-line:#E6E6E6;
+  --fig-font:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+  --fig-serif:"Noto Serif SC","Songti SC","STSong",serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--page);overflow:hidden}
+body{font-family:var(--fig-font);color:var(--fig-ink)}
+.en{font-family:var(--fig-font)}
+.canvas{
+  position:absolute;left:0;top:0;
+  width:var(--fig-w);height:var(--fig-h);
+  padding:76px 96px;
+  background:var(--fig-bg);
+  display:flex;align-items:center;
+  overflow:hidden;
+  transform-origin:0 0;
+}
+.board{width:100%}
+h2{margin:0 0 64px;text-align:center;font:600 46px/1.4 var(--fig-serif)}
+.row{display:grid;grid-template-columns:240px minmax(0,1fr);column-gap:34px;align-items:stretch}
+.row + .row{margin-top:24px}
+.label{display:flex;align-items:center;color:var(--fig-ink-3);font-size:22px}
+.track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.cell{display:flex;align-items:center;justify-content:center;min-height:126px;padding:22px 36px;text-align:center;font:600 32px/1.35 var(--fig-serif)}
+.span2{grid-column:span 2}
+.path{flex-direction:column;gap:8px;background:var(--fig-ink);color:#fff}
+.path span{font-family:var(--fig-font);font-size:20px;font-weight:400;line-height:1.35}
+.soft{background:#E4E4E4;color:var(--fig-ink)}
+.line{background:#fff;border:1px solid var(--fig-ink);color:var(--fig-ink)}
+.pat{min-height:210px;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;background:#fff;border:1px solid var(--fig-ink);padding:28px 32px}
+.pat b{font:600 30px/1.35 var(--fig-serif)}
+.pat span{margin-top:12px;color:var(--fig-ink-2);font-family:var(--fig-font);font-size:21px;font-weight:400;line-height:1.45}
+</style>
+</head>
+<body>
+<main class="canvas" aria-label="一次任务里人如何与 Agent 协作">
+  <div class="board">
+    <h2>一次任务里，人如何与 <span class="en">Agent</span> 协作</h2>
+    <div class="row">
+      <div class="label">用户交互路径</div>
+      <div class="track">
+        <div class="cell path">发起任务<span>表达目标与约束</span></div>
+        <div class="cell path span2">理解与协作<span>理解、修改与确认</span></div>
+        <div class="cell path">验收并执行<span>验收并授权执行</span></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="label">用户可见界面</div>
+      <div class="track">
+        <div class="cell soft">工作台首页</div>
+        <div class="cell soft span2">自然语言对话</div>
+        <div class="cell soft">结构化交付物</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="label">基础体验</div>
+      <div class="track">
+        <div class="cell line">意图可见</div>
+        <div class="cell line span2">过程可介入</div>
+        <div class="cell line">结果可用与沉淀</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="label">范式体验</div>
+      <div class="track">
+        <div class="cell pat"><b>能力可预期</b><span>知道能做什么，再表达目标与约束</span></div>
+        <div class="cell pat"><b>计划逐步可见</b><span>理解与结果逐步确认</span></div>
+        <div class="cell pat"><b>关键决策可控</b><span>只外露关键判断，支持修改与确认</span></div>
+        <div class="cell pat"><b>经验可复用</b><span>验收后进入执行或下一轮使用</span></div>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="../assets/diagram-fit.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920">
+<title>现状体验地图 · 圆角版</title>
+<style>
+:root{
+  --fig-w:1920px;
+  --fig-h:1280px;
+  --fig-bg:#FAFAFA;
+  --fig-card:#FFFFFF;
+  --fig-ink:#1C1C1C;
+  --fig-ink-2:#5C5C5C;
+  --fig-accent:#5555EC;
+  --fig-accent-soft:#F1F0FF;
+  --fig-font:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+  --fig-radius:18px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#e8e8e8}
+body{min-height:100vh;display:grid;place-items:center;font-family:var(--fig-font);color:var(--fig-ink)}
+.canvas{
+  width:var(--fig-w);height:auto;
+  padding:80px 96px 88px;
+  background:var(--fig-bg);
+  display:flex;flex-direction:column;gap:40px;
+}
+.head{display:flex;flex-direction:column;gap:8px}
+.kicker{margin:0;color:var(--fig-accent);font-size:15px;font-weight:600;letter-spacing:.04em}
+.head h1{margin:0;font-size:28px;font-weight:600;line-height:1.25}
+.sub{margin:0;color:var(--fig-ink-2);font-size:17px;line-height:1.4}
+.persona{
+  background:var(--fig-card);
+  border-radius:var(--fig-radius);
+  padding:18px 24px;
+  display:flex;align-items:center;gap:18px;
+}
+.persona img{width:84px;height:84px;object-fit:contain;flex:none}
+.persona small{display:block;color:var(--fig-accent);font-size:14px;font-weight:600;line-height:1}
+.persona b{display:block;margin-top:6px;font-size:22px;font-weight:600;line-height:1.3}
+.persona p{margin:6px 0 0;color:var(--fig-ink-2);font-size:16px;line-height:1.4}
+.map{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  grid-template-rows:auto auto auto;
+  gap:12px 14px;
+  align-items:stretch;
+}
+.phase{
+  border-radius:var(--fig-radius);
+  background:var(--fig-accent-soft);
+  padding:16px 18px;
+  display:flex;flex-direction:column;justify-content:center;gap:6px;
+  min-height:72px;
+}
+.span-4{grid-column:span 4}
+.phase small{color:var(--fig-accent);font-size:14px;font-weight:600;line-height:1}
+.phase b{font-size:20px;font-weight:600;line-height:1.3}
+.card{
+  background:var(--fig-card);
+  border-radius:var(--fig-radius);
+  padding:10px 10px 12px;
+  display:flex;flex-direction:column;gap:8px;
+  min-height:0;
+}
+.card img{width:100%;height:auto;max-height:100%;object-fit:contain;display:block;border-radius:12px;border:1px solid #E6E6E6;box-sizing:border-box}
+.card.act{justify-content:center;gap:28px}
+.card b{display:block;text-align:center;font-size:16px;font-weight:600;line-height:1.3}
+.card span{display:block;margin-top:4px;text-align:center;color:var(--fig-ink-2);font-size:14px;line-height:1.35}
+.loop{
+  grid-column:1 / span 4;
+  height:44px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.loop::before{
+  content:"";
+  position:absolute;left:36px;right:36px;top:50%;
+  border-top:1.5px dashed var(--fig-accent);
+}
+.loop span{
+  position:relative;
+  padding:0 14px;
+  background:var(--fig-bg);
+  color:var(--fig-accent);
+  font-size:16px;font-weight:600;line-height:1;
+}
+.findings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.findings article{
+  background:var(--fig-card);
+  border-radius:var(--fig-radius);
+  padding:32px 32px;
+  display:flex;flex-direction:column;justify-content:center;gap:14px;
+}
+.findings small{color:var(--fig-accent);font-size:17px;font-weight:600;line-height:1}
+.findings h3{margin:0;font-size:26px;font-weight:600;line-height:1.35}
+.findings p{margin:0;color:var(--fig-ink-2);font-size:18px;line-height:1.55}
+</style>
+</head>
+<body>
+<main class="canvas" aria-label="现状体验地图">
+  <header class="head">
+    <p class="kicker">传统 SAAS 产品体验旅程</p>
+    <h1>品牌方会员运营如何完成一场大促</h1>
+    <p class="sub">体验审计：编排期 → 执行期 → 复盘期，跨越 7 个业务环节</p>
+  </header>
+  <article class="persona">
+    <img src="../assets/c1-journey-persona.png" alt="品牌方会员运营">
+    <div>
+      <small>目标用户</small>
+      <b>品牌方会员运营</b>
+      <p>5 年经验 · 让每次大促更准、更省力</p>
+    </div>
+  </article>
+  <section class="map">
+    <header class="phase span-4"><small>编排期</small><b>把业务目标翻译成系统配置</b></header>
+    <header class="phase"><small>执行期</small><b>审批发布</b></header>
+    <header class="phase"><small>复盘期</small><b>判断与优化</b></header>
+    <article class="card"><img src="../assets/c1-journey-1.png" alt="人群圈选"><b>人群圈选</b><span>认人、打标签</span></article>
+    <article class="card"><img src="../assets/c1-journey-2.png" alt="活动策划"><b>活动策划</b><span>定目标与策略</span></article>
+    <article class="card"><img src="../assets/c1-journey-3.png" alt="旅程编排"><b>旅程编排</b><span>配置触点规则</span></article>
+    <article class="card"><img src="../assets/c1-journey-4.png" alt="内容生成"><b>内容生成</b><span>准备触达素材</span></article>
+    <article class="card"><img src="../assets/c1-journey-approve.png" alt="审批发布"><b>审批发布</b><span>核对并提交</span></article>
+    <article class="card"><img src="../assets/c1-journey-5.png" alt="效果复盘"><b>效果复盘</b><span>看报表、做判断</span></article>
+    <div class="loop"><span>切换模块、重复录入规则</span></div>
+  </section>
+  <section class="findings">
+    <article>
+      <small>机会 01</small>
+      <h3>同一个目标穿过各个页面</h3>
+      <p>不用在每个工具里把业务目标重新翻译一次。</p>
+    </article>
+    <article>
+      <small>机会 02</small>
+      <h3>上下文跟着任务走</h3>
+      <p>人群、策略和渠道约束在交接时继续传递。</p>
+    </article>
+    <article>
+      <small>机会 03</small>
+      <h3>修改进入下一次任务</h3>
+      <p>确认和调整留下来，下一场不用从头解释。</p>
+    </article>
+  </section>
+</main>
+</body>
+</html>

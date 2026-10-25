@@ -1,0 +1,2 @@
+System.register([],function(t,n){"use strict";return{execute:function(){t("r",function({containerWidth:t,requestedWidth:i,minContentWidth:a=e}){const h=Math.max(0,Math.floor(t)),r=Math.max(n,Math.round(i)),o=Math.max(0,Math.round(a)),d=h-o;if(d<n){const t=h||n;return{mode:"overlay",maxWidth:t,width:Math.min(r,t)}}return{mode:"push",maxWidth:d,width:Math.min(r,d)}});t("a",400);const n=400,e=t("G",600)}}});
+//# sourceMappingURL=globalMagicPanelLayout-C44lAvXq.js.map

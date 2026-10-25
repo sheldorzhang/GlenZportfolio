@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>示意图 · 意图可见</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fig-w:1440px;
+  --fig-h:810px;
+  --page:#e8e8e8;
+  --fig-bg:#FAFAFA;
+  --fig-card:#FFFFFF;
+  --fig-ink:#1C1C1C;
+  --fig-ink-2:#5C5C5C;
+  --fig-ink-3:#8A8A8A;
+  --fig-line:#E6E6E6;
+  --fig-accent:#5555EC;
+  --fig-accent-soft:#F1F0FF;
+  --fig-font:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+  --fig-side:72px;
+  --fig-gap:16px;
+  --fig-radius:18px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--page);overflow:hidden}
+body{font-family:var(--fig-font);color:var(--fig-ink)}
+.en{font-family:var(--fig-font)}
+.canvas{
+  position:absolute;left:0;top:0;
+  width:var(--fig-w);height:var(--fig-h);
+  padding:48px var(--fig-side);
+  background:var(--fig-bg);
+  display:flex;align-items:center;
+  overflow:hidden;transform-origin:0 0;
+}
+.board{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-rows:auto auto auto;
+  column-gap:32px;
+  row-gap:24px;
+  align-items:start;
+}
+.item{display:contents}
+.item header{
+  grid-row:1;
+  width:100%;
+  justify-self:center;
+  display:flex;flex-direction:column;gap:10px;
+}
+.item small{
+  display:block;
+  color:var(--fig-accent);
+  font-size:20px;font-weight:600;line-height:1.2;
+}
+.item h2{
+  margin:0;
+  font-size:24px;font-weight:600;line-height:1.35;
+}
+.shot{
+  grid-row:2;
+  align-self:end;
+  width:100%;
+  justify-self:center;
+  height:320px;
+  background:var(--fig-card);
+  border:1px solid var(--fig-line);
+  border-radius:var(--fig-radius);
+  box-shadow:0 8px 24px rgba(28,28,28,.07);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.shot img{display:block;width:100%;height:auto;object-fit:contain;object-position:center}
+.shot:not(.stack) img{width:auto;max-width:100%;max-height:100%;height:auto}
+.shot-prompt img,.shot-goal img{width:100%;height:auto}
+.shot-prompt,.shot-goal{aspect-ratio:auto}
+.stack{width:100%;position:relative;background:transparent;border:0;box-shadow:none;overflow:visible}
+.stack img{
+  position:absolute;
+  height:auto;
+  object-fit:unset;
+  background:var(--fig-card);
+  border:1px solid var(--fig-line);
+  border-radius:var(--fig-radius);
+  box-shadow:0 12px 30px rgba(28,28,28,.1);
+  transform-origin:center center;
+  transition:transform .48s cubic-bezier(.22,1,.36,1),box-shadow .48s ease;
+}
+.stack .back{left:0;top:2%;width:90%;z-index:1;transform:rotate(-4deg)}
+.stack .front{right:0;bottom:6%;width:82%;z-index:2;transform:rotate(4deg)}
+.stack .back:hover{
+  z-index:5;
+  border-radius:var(--fig-radius);
+  box-shadow:0 18px 40px rgba(28,28,28,.14);
+  transform:translate(5.56%,3.33%) rotate(0deg) scale(1.111);
+}
+.stack .front:hover{
+  z-index:5;
+  border-radius:var(--fig-radius);
+  box-shadow:0 18px 40px rgba(28,28,28,.14);
+  transform:translate(-11%,-10.9%) rotate(0deg) scale(1.22);
+}
+.note{
+  grid-row:3;
+  width:100%;
+  justify-self:center;
+  margin:0;
+  padding-top:12px;
+  color:var(--fig-ink-2);
+  font-size:21px;line-height:1.55;
+}
+.note::before{
+  content:"";
+  display:block;
+  width:40px;height:3px;
+  margin-bottom:16px;
+  background:var(--fig-accent);
+  border-radius:999px;
+}
+</style>
+</head>
+<body>
+<main class="canvas" aria-label="通过能力范围、任务示例和输入引导，帮助用户表达目标与约束">
+  <div class="board">
+    <article class="item">
+      <header>
+        <small>能力可预期</small>
+        <h2>知道 <span class="en">Agent</span> 能做什么</h2>
+      </header>
+      <div class="shot shot-prompt"><img src="../assets/c1-ch4-intent-10.png" alt="快捷提示词帮助用户开口，并补全意图"></div>
+      <p class="note">用真实任务示例降低首次表达成本，而非要求用户学习提示词。</p>
+    </article>
+    <article class="item">
+      <header>
+        <small>表达有参照</small>
+        <h2>用示例组织目标</h2>
+      </header>
+      <div class="shot stack">
+        <img class="back" src="../assets/c1-ch4-intent-20.png" alt="按场景列出可以发起的 Agent">
+        <img class="front" src="../assets/c1-ch4-intent-21.png" alt="进入活动策划后，提示词收在这个场景里">
+      </div>
+      <p class="note">按场景展示可发起的任务，为用户组织目标提供参照。</p>
+    </article>
+    <article class="item">
+      <header>
+        <small>条件可补全</small>
+        <h2>引导补充任务约束</h2>
+      </header>
+      <div class="shot shot-goal"><img src="../assets/c1-ch4-intent-30.png" alt="结合用户记忆，主动给出业务目标"></div>
+      <p class="note">引导补充人群、时间、规则与目标约束。</p>
+    </article>
+  </div>
+</main>
+<script src="../assets/diagram-fit.js"></script>
+</body>
+</html>
