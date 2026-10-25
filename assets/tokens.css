@@ -88,7 +88,7 @@
  --card-pill-h:36px; --card-pill-dur:var(--p-dur-220); --card-pill-ease:var(--ease-emph); --card-pill-shift:6px; --card-pill-shadow:var(--shadow-float);
  /* 首页作品灰卡：左文案 + 右叠图，悬停扇开（参照 cv.rocorgi.wang showreel-entry 的交互，按钮用本站墨色） */
  --reel-bg:rgba(0,0,0,.03); --reel-bg-hover:rgba(0,0,0,.05); --reel-radius:var(--p-radius-16);
- --reel-pad-y:20px; --reel-pad-x:24px; --reel-gap:var(--space-7);
+ --reel-pad-y:24px; --reel-pad-x:24px; --reel-gap:var(--space-7);
  --reel-stack-w:313px; --reel-stack-h:229px; --reel-shot-w:269px; --reel-shot-h:151px;
  --reel-shot-shadow:0 10px 28px rgba(0,0,0,.14); --reel-fan:450ms;
  --rail-gap:32px; --rail-pad-end:80px;

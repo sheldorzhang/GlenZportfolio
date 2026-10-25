@@ -992,6 +992,18 @@ body.detail .case .fig.fig-full figcaption{
  .reel{--reel-stack-w:min(36vw,227px);--reel-shot-w:calc(var(--reel-stack-w) - 24px)}
  .reel-stack img{height:auto;aspect-ratio:16/9;bottom:-6px}
 }
+@media(max-width:480px){
+ .reel{margin-bottom:16px}
+ .reel-link{position:relative;min-height:280px;padding:16px 16px 168px}
+ .reel-body{position:static;align-items:stretch;width:100%;gap:0;padding-right:0}
+ .reel-copy,.reel-copy p{width:100%;max-width:none}
+ .reel-cta{position:absolute;z-index:2;left:16px;bottom:16px}
+ .reel-stack{position:absolute;right:16px;bottom:-18px;width:min(64%,220px);height:clamp(100px,29vw,138px);margin:0;overflow:visible}
+ .reel-stack img{width:100%;height:auto;aspect-ratio:16/9;bottom:0}
+ .reel-stack img:nth-child(1){transform:translate(-10px,6px) rotate(-8deg)}
+ .reel-stack img:nth-child(2){transform:translate(-5px,3px) rotate(-4deg)}
+ .reel-stack img:nth-child(3){transform:none}
+}
 @media(prefers-reduced-motion:reduce){
  .reel,.reel-stack,.reel-stack img{transition:none}
  .reel:hover .reel-stack,.reel:focus-within .reel-stack{transform:none}

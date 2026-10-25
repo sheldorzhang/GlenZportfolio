@@ -10,7 +10,7 @@ var resumeMarkup=`
     <p class="sheet-contact"><a href="tel:18602806752">18602806752</a> ｜ 微信 coda0415 ｜ <a href="mailto:sheldorzhang@gmail.com">sheldorzhang@gmail.com</a></p>
   </header>
   <section class="sheet-sec sheet-core"><h3>核心能力</h3><ul>
-    <li><b>业务驱动与全链路设计</b>：具备 10 年 B2B/B2C 产品体验设计经验，覆盖 SaaS、IM、电商营销等复杂场景。以用户研究、业务目标与体验数据驱动设计决策，平衡用户价值、商业目标与技术可行性，推动方案落地与效果验证。</li>
+    <li><b>业务驱动与全链路设计</b>：具备 10 年 B2B/B2C 产品体验设计经验，覆盖 SaaS、IM、电商营销等复杂场景。从业务目标与真实用户任务出发，统筹体验策略、交互逻辑与视觉表达，以用户研究和体验数据驱动设计决策，推动方案落地与效果验证。</li>
     <li><b>AI-native 与 AI Agent 体验设计</b>：具备 AI Agent、Multi-Agent 和生成式交互设计实践。围绕用户意图、任务执行及人机协作，设计动态界面、结构化产物、状态反馈与关键操作确认机制，兼顾效率、可解释性及用户控制权。</li>
     <li><b>设计体系与工程落地</b>：具备设计系统、组件化及 Design Token 实践经验，理解 React 前端技术体系；通过 AI Coding 构建可运行方案，协同产品、前后端及算法团队完成设计验证与工程落地。</li>
   </ul></section>

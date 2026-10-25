@@ -63,6 +63,37 @@ body.case03-ppt #lb .lb-panel > img { aspect-ratio: 16 / 9; object-fit: contain;
   object-fit: contain;
   aspect-ratio: 16 / 9;
 }
+/* Keep the chapter directory readable when browser zoom moves the viewport
+   into the medium-width breakpoint. */
+@media (min-width: 1001px) and (max-width: 1439px) {
+  .deck-browser .slides:not(.is-fill) .slides-grid.on {
+    top: calc(var(--slide-inset) + 52px);
+    left: calc(var(--slide-inset) + 56px);
+    bottom: auto;
+    width: min(320px, calc(100vw - 2 * var(--slide-inset) - 56px));
+    max-height: calc(100dvh - var(--slide-inset) - 88px);
+    padding: 10px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-pop);
+    z-index: 64;
+  }
+  .deck-browser .slides:not(.is-fill) .slides-grid button {
+    grid-template-columns: 30px minmax(0, 1fr);
+    min-height: 32px;
+    padding: 4px 8px;
+    text-align: left;
+  }
+  .deck-browser .slides:not(.is-fill) .slides-grid button b {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+}
 @media (max-width: 767px) {
   body.case03-ppt .case-main { padding-top: 72px; }
   body.case03-ppt .case-main > .ppt-page,
