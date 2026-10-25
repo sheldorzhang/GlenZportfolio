@@ -1,10 +1,11 @@
 /* 回放懒加载：首屏只放封面，点击后才插入当前产品回放 iframe */
 (function(){
-  var VERSION='magic-embedded-20261025-loading';
+  var VERSION='magic-embedded-20261025-case3-expand-fix-v1';
   var LOCAL_PREVIEW_ORIGIN='http://127.0.0.1:4317';
   var activeFrame=null;
   var backdrop=null;
   var collapseButton=null;
+  var expandedPlaceholder=null;
   var previousOverflow='';
 
   function notifyExpanded(frame,value){
@@ -17,6 +18,11 @@
     if(!activeFrame)return;
     var frame=activeFrame;activeFrame=null;
     frame.classList.remove('is-web-expanded');
+    if(expandedPlaceholder&&expandedPlaceholder.parentNode){
+      expandedPlaceholder.parentNode.insertBefore(frame,expandedPlaceholder);
+      expandedPlaceholder.remove();
+    }
+    expandedPlaceholder=null;
     if(backdrop)backdrop.remove();
     if(collapseButton)collapseButton.remove();
     backdrop=null;collapseButton=null;
@@ -45,6 +51,9 @@
     document.body.append(backdrop,collapseButton);
     document.body.classList.add('embed-modal-open');
     document.body.style.overflow='hidden';
+    expandedPlaceholder=document.createComment('expanded replay placeholder');
+    frame.parentNode.insertBefore(expandedPlaceholder,frame);
+    document.body.appendChild(frame);
     frame.classList.add('is-web-expanded');
     notifyExpanded(frame,true);
     collapseButton.focus({preventScroll:true});
@@ -65,6 +74,7 @@
     box.classList.remove('is-error');
     box.classList.add('is-loading');
     var f=document.createElement('iframe');
+    f.__embedOwner=box;
     var u=resolveReplaySource(box.getAttribute('data-embed-src'));
     f.className='embed-frame';
     f.width=1440;
@@ -125,7 +135,7 @@
     for(var i=0;i<frames.length;i++){
       if(event.source!==frames[i].contentWindow)continue;
       if(event.data.type==='magic-replay:ready'){
-        var owner=frames[i].closest('[data-embed-src]');
+        var owner=frames[i].__embedOwner||frames[i].closest('[data-embed-src]');
         if(owner){
           clearTimeout(owner._embedTimeout);
           owner.classList.remove('is-loading','is-error');

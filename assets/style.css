@@ -636,14 +636,14 @@ body.embed-modal-open{
   --embed-modal-h:min(900px,calc(100vh - 48px),calc((100vw - 48px) * .625));
 }
 .embed-modal-backdrop{position:fixed;inset:0;z-index:2147483644;background:rgba(17,20,27,.48);animation:embed-modal-fade .24s ease both}
-.case .embed-frame.is-web-expanded{position:fixed;left:50%;top:50%;z-index:2147483645;width:var(--embed-modal-w);height:var(--embed-modal-h);aspect-ratio:auto;margin:0;transform:translate(-50%,-50%);border:0;border-radius:12px;background:#fff;box-shadow:0 28px 80px rgba(10,15,28,.28);animation:embed-modal-in .28s cubic-bezier(.22,1,.36,1) both}
+.embed-frame.is-web-expanded{position:fixed;left:50%;top:50%;z-index:2147483645;width:var(--embed-modal-w);height:var(--embed-modal-h);aspect-ratio:auto;margin:0;transform:translate(-50%,-50%);border:0;border-radius:12px;background:#fff;box-shadow:0 28px 80px rgba(10,15,28,.28);animation:embed-modal-in .28s cubic-bezier(.22,1,.36,1) both}
 .embed-modal-collapse{position:fixed;right:calc((100vw - var(--embed-modal-w)) / 2 + 24px);bottom:calc((100vh - var(--embed-modal-h)) / 2 + 22px);top:auto;z-index:2147483646;display:grid;place-items:center;width:46px;height:46px;padding:0;border:0;border-radius:14px;background:rgba(255,255,255,.94);color:#303236;box-shadow:0 4px 16px rgba(29,34,48,.18);cursor:pointer;transform:none;animation:embed-modal-fade .24s ease both}
 .embed-modal-collapse:hover{background:#fff}
 .embed-modal-collapse:focus-visible{outline:2px solid #5555ec;outline-offset:2px}
 .embed-modal-collapse svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 @keyframes embed-modal-fade{from{opacity:0}to{opacity:1}}
 @keyframes embed-modal-in{from{opacity:0;transform:translate(-50%,-48%) scale(.98)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
-@media(prefers-reduced-motion:reduce){.embed-modal-backdrop,.case .embed-frame.is-web-expanded,.embed-modal-collapse{animation:none}}
+@media(prefers-reduced-motion:reduce){.embed-modal-backdrop,.embed-frame.is-web-expanded,.embed-modal-collapse{animation:none}}
 
 /* ===== v6 detail shell（全案例共用：TocRail + 居中栏 + 章节节奏；幻灯片用 detail.js 图集）===== */
 /* ===== v6 detail shell：居中栏 + TocRail + 章节节奏 + 图集幻灯片 ===== */
