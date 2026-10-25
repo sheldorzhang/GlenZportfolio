@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <script>if(location.protocol!=='file:')document.write('<base href="/ui/agent/">');</script>
+    <base href="./" />
     <meta charset="UTF-8" />
     <link rel="icon" href="data:," />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,7 +17,7 @@
         if (!route || !/^[a-z0-9/_-]+$/i.test(route)) return;
         params.delete('route');
         var query = params.toString();
-        if (location.protocol !== 'file:') history.replaceState(null, '', '/ui/agent/' + route.replace(/^\/+/, '') + (query ? '?' + query : ''));
+        if (location.protocol !== 'file:') history.replaceState(null, '', new URL(route.replace(/^\/+/, '') + (query ? '?' + query : ''), document.baseURI).pathname + (query ? '?' + query : ''));
       })();
     </script>
     <div id="app" class="magic-agent" style="height: 100%;"></div>
@@ -33,7 +33,8 @@
         window.process.env = {};
         window.process.env.NODE_ENV = "production";
       </script>
-    <script>window.__MICRO_APP_BASE_ROUTE__ = location.protocol === 'file:' ? './' : '/ui/agent/';</script>
+    <script>window.__MICRO_APP_BASE_ROUTE__ = new URL('.', document.baseURI).pathname;</script>
+    <script src="./static-mocks.js"></script>
     <script src="./static/chunk-preload-B-gntM7F.js"></script><script src="./static/index-DnVseOiV.js" type="systemjs-module" ignore></script>
   </body>
 </html>
