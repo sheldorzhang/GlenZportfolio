@@ -43,7 +43,8 @@ function show(arr,k){
   im.style.display='none';
   if(!frame){frame=document.createElement('iframe');frame.className='lb-frame';frame.title='示意图大图';lb.querySelector('.lb-panel').insertBefore(frame,im)}
   var ratio=(zs[i]&&zs[i].getAttribute('data-zoom-ratio'))||'16/9',parts=ratio.split('/'),rw=+parts[0]||16,rh=+parts[1]||9;
-  var w=Math.min(1440,innerWidth-48,(innerHeight-96)*rw/rh);
+  var inset=innerWidth<=767?12:24;
+  var w=Math.min(1440,innerWidth-2*inset-2,(innerHeight-2*inset-2)*rw/rh);
   frame.style.display='block';
   frame.style.width=Math.round(w)+'px';
   frame.style.height=Math.round(w*rh/rw)+'px';

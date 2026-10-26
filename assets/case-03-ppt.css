@@ -65,7 +65,7 @@ body.case02-ppt #lb .lb-panel > img { aspect-ratio: 16 / 9; object-fit: contain;
 }
 /* Keep the chapter directory readable when browser zoom moves the viewport
    into the medium-width breakpoint. */
-@media (min-width: 1001px) and (max-width: 1439px) {
+@media (min-width: 1024px) and (max-width: 1439px) {
   .deck-browser .slides:not(.is-fill) .slides-grid.on {
     top: calc(var(--slide-inset) + 52px);
     left: calc(var(--slide-inset) + 56px);

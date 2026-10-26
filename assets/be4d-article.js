@@ -10,7 +10,7 @@
  var bar=document.querySelector('.be4d-mobile-bar');
  var title=document.querySelector('.be4d-nav-title');
  var titleFrame=0;
- var compact=matchMedia('(max-width:1000px)');
+ var compact=matchMedia('(max-width:1023px)');
  var reduced=matchMedia('(prefers-reduced-motion:reduce)');
  function openMenu(open){
   menu.classList.toggle('is-open',open);

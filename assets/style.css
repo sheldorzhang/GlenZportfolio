@@ -209,7 +209,7 @@ main.wrap{max-width:var(--w-page)}
 .case .chap-head .txt:empty{display:none}
 .case .compare{max-width:var(--w-read)}
 .case .next-case{max-width:var(--w-read);text-align:left;padding:var(--space-9) 0 var(--space-11);border-top:1px solid var(--color-line)}
-@media(max-width:1099px){.case{display:block;max-width:calc(var(--w-media-read) + 2 * var(--gutter))}.toc{display:none}}
+@media(max-width:1023px){.case{display:block;max-width:calc(var(--w-media-read) + 2 * var(--gutter))}.toc{display:none}}
 @media(max-width:767px){
  .hero{padding-top:calc(var(--size-touch) + var(--space-7))}.hero .avatar{width:var(--avatar-md);height:var(--avatar-md)}.hero .avatar.glen{width:calc(var(--avatar-md) * var(--glen-hero-scale));height:calc(var(--avatar-md) * var(--glen-hero-scale));margin-bottom:calc(var(--space-2) - var(--avatar-md) * var(--glen-hero-scale) * .22);margin-left:calc(var(--avatar-md) * var(--glen-hero-scale) * var(--glen-hero-inset))}
  .case .stat-grid{grid-template-columns:1fr 1fr 1fr;gap:var(--space-2)}.case .stat{padding:var(--space-3)}.case .stat p{font-size:var(--fs-label);font-weight:var(--fw-regular)}
@@ -433,7 +433,7 @@ body:has(.dock){padding-bottom:0}
 .dock{transition:opacity var(--dur-base) var(--ease),visibility 0s linear var(--dur-base)}
 .dock.in{transition:opacity var(--dur-base) var(--ease),visibility 0s}
 .dock-sep,.dock-slot{display:none}
-.dock a,.dock-work>a{height:28px;padding:0;gap:0;background:none;font:var(--fw-light) var(--fs-small)/var(--lh-tight) var(--font-sans);color:var(--color-fg-3)}
+.dock a,.dock-work>a{height:28px;padding:0;gap:0;background:none;font:var(--fw-light) var(--fs-small)/var(--lh-tight) var(--font-sans);color:var(--color-fg-2)}
 .dock>a>svg,.dock-work>a>svg{display:none}
 .dock a:hover,.dock a.on{background:none;color:var(--color-fg)}
 .dock-menu{left:calc(100% + var(--space-3));top:0;bottom:auto;transform:none}
@@ -480,7 +480,7 @@ body:has(.dock){padding-bottom:0}
 @supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){#dock.dock{background:color-mix(in srgb,var(--color-bg) 78%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(16px);backdrop-filter:saturate(1.4) blur(16px)}}
 .nav:not(.is-hidden)~#dock.dock{padding-left:calc(var(--gutter) + var(--size-touch) + var(--space-3))}
 #dock .dock-sep,#dock .dock-slot,#dock a>svg{display:none}
-#dock.dock a{height:var(--size-touch);padding:0;gap:0;background:none;border-radius:0;white-space:nowrap;font:var(--fw-medium) var(--fs-small)/var(--lh-tight) var(--font-serif);color:var(--color-fg-3)}
+#dock.dock a{height:var(--size-touch);padding:0;gap:0;background:none;border-radius:0;white-space:nowrap;font:var(--fw-medium) 16px/var(--lh-tight) var(--font-serif);color:var(--color-fg-2)}
 #dock.dock a:hover,#dock.dock a.on{background:none;color:var(--color-fg)}
 #dock .dock-menu{top:100%;bottom:auto;left:0;transform:none}
 #dock .dock-menu a{height:auto;min-height:40px;padding:0 var(--space-3);font:var(--fs-label)/var(--lh-snug) var(--font-sans);color:var(--color-fg-2)}
@@ -1096,8 +1096,8 @@ body.detail .case .fig.fig-full figcaption{
 }
 .slides.is-fill .slides-heading{display:none}
 .present-title{font-family:var(--font-serif);font-weight:var(--fw-display)}
-/* 1000px 是目录折叠断点；中等桌面沿用正文的编号侧栏。 */
-@media(min-width:1001px) and (max-width:1439px){
+/* 导航统一以 1024px 为切换点；1024px 以上的中等桌面沿用编号侧栏。 */
+@media(min-width:1024px) and (max-width:1439px){
   .slides:not(.is-fill) .slides-grid{width:44px}
   .slides:not(.is-fill) .slides-grid button{grid-template-columns:1fr;padding:8px 0;text-align:center}
   .slides:not(.is-fill) .slides-grid button span{text-align:center}
@@ -1114,7 +1114,7 @@ body.detail .case .fig.fig-full figcaption{
   .slides:not(.is-fill) .slides-grid{top:164px;width:184px}
   .slides:not(.is-fill) .slides-grid button{grid-template-columns:28px minmax(0,1fr);padding:8px 0}
 }
-@media(max-width:1000px){
+@media(max-width:1023px){
   .slides{--slide-inset:var(--gutter)}
   .slides:not(.is-fill) .slides-stage{inset:88px 20px 76px}
   .slides:not(.is-fill) .slides-gridbtn{
@@ -1137,7 +1137,7 @@ body.detail .case .fig.fig-full figcaption{
 }
 
 /* 编号侧栏：悬停 / 键盘聚焦显示完整章节名，固定定位避免被侧栏裁切。 */
-@media(min-width:1001px) and (max-width:1439px){
+@media(min-width:1024px) and (max-width:1439px){
   .slides:not(.is-fill) .slides-grid button:hover b,
   .slides:not(.is-fill) .slides-grid button:focus-visible b{
     position:fixed;left:var(--chapter-hint-x);top:var(--chapter-hint-y);z-index:65;

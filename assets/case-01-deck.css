@@ -746,13 +746,13 @@ a{color:inherit;text-decoration:none}
 .slides.is-fill .deck-top-title{display:none}
 .deck-browser .slides:not(.is-fill){--slide-pager-x:50%}
 .deck-browser .slides:not(.is-fill) .slides-stage{left:24px;right:24px;top:104px}
-@media(min-width:1001px){
+@media(min-width:1024px){
   .deck-browser .slides:not(.is-fill) .slides-close{left:var(--deck-edge-left,var(--slide-inset))}
   .deck-browser .slides:not(.is-fill) .slides-gridbtn{left:calc(var(--deck-edge-left,var(--slide-inset)) + 56px)}
   .deck-browser .slides:not(.is-fill) .slides-fillbtn{right:var(--deck-edge-right,var(--slide-inset))}
   .deck-top-title{max-width:calc(100vw - var(--deck-edge-left,24px) - var(--deck-edge-right,24px) - 280px)}
 }
-@media(max-width:1000px){
+@media(max-width:1023px){
   .deck-browser .slides:not(.is-fill) .slides-stage{left:20px;right:20px;top:88px}
 }
 @media(max-width:767px){

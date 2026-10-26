@@ -1,14 +1,12 @@
-/* 字体替换说明（v6）：
-   - 拉丁正文 / 导航：DM Sans（OFL，CircularStd 的免费近似）；拉丁展示 / 姓名 / 标题 / 左侧导航：Young Serif 400（OFL，Gelica 的免费近似）；等宽：IBM Plex Mono（OFL）。
-   - 加载：各 HTML <head> 中的 Google Fonts <link>（display=swap）。
-   - 若日后购买 CircularStd / Gelica 授权：把 woff2 放到 assets/fonts/，在此文件顶部写 @font-face（font-family:"CircularStd" / "Gelica"），
-     再把下方 --p-font-sans / --p-font-serif 的第一项换成对应名字，并删掉 HTML 中 Google Fonts 里不再需要的家族。只改这里，不改组件。 */
+/* 字体基线：中文标题使用 Noto Serif SC（400/500），正文与界面使用 DM Sans，等宽信息使用 IBM Plex Mono。
+   字体由各页面 head 中的 Google Fonts 链接加载；断网时回退到系统字体。 */
 /* ============================================================
    tokens.css v5.13 — 4 层令牌（唯一视觉/交互参数来源）
-   ① primitive  原始值：只写字面量，不随断点/主题变化；组件与 style.css 不直接引用（--p-*、--space-*）
-   ② semantic   语义：颜色角色、字号层级、间距角色、布局宽度、动效、层级；断点/主题只覆盖这一层
+   ① primitive  原始值：颜色、字体、基础尺寸只写字面量，不随断点/主题变化；--p-* 不由组件直接引用，--space-* 是可复用的基础间距级别
+   ② semantic   语义：颜色角色、字号层级、间距角色、布局宽度、动效、层级；断点优先覆盖语义，必要时覆盖组件令牌
    ③ component  组件：只引用 semantic / primitive，前缀 = 组件名（--nav- --dock- --card- --rail- --toc- --hero- --work-）
    ④ interaction 交互参数：JS 读取的无单位数字（--ix-*），由 smooth.js 解析
+   导航统一断点：1024px 起桌面版，1023px 及以下紧凑版；CSS 与 JS 的媒体查询保持此数值一致。
    命名：--{层/类别}-{角色}[-{变体}]；时长统一 ms；style.css 只能用 var(--*)，允许 0 / 1px 发丝线 / % / fr
    ============================================================ */
 :root{
@@ -94,7 +92,7 @@
  --rail-gap:32px; --rail-pad-end:80px;
  --toc-w:200px;
 
- /* ④ interaction（smooth.js 读取；推荐值见 design.md）------------ */
+ /* ④ interaction（smooth.js 读取；当前数值以本文件为准）------------ */
  --ix-scroll-lerp:.1; --ix-scroll-wheel:1;
  --ix-rail-lerp:.12; --ix-rail-wheel-mult:.6; --ix-rail-tp-mult:1; --ix-rail-tp-lerp:.35; --ix-rail-tp-max:40;
  --ix-rail-power:.2; --ix-rail-time:400; --ix-rail-snap-v:400; --ix-rail-idle:150; --ix-rail-snap-dur:500;

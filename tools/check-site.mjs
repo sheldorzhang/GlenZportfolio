@@ -20,6 +20,9 @@ const missing = [];
 const attrPattern = /\b(?:href|src|poster|action)\s*=\s*(["'])(.*?)\1/gi;
 
 for (const htmlFile of htmlFiles) {
+  // This Vite entry is only for local React development. The published page is dist/index.html;
+  // its absolute /src/main.tsx module path is resolved by Vite and is not a site asset.
+  if (htmlFile === join(root, 'demos/intent-forms-heroui/index.html')) continue;
   const html = await (await import('node:fs/promises')).readFile(htmlFile, 'utf8');
   for (const match of html.matchAll(attrPattern)) {
     const value = match[2].trim();

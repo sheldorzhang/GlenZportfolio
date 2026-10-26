@@ -1,9 +1,9 @@
-/* Article chapter menu shares the slideshow's compact breakpoint. */
+/* Article chapter menu shares the site's 1024px compact-navigation breakpoint. */
 (function(){
   "use strict";
   var toggle=document.querySelector(".c1-menu-toggle"),menu=document.getElementById("c1-article-toc");
   if(!toggle||!menu) return;
-  var compact=matchMedia("(max-width:1000px)");
+  var compact=matchMedia("(max-width:1023px)");
   var heading=document.querySelector(".case-head h1"),bar=document.querySelector(".c1-mobile-bar"),title=document.querySelector(".c1-nav-title"),titleFrame=0;
   function syncTitle(){
     titleFrame=0;
