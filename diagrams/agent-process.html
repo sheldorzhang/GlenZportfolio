@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>示意图 · Agent 执行过程与过程反馈</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fig-w:1440px;
+  --fig-h:810px;
+  --page:#e8e8e8;
+  --fig-bg:#FAFAFA;
+  --fig-card:#FFFFFF;
+  --fig-ink:#1C1C1C;
+  --fig-ink-2:#5C5C5C;
+  --fig-line:#E6E6E6;
+  --fig-accent:#5555EC;
+  --fig-font:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+  --fig-side:72px;
+  --fig-radius:18px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--page);overflow:hidden}
+body{font-family:var(--fig-font);color:var(--fig-ink)}
+.canvas{
+  position:absolute;left:0;top:0;
+  width:var(--fig-w);height:var(--fig-h);
+  padding:48px var(--fig-side);
+  background:var(--fig-bg);
+  display:flex;align-items:center;
+  overflow:hidden;transform-origin:0 0;
+}
+.board{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-rows:auto auto auto;
+  column-gap:24px;
+  row-gap:20px;
+  align-items:start;
+}
+.stage{display:contents}
+.stage header{
+  grid-row:1;
+  display:flex;flex-direction:column;gap:8px;
+  min-width:0;
+}
+.stage small{color:var(--fig-accent);font-size:20px;font-weight:600;line-height:1.2}
+.stage h2{margin:0;font-size:23px;font-weight:600;line-height:1.35}
+.shot{
+  grid-row:2;
+  height:510px;
+  display:flex;align-items:center;justify-content:center;
+  padding:12px;
+  background:var(--fig-card);
+  border:1px solid var(--fig-line);
+  border-radius:var(--fig-radius);
+  box-shadow:0 8px 24px rgba(28,28,28,.07);
+  overflow:hidden;
+}
+.shot img{display:block;width:100%;height:100%;object-fit:contain}
+.note{
+  grid-row:3;
+  margin:0;padding-top:8px;
+  color:var(--fig-ink-2);
+  font-size:19px;line-height:1.5;
+}
+.note::before{
+  content:"";display:block;width:40px;height:3px;margin-bottom:12px;
+  background:var(--fig-accent);border-radius:999px;
+}
+</style>
+</head>
+<body>
+<main class="canvas" aria-label="Agent 执行过程与过程反馈：从信息平铺到决策分层，再到执行过程可见">
+  <div class="board">
+    <article class="stage">
+      <header>
+        <small>Before</small>
+        <h2>Markdown 全量平铺</h2>
+      </header>
+      <div class="shot"><img src="../assets/c1-agent-process-before.webp?v=white-4x-20261026" alt="执行前：Markdown 信息全量平铺"></div>
+      <p class="note">用 Markdown 展示完整过程内容。</p>
+    </article>
+    <article class="stage">
+      <header>
+        <small>Design Decision</small>
+        <h2>按用户决策需求分层</h2>
+      </header>
+      <div class="shot"><img src="../assets/c1-agent-process-decision.webp" alt="设计决策：围绕用户决策需求组织信息层级"></div>
+      <p class="note">按用户决策需求安排信息层级。</p>
+    </article>
+    <article class="stage">
+      <header>
+        <small>After</small>
+        <h2>执行过程与关键反馈</h2>
+      </header>
+      <div class="shot"><img src="../assets/c1-agent-process-after.webp?v=white-4x-20261026" alt="执行后：展示执行轨迹、任务进度与关键节点反馈"></div>
+      <p class="note">显示执行轨迹、任务进度与关键节点反馈。</p>
+    </article>
+  </div>
+</main>
+<script src="../assets/diagram-fit.js"></script>
+</body>
+</html>

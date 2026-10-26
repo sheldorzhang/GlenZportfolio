@@ -31,7 +31,7 @@
     document.querySelectorAll("[data-strip] [data-index]").forEach(function(button){button.classList.toggle("on",Number(button.dataset.index)===current)});
     document.querySelectorAll(".slides-grid button").forEach(function(button){button.classList.toggle("on",button.dataset.section===section)});
     var activeStrip=strip.querySelector(".on");if(activeStrip){var column=getComputedStyle(strip).flexDirection==="column";if(column)strip.scrollTop=activeStrip.offsetTop-strip.clientHeight/2+activeStrip.offsetHeight/2;else strip.scrollLeft=activeStrip.offsetLeft-strip.clientWidth/2+activeStrip.offsetWidth/2}var menuOn=overview.querySelector(".on");if(menuOn)overview.scrollTop=menuOn.offsetTop-overview.clientHeight/2+menuOn.offsetHeight/2;
-    document.title=slides[current].dataset.title+" · 腾讯企点商通 · 幻灯片";
+    document.title="腾讯企点商通 IM - 作品案例";
     if(writeHash)history.replaceState(null,"","#p"+(current+1));
   }
   function openGrid(open){overview.classList.toggle("on",open);if(open){var selected=overviewGrid.querySelector(".on");if(selected)selected.focus()}}

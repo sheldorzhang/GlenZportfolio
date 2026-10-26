@@ -99,7 +99,7 @@
     nextBtn.disabled=index===slides.length-1;
     updateOverview();
     syncLiveDemos();
-    document.title=(slides[index].dataset.title||"MAGIC AI")+" · 演示版";
+    document.title="企点营销云 MAGIC AI ｜演示版 - 作品案例";
     if(updateHash){
       history.replaceState(null,"","#p"+(index+1));
     }

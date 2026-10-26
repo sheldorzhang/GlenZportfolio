@@ -537,6 +537,36 @@ body:has(.dock){padding-bottom:0}
 
 /* 黑体统一 Regular */
 body,.hero-bio,.cv-entry .d,.cv-xp,.sheet-paper,.dock a,.dock-work>a,.work-txt p{font-weight:var(--fw-regular)}
+/* 完整简历沿用探索文章的阅读列和标题层级。 */
+.sheet{--article-measure:650px}
+.sheet-scroll{padding-top:var(--article-pad-top)}
+.sheet-paper{width:100%;max-width:var(--article-measure);font:var(--fw-regular) var(--fs-body)/var(--lh-body) var(--font-sans)}
+.sheet-head{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-3);padding-bottom:0;border-bottom:0}
+.sheet-head h2{font:var(--fw-bold) 36px/1.25 var(--font-sans);letter-spacing:-.01em}
+.sheet-head>p:first-of-type{margin:0;font:var(--fw-regular) var(--fs-body)/var(--lh-body) var(--font-sans);color:var(--color-fg)}
+.sheet-head .hero-tags{margin:0}
+.sheet-head .hero-tags li{font-size:var(--fs-small);color:var(--color-fg)}
+.sheet-head .sheet-contact{margin:0;font:var(--fw-regular) var(--fs-body)/var(--lh-body) var(--font-sans);color:var(--color-fg);overflow-wrap:anywhere}
+#resume .sheet-contact a{text-decoration:none}
+.sheet-sec,.sheet-paper .sheet-core{padding-top:var(--space-8)}
+.sheet-sec h3{margin:0 0 var(--space-5);padding:0;border:0;font:var(--fw-bold) 25.5px/1.333 var(--font-sans);letter-spacing:0;color:var(--color-fg)}
+.sheet-sec p{margin:var(--space-3) 0 var(--space-5)}
+.sheet-sec b{font-weight:var(--fw-bold)}
+.sheet-row{align-items:baseline;gap:var(--space-4);margin-top:var(--space-7)}
+.sheet-sec>h3+.sheet-row{margin-top:0}
+.sheet-row h4{font:var(--fw-bold) var(--fs-h3)/var(--lh-h3) var(--font-sans)}
+.sheet-row span{font:var(--fw-regular) var(--fs-small)/var(--lh-small) var(--font-sans);letter-spacing:0;color:var(--color-fg-2)}
+.sheet-sec ul,.sheet-core ul{margin:var(--space-3) 0 0;padding-left:1.2em}
+.sheet-sec li,.sheet-core li+li{margin:0 0 var(--space-3)}
+.sheet-sec li::marker{color:var(--color-fg-2)}
+@media(max-width:767px){
+ .sheet-scroll{padding-top:var(--space-8);padding-left:var(--gutter);padding-right:var(--gutter)}
+ .sheet-head h2{font-size:32px}
+ .sheet-sec,.sheet-paper .sheet-core{padding-top:var(--space-7)}
+ .sheet-sec h3{font-size:24px}
+ .sheet-row{align-items:flex-start;gap:var(--space-2)}
+ .sheet-row h4{max-width:none}
+}
 /* 混排行：Young Serif 拉丁字形偏粗，混排时拉丁改用更细的系统衬线，中文仍走宋体 */
 .closing{font-family:var(--font-serif-mixed)}
 /* 作品标题（营销云 MAGIC Agent / 腾讯云 Mall / 企点商通 IM）同 .closing：拉丁走细衬线，中文仍走宋体 */

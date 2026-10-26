@@ -1,6 +1,6 @@
-/* 完整简历阅读层：正文与 2026-10-25 文字简历 PDF 同步。 */
+/* 完整简历阅读层：正文与 2026-10-27 文字简历 PDF 同步。 */
 (function(){
-var PDF='assets/张耕-产品体验设计师-文字简历.pdf';
+var PDF='assets/张耕-产品体验设计师-文字简历.pdf?v=20261027';
 var d=document.createElement('div');d.id='resume';d.className='sheet';d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');d.setAttribute('aria-labelledby','rs-title');d.hidden=true;
 var resumeMarkup=`
   <header class="sheet-head">
@@ -10,32 +10,34 @@ var resumeMarkup=`
     <p class="sheet-contact"><a href="tel:18602806752">18602806752</a> ｜ 微信 coda0415 ｜ <a href="mailto:sheldorzhang@gmail.com">sheldorzhang@gmail.com</a></p>
   </header>
   <section class="sheet-sec sheet-core"><h3>核心能力</h3><ul>
-    <li><b>业务驱动与全链路设计</b>：具备 10 年 B2B/B2C 产品体验设计经验，覆盖 SaaS、IM、电商营销等复杂场景。从业务目标与真实用户任务出发，统筹体验策略、交互逻辑与视觉表达，以用户研究和体验数据驱动设计决策，推动方案落地与效果验证。</li>
-    <li><b>AI-native 与 AI Agent 体验设计</b>：具备 AI Agent、Multi-Agent 和生成式交互设计实践。围绕用户意图、任务执行及人机协作，设计动态界面、结构化产物、状态反馈与关键操作确认机制，兼顾效率、可解释性及用户控制权。</li>
-    <li><b>设计体系与工程落地</b>：具备设计系统、组件化及 Design Token 实践经验，理解 React 前端技术体系；通过 AI Coding 构建可运行方案，协同产品、前后端及算法团队完成设计验证与工程落地。</li>
+    <li><b>业务驱动与产品判断</b>：具备 10 年 B2B/B2C 产品体验设计经验，覆盖企业 SaaS、IM 与电商营销；通过访谈和场景分析识别问题，平衡用户、业务与技术约束，推动方案落地验证。</li>
+    <li><b>AI Agent 与人机协作体验</b>：具备企业级 AI Agent 设计实践，依据任务复杂度、意图清晰度与执行风险设计澄清、确认、状态反馈及结构化产物，兼顾效率与用户控制权。</li>
+    <li><b>设计体系与实现验证</b>：主导营销云 AI 设计体系，参与 TDesign 电商组件库共建；结构化设计规范、页面范式与知识资产，支持 AI Coding 规范化交付和可运行原型验证。</li>
   </ul></section>
   <section class="sheet-sec"><h3>工作经历</h3>
     <div class="sheet-row"><h4>腾讯｜CSIG｜产品体验设计师</h4><span>2021.04 – 至今</span></div>
-    <ul><li>负责企点营销云、企点商通、腾讯云 Mall 及鹅享团的体验设计，覆盖 AI Agent、B2B 行业协作、商家运营与消费端交易。</li><li>通过客户访谈、场景分析与体验走查梳理 90+ 项体验问题，方案采纳率约 90%；参与 TDesign 电商组件库共建，相关研发成本降低 20%，协同产品、研发与算法推动落地。</li></ul>
+    <ul><li><b>AI 产品交付与体验演进</b>：主导营销云 AI 设计体系，沉淀「表达、协作、产物」组件规范并推动关键能力上线；依据客户反馈、行为数据与竞品分析维护问题方案清单，跟进采纳落地，以 AI Coding 与工程联调推动实现。</li><li><b>行业协作与业务效率</b>：在电子采配有库存场景中，将询价信息最快约 30 秒呈现于 IM 侧边栏并支持一键回复；通过 NLP 识别与业务系统集成优化信息获取和响应流程。</li><li><b>业务覆盖</b>：负责企业营销、行业交易及零售电商体验设计；参与 TDesign 电商公共组件共建。</li></ul>
     <div class="sheet-row"><h4>喜马拉雅｜主播生态事业部｜UI 设计师</h4><span>2018.08 – 2021.04</span></div>
-    <ul><li>主导有声节目制作平台体验重构，优化版权方、主播与运营的协作流程；撮合效率提升 20%、运营成本降低 70%，支撑 2000+ 音频节目上线。</li><li>推动多端设计规范建设，组件复用率提升 40%；参与「万物声」社交分享设计，任务完成率提升 50%。</li></ul>
-    <div class="sheet-row"><h4>言几又（书店）/ AIUX 设计咨询公司｜UI 设计师</h4><span>2016.07 – 2018.08</span></div>
-    <ul><li>负责 O2O 电商小程序、会员服务及品牌数字化体验设计，并建立门店物料规范。</li></ul>
+    <ul><li><b>内容生产与协作体验</b>：重构有声节目制作平台协作流程，支撑 2000+ 节目上线；推动多端规范与组件复用，参与「万物声」音频社交电商设计。</li></ul>
+    <div class="sheet-row"><h4>言几又（书店）｜UI 设计师</h4><span>2017.06 – 2018.08</span></div>
+    <ul><li><b>新零售与品牌体验</b>：负责品牌电商小程序、会员及 O2O 消费体验，建立门店运营物料规范。</li></ul>
+    <div class="sheet-row"><h4>AIUX 设计咨询公司｜产品设计师</h4><span>2016.09 – 2017.06</span></div>
+    <ul><li><b>多客户产品设计</b>：参与鲁大师、PandaPia、芒果云项目，负责体验方案与高保真原型，协同推进评审交付。</li></ul>
   </section>
   <section class="sheet-sec"><h3>核心项目</h3>
     <div class="sheet-row"><h4>01｜腾讯企点营销云 MAGIC AI</h4><span>2024 – 至今</span></div>
-    <p>企业级 AI Agent 产品体验设计。负责 Agent 基础配置、对话体验及营销云 AI 设计体系，推动从功能操作向意图驱动的任务协作转型。</p>
-    <ul><li><b>体验策略</b>：针对营销工具分散和跨模块操作成本，依据任务复杂度、意图清晰度与执行风险，构建内嵌式 AI、Copilot、Multi-Agent 三类交互模式。</li><li><b>关键设计</b>：设计 Skill、知识库、工具配置及任务澄清、可编辑 Generative UI、状态反馈、执行确认与异常恢复；抽象表达、协作、产物三类组件及跨场景规范。</li><li><b>交付与验证</b>：协同产品、算法和研发推进 MAGIC Agent 自 2026 年初面向零售、文旅等客户交付；提出「14 天首次价值率」指标，用于引导流程与激活体验评估。</li></ul>
+    <p>企业级 AI Agent 产品体验设计。负责 Agent 基础配置、任务协作与营销云 AI 设计体系，推动三类体验模式及关键协作机制落地，支持行业客户交付。</p>
+    <ul><li><b>体验策略</b>：结合营销任务及其复杂度、意图清晰度与执行风险，设计内嵌式 AI、Copilot、Multi-Agent 三类模式；通过过程分层、问题澄清与计划确认，支持用户判断与决策。</li><li><b>设计系统与工作流</b>：针对多角色 AI Coding 产出质量不一，结构化设计规范、页面范式与知识库，沉淀 AI 可用资产与 Skill，完善生成、走查和迭代流程，推动跨角色规范化交付。</li></ul>
     <div class="sheet-row"><h4>02｜腾讯企点商通</h4><span>2023.04 – 至今</span></div>
-    <p>B2B IM 与行业交易协作体验。负责金融 OTC、电子采配等行业的企业 IM 客户端、行业应用集成及 AI 交易辅助体验。</p>
-    <ul><li><b>业务流程</b>：通过行业调研识别消息分散与跨系统切换问题，优化业务消息分类、筛选及会话组织，将查询、计算、询报价能力集成至会话侧边栏。</li><li><b>AI 应用</b>：将 NLP 与 Agent 能力融入 IM，设计群聊商机信息聚合、供需识别和潜在交易对象呈现，支持业务人员自主判断与跟进。</li><li><b>项目成果</b>：电子采配场景单次报价时间由约 20 分钟缩短至 30 秒（项目实测），相关能力持续应用于企业交易协作场景。</li></ul>
+    <p>B2B IM 与行业交易协作体验。负责金融 OTC、电子采配等行业的企业 IM 与行业应用体验设计，依托 QQ B2B 行业社交生态，将 IM 从沟通工具延伸为业务协作入口。</p>
+    <ul><li><b>行业场景与任务整合</b>：针对行业关系和业务沟通集中于 IM、独立系统难以建联的问题，将库存查询、计算与询报价能力融入会话侧边栏，支持业务人员在沟通中获取信息并快速响应。</li><li><b>AI 驱动的交易辅助</b>：结合 NLP 与 Agent 能力，设计面向电子行业的「电子通」及询报价机器人，帮助业务人员从会话中识别交易线索，再自主判断与跟进。</li></ul>
     <div class="sheet-row"><h4>03｜腾讯云 Mall / 鹅享团</h4><span>2021 – 2022</span></div>
-    <p>零售电商与 B/C 双端增长体验。负责营销促销、商品交易、会员成长与商家后台，连接品牌商家、平台运营及消费者的关键任务。</p>
-    <ul><li><b>消费端体验</b>：优化商品、购物车及结算链路的优惠规则、适用条件与收益表达，降低消费者理解成本，改善购买决策体验。</li><li><b>商家与增长设计</b>：优化营销模板、活动规则配置及会员成长机制；结合微信社群场景，设计团长开团、帮卖与参团流程，衔接营销参与与交易转化。</li><li><b>产品成果</b>：云 Mall 支持 4+ 行业解决方案，后台操作效率提升 40%，参与活动商家 GMV 增长 20%+；鹅享团冷启动单月 GMV 200 万+，平台注册用户 60 万+。</li></ul>
+    <p>零售电商与 B/C 双端增长体验。负责零售电商与社群团购产品体验，以商家运营效率和消费者交易转化为重点，覆盖营销配置、商品交易、会员成长及 KA 客户定制化交付。</p>
+    <ul><li><b>商家端｜营销配置与运营效率</b>：围绕复杂营销规则与活动搭建成本，优化营销模板、批量操作、所见即所得配置及会员成长机制，降低商家运营负担。</li><li><b>消费端｜购买决策与交易转化</b>：优化商品、购物车及结算链路的优惠规则、适用条件与收益表达；结合微信社群场景设计团长开团、帮卖与参团流程，衔接营销参与、购买决策与交易转化。</li><li><b>项目成果</b>：云 Mall 支持 4+ 行业方案，后台操作效率提升 40%，参与活动商家 GMV 增长 20%+；鹅享团冷启动单月 GMV 200 万+，平台注册用户 60 万+。</li></ul>
   </section>
-  <section class="sheet-sec"><h3>其他项目</h3><div class="sheet-row"><h4>企点营销云 企微互动 SCRM</h4><span>2022</span></div><p>负责导购获客、客户运营及营销触达的跨端 MVP 体验设计；配置效率提升 30%，支持 6+ 客户付费。</p></section>
-  <section class="sheet-sec"><h3>实践与探索</h3><div class="sheet-row"><h4>Be4D｜设计系统 × AI Coding</h4></div><p>探索 Design Token、组件规范与交互范式在 AI Coding 工作流中的复用，通过可运行方案连接设计资产、方案探索与前端实现。</p><div class="sheet-row"><h4>Intent UI｜意图驱动的生成式交互</h4></div><p>探索自然语言、动态表单与结构化结果的组合方式，构建 Generative UI 概念原型，研究 AI 任务协作中的动态交互体验。</p></section>
-  <section class="sheet-sec"><h3>技能与工具</h3><ul><li><b>体验设计</b>：UX Research、Interaction Design、Information Architecture、User Journey、Service Blueprint、Usability Testing。</li><li><b>AI 产品</b>：AI-native Design、AI Agent、Multi-Agent、Workflow、Generative UI、Human-in-the-loop、Prompt Design。</li><li><b>设计与开发</b>：Figma、TDesign、Design Token、Cursor、CodeBuddy、React、Next.js、Tailwind CSS。</li></ul></section>
+  <section class="sheet-sec"><h3>其他项目</h3><div class="sheet-row"><h4>企点营销云 企微互动 SCRM</h4><span>2022</span></div><p>负责导购获客、客户运营及营销触达的跨端 MVP 体验设计，营销配置效率提升 30%，产品支持 6+ 付费客户使用。</p></section>
+  <section class="sheet-sec"><h3>实践与探索</h3><div class="sheet-row"><h4>Be4D｜设计系统 × AI Coding</h4></div><p>探索 AI Coding 前置设计约束的方法，将 Design Token、组件规范与交互范式应用于可运行原型，研究标准化复用与创造性探索的平衡。</p><div class="sheet-row"><h4>Intent UI｜意图驱动的生成式体验</h4></div><p>探索自然语言、动态表单与结构化产物的组合方式，构建 Generative UI 概念原型，研究用户意图变化下的动态界面与人机协作体验。</p></section>
+  <section class="sheet-sec"><h3>技能与工具</h3><ul><li><b>产品与体验设计</b>：UX Research、Complex Workflow、Information Architecture、User Journey、Service Blueprint、Usability Testing。</li><li><b>AI 产品体验</b>：AI Agent UX、Multi-Agent、Human-AI Interaction、Generative UI、Human-in-the-loop、Agent Workflow。</li><li><b>设计系统与实现</b>：Design Systems、Design Tokens、Figma、TDesign、AI Coding（Cursor、CodeBuddy）；React、Next.js、Tailwind CSS（可运行原型与工程协作）。</li></ul></section>
   <section class="sheet-sec"><h3>荣誉与教育</h3><p>腾讯 OUTSTANDING CONTRIBUTOR｜2022 年上半年</p><p>成都理工大学｜工业设计｜本科（学士）｜2016</p></section>
 `;
 d.innerHTML='<div class="sheet-scroll"><article class="sheet-paper">'+resumeMarkup+'</article></div><div class="sheet-bar"><button type="button" class="btn-close sheet-close" aria-label="关闭简历（Esc）"><svg class="icon icon-16" aria-hidden="true"><use href="#i-x"/></svg>关闭</button><a class="sheet-dl" href="'+PDF+'" download="张耕-产品体验设计师-文字简历.pdf"><svg class="icon icon-16" aria-hidden="true"><use href="#i-download"/></svg>下载 PDF</a></div>';
