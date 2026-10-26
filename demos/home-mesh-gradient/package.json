@@ -1,0 +1,17 @@
+{
+  "name": "portfolio-home-mesh-gradient",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@paper-design/shaders-react": "0.0.82",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "vite": "5.4.21"
+  }
+}

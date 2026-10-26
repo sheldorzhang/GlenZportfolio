@@ -1,5 +1,12 @@
 (function(){
 var $=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var closingScreen=document.querySelector('.home-gradient');
+if(closingScreen&&'IntersectionObserver' in window){
+ var closingObserver=new IntersectionObserver(function(entries){
+  document.body.classList.toggle('is-home-gradient-visible',entries[0].intersectionRatio>=.9);
+ },{threshold:[0,.9,1]});
+ closingObserver.observe(closingScreen);
+}
 var reveal=$('main.wrap>.hero, main.wrap .work>.view-bar, main.wrap .work>.reel, main.wrap>.cv, main.wrap>.closing, .case-main>*');
 if(reveal.length&&'IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
  var observer=new IntersectionObserver(function(entries){

@@ -1155,4 +1155,32 @@ body.detail .case .fig.fig-full figcaption{
   .embed-modal-collapse{right:calc((100vw - var(--embed-modal-w)) / 2 + 16px);bottom:calc((100vh - var(--embed-modal-h)) / 2 + 16px)}
 }
 
-/* React 水面组件从首页正文容器横向出血至视口边缘。 */
+/* Homepage closing screen modeled on the reference site's full-height ending. */
+.home-gradient{
+  position:relative;
+  display:flex;
+  align-items:center;
+  width:100vw;
+  min-height:100vh;
+  min-height:100svh;
+  margin-left:calc(50% - 50vw);
+  margin-top:clamp(64px,8svh,96px);
+  overflow:hidden;
+  isolation:isolate;
+  background:linear-gradient(135deg,#d8edf3 0%,#47c6d1 42%,#b8f1ff 72%,#fcd783 100%);
+}
+.home-gradient__canvas{position:absolute;inset:0}
+.home-gradient__inner{position:relative;z-index:1;width:min(100%,var(--w-home));margin:0 auto}
+.home-gradient__quote{max-width:none;margin:0;padding:0;color:rgba(255,255,255,.8);font:var(--fw-medium) clamp(32px,2.65vw,40px)/1.4 var(--font-serif-mixed);text-align:left;white-space:nowrap}
+.home-gradient[data-gradient-failed="true"] .home-gradient__canvas{display:none}
+@media(max-width:767px){.home-gradient{margin-top:48px}.home-gradient__inner{width:100%;padding-inline:var(--gutter)}.home-gradient__quote{font-size:clamp(18px,4.6vw,28px)}}
+@media(prefers-reduced-motion:reduce){.home-gradient{background:linear-gradient(135deg,#d8edf3 0%,#47c6d1 42%,#b8f1ff 72%,#fcd783 100%)}}
+
+@media(min-width:1024px){
+  body.is-home-gradient-visible #dock.dock a,
+  body.is-home-gradient-visible #dock.dock a:visited,
+  body.is-home-gradient-visible #dock.dock a:hover,
+  body.is-home-gradient-visible #dock.dock a:focus-visible{color:#fff}
+  body.is-home-gradient-visible #nav .nav-btn{--nav-ring-color:#fff;--nav-ring-track:rgba(255,255,255,.44)}
+  body.is-home-gradient-visible #nav .nav-btn:focus-visible{outline-color:#fff}
+}
