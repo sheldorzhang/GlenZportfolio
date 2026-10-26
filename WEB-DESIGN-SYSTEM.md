@@ -79,6 +79,8 @@
 
 移动文章以 iPhone 17 Pro 的 **402 CSS px** 视口作为验收基准，不额外设置 402px 的 `min-width`。Be4D 与 Intent UI 在手机上保留左右阅读边距、让图表按可用宽度重排；Intent UI 内嵌演示取消固定 1008px 缩放画布，改用演示自身的移动布局。Be4D 的普通段落、章节标题与强调卡片统一从 20px gutter 起排；图片与截图带仍按各自组件规则满宽或横滑。小于 402px 的设备不作为本轮优化目标。
 
+Be4D 的灰底强调卡（`.be4d-question-panel`、`.be4d-spark`）以及 Intent UI 的机制图和图后正文，统一使用 `--article-measure` 阅读列：`width:min(var(--article-measure),calc(100% - 2 * var(--gutter)))` 并以左右 `auto` 居中。正文上限为 650px；移动端 gutter 为 20px。图卡内部 padding 与外侧 gutter 分开计算，内部 padding 不能替代左右 gutter。新增同类模块应复用这条规则；改 CSS 时要覆盖 1023px 以下的宽度规则，避免移动断点把模块恢复成满宽。
+
 本次浏览器核对了首页、Case 01、Be4D 文章在 1024px 与 1023px 的导航切换，并确认两个文章目录均可打开。幻灯片在两个宽度都保留同一个网格按钮，舞台从 104px 顶距变为 88px，目录浮层可用宽度随屏幕收窄。视觉结论对应本地 4318 预览，不代表所有页面内容都已逐页验收。
 
 ## 6. 交互一致性约定
