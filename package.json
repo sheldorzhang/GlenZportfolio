@@ -1,0 +1,12 @@
+{
+  "name": "glenz-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node tools/dev-server.mjs",
+    "check": "node tools/check-site.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
