@@ -161,7 +161,7 @@ main.wrap{max-width:var(--w-page)}
 .glen-pupil{fill:currentColor}
 .nav-btn .glen{display:block;overflow:hidden}
 .glen-home{position:relative;width:fit-content}
-.glen-spell{position:absolute;left:0;top:0;margin:0;font:var(--fw-regular) var(--fs-small)/1 var(--font-serif);white-space:nowrap;opacity:0;pointer-events:none;transform:translate(-50%,-50%);transition:opacity var(--dur-base) var(--ease)}
+.glen-spell{position:absolute;left:0;top:0;margin:0;font:var(--fw-bold) var(--fs-small)/1 var(--font-serif);white-space:nowrap;opacity:0;pointer-events:none;transform:translate(-50%,-50%);transition:opacity var(--dur-base) var(--ease)}
 .glen-spell.on{opacity:1}
 .hero .avatar.glen{background:transparent;border-radius:0;overflow:visible;width:calc(var(--avatar-lg) * var(--glen-hero-scale));height:calc(var(--avatar-lg) * var(--glen-hero-scale));margin:0 0 calc(var(--space-2) - var(--avatar-lg) * var(--glen-hero-scale) * .22) calc(var(--avatar-lg) * var(--glen-hero-scale) * var(--glen-hero-inset))}
 .hero h1{font:var(--fw-display) var(--fs-h2)/var(--lh-h2) var(--font-serif);margin:0}
