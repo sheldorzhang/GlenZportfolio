@@ -1,6 +1,6 @@
 /* 回放按需加载：进入可视区域附近时插入产品 iframe */
 (function(){
-  var VERSION='magic-embedded-20261027-tmc-autoplay-v3';
+  var VERSION='magic-embedded-20261027-tmc-autoplay-v4';
   var LOCAL_PREVIEW_ORIGIN='http://127.0.0.1:4317';
   var activeFrame=null;
   var backdrop=null;
