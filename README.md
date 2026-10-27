@@ -1,6 +1,6 @@
 # GlenZ Portfolio
 
-静态作品集网站，线上地址：[https://sheldorzhang.github.io/GlenZportfolio/](https://sheldorzhang.github.io/GlenZportfolio/)
+静态作品集网站，线上地址：[https://sheldorzhang.github.io/portfolio/](https://sheldorzhang.github.io/portfolio/)
 
 ## 本地开发
 
