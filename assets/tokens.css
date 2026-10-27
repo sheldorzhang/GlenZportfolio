@@ -81,7 +81,7 @@
  --nav-ring-w:2px; --nav-ring-gap:3px; --nav-ring-color:var(--color-fg); --nav-ring-track:var(--color-line);
  --nav-panel-w:240px; --nav-panel-radius:var(--p-radius-22); /* = size-touch/2，面板从圆按钮“长”出来 */
  --dock-h:44px; --dock-offset:20px;
- --hero-pt:calc(var(--size-touch) + var(--space-2)); --work-mt:var(--space-7); /* 48 */
+ --hero-pt:calc(var(--size-touch) + var(--space-2)); --hero-tag-shimmer-duration:3000ms; --hero-tag-shimmer-start:750ms; --work-mt:var(--space-7); /* 48 */
  --card-w:640px; --card-ratio:16/9; --card-radius:var(--p-radius-16); --card-pad:var(--space-4); --card-bg:var(--color-surface-sunken); --card-border:var(--color-line); --card-off-scale:.9;
  --card-pill-h:36px; --card-pill-dur:var(--p-dur-220); --card-pill-ease:var(--ease-emph); --card-pill-shift:6px; --card-pill-shadow:var(--shadow-float);
  /* 首页作品灰卡：左文案 + 右叠图，悬停扇开（参照 cv.rocorgi.wang showreel-entry 的交互，按钮用本站墨色） */

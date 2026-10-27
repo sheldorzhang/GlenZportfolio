@@ -1214,3 +1214,17 @@ body.detail .case .fig.fig-full figcaption{
   body.is-home-gradient-visible #nav .nav-btn{--nav-ring-color:#fff;--nav-ring-track:rgba(255,255,255,.44)}
   body.is-home-gradient-visible #nav .nav-btn:focus-visible{outline-color:#fff}
 }
+
+/* 首页专长：与 logo 并排显示，文字轻扫光与 logo 弧线同步轻摆。 */
+.hero-mark-row{display:flex;align-items:center;justify-content:flex-start;gap:var(--space-2);max-width:var(--w-read);margin:0;transform:translate(calc(-1 * var(--space-3)),var(--space-4))}
+.hero-bio{font-size:var(--p-fs-20)}
+.hero-mark-row .glen-home{flex:0 0 auto}
+.hero-mark-row .avatar.glen{margin:0}
+.hero-mark-row .hero-tags-wrap{position:relative;flex:1 1 auto;min-width:0;transform:translateY(6px)}
+.hero-mark-row .hero-tags{flex:1 1 auto;flex-wrap:wrap;gap:var(--space-4);min-width:0;margin:0}
+.hero-mark-row .hero-tags-shimmer{position:absolute;inset:0;z-index:1;pointer-events:none;flex:none;width:100%;mask-image:linear-gradient(105deg,transparent 34%,rgba(0,0,0,.4) 42%,#000 50%,rgba(0,0,0,.4) 58%,transparent 66%);-webkit-mask-image:linear-gradient(105deg,transparent 34%,rgba(0,0,0,.4) 42%,#000 50%,rgba(0,0,0,.4) 58%,transparent 66%);mask-size:240% 100%;-webkit-mask-size:240% 100%;mask-position:100% 0;-webkit-mask-position:100% 0;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat;animation:hero-tag-sweep var(--hero-tag-shimmer-duration) linear infinite;animation-delay:var(--hero-tag-shimmer-start)}
+.hero-mark-row .hero-tags-shimmer li span{color:rgba(255,255,255,.8);-webkit-text-fill-color:currentColor}
+.hero-mark-row .hero-tags li{display:block;min-height:0;padding:0;border:0;border-radius:0;background:none;color:var(--color-fg-3);font-size:var(--fs-small);font-weight:var(--fw-medium);white-space:nowrap}
+@keyframes hero-tag-sweep{0%{mask-position:100% 0;-webkit-mask-position:100% 0}60%,100%{mask-position:0 0;-webkit-mask-position:0 0}}
+@media(max-width:767px){.hero-mark-row{align-items:flex-start;gap:var(--space-2)}.hero-mark-row .hero-tags{column-gap:var(--space-3);row-gap:var(--space-2)}}
+@media(prefers-reduced-motion:reduce){.hero-mark-row .hero-tags-shimmer{display:none}}
