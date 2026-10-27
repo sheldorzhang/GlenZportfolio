@@ -1226,5 +1226,6 @@ body.detail .case .fig.fig-full figcaption{
 .hero-mark-row .hero-tags-shimmer li span{color:rgba(255,255,255,.8);-webkit-text-fill-color:currentColor}
 .hero-mark-row .hero-tags li{display:block;min-height:0;padding:0;border:0;border-radius:0;background:none;color:var(--color-fg-3);font-size:var(--fs-small);font-weight:var(--fw-medium);white-space:nowrap}
 @keyframes hero-tag-sweep{0%{mask-position:100% 0;-webkit-mask-position:100% 0}60%,100%{mask-position:0 0;-webkit-mask-position:0 0}}
-@media(max-width:767px){.hero-mark-row{align-items:flex-start;gap:var(--space-2)}.hero-mark-row .hero-tags{column-gap:var(--space-3);row-gap:var(--space-2)}}
+@media(max-width:767px){.hero-mark-row{align-items:center;gap:var(--space-2);margin-bottom:var(--space-2)}.hero-mark-row .hero-tags-wrap{transform:none}.hero-mark-row .hero-tags{column-gap:var(--space-3);row-gap:2px}}
+@media(max-width:560px){.hero-mark-row .hero-tags-wrap{max-width:320px}}
 @media(prefers-reduced-motion:reduce){.hero-mark-row .hero-tags-shimmer{display:none}}
