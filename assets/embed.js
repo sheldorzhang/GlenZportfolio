@@ -1,6 +1,6 @@
-/* 回放懒加载：首屏只放封面，点击后才插入当前产品回放 iframe */
+/* 回放按需加载：进入可视区域附近时插入产品 iframe */
 (function(){
-  var VERSION='magic-embedded-20261025-case3-expand-fix-v1';
+  var VERSION='magic-embedded-20261027-tmc-autoplay-v3';
   var LOCAL_PREVIEW_ORIGIN='http://127.0.0.1:4317';
   var activeFrame=null;
   var backdrop=null;
@@ -17,6 +17,7 @@
   function closeExpanded(){
     if(!activeFrame)return;
     var frame=activeFrame;activeFrame=null;
+    var owner=frame.__embedOwner||frame.closest('[data-embed-src]');
     frame.classList.remove('is-web-expanded');
     if(expandedPlaceholder&&expandedPlaceholder.parentNode){
       expandedPlaceholder.parentNode.insertBefore(frame,expandedPlaceholder);
@@ -29,7 +30,16 @@
     document.body.classList.remove('embed-modal-open');
     document.body.style.overflow=previousOverflow;
     notifyExpanded(frame,false);
-    frame.focus({preventScroll:true});
+    if(owner&&owner.hasAttribute('data-embed-modal-only')){
+      clearTimeout(owner._embedTimeout);
+      frame.remove();
+      owner.classList.remove('is-loading','is-loaded','is-error');
+      delete owner.dataset.embedShell;
+      var cover=owner.querySelector('.embed-cover');
+      if(cover)cover.focus({preventScroll:true});
+    }else{
+      frame.focus({preventScroll:true});
+    }
   }
   function openExpanded(frame){
     if(activeFrame===frame){closeExpanded();return;}
@@ -57,6 +67,18 @@
     frame.classList.add('is-web-expanded');
     notifyExpanded(frame,true);
     collapseButton.focus({preventScroll:true});
+  }
+
+  function markReplayReady(frame,owner){
+    if(!owner)return;
+    clearTimeout(owner._embedTimeout);
+    owner.classList.remove('is-loading','is-error');
+    owner.classList.add('is-loaded');
+    if(owner.hasAttribute('data-embed-expand-on-ready')){
+      requestAnimationFrame(function(){
+        if(frame.isConnected&&activeFrame!==frame&&owner.classList.contains('is-loaded'))openExpanded(frame);
+      });
+    }
   }
 
   function mountReplay(box,cover,focusFrame){
@@ -108,6 +130,9 @@
     box._embedTimeout=setTimeout(failed,25000);
     cover.insertAdjacentElement('afterend',f);
     if(focusFrame){f.inert=false;f.focus({preventScroll:true});}
+    if(box.hasAttribute('data-embed-expand-on-start')){
+      requestAnimationFrame(function(){if(f.isConnected&&activeFrame!==f)openExpanded(f);});
+    }
   }
 
   document.querySelectorAll('[data-embed-src]').forEach(function(box){
@@ -130,17 +155,18 @@
     cover.addEventListener('click',function(){mountReplay(box,cover,true);});
   });
   addEventListener('message',function(event){
-    if((location.protocol!=='file:'&&event.origin!==location.origin)||!event.data)return;
+    if(!event.data)return;
     var frames=document.querySelectorAll('.embed-frame');
     for(var i=0;i<frames.length;i++){
       if(event.source!==frames[i].contentWindow)continue;
-      if(event.data.type==='magic-replay:ready'){
-        var owner=frames[i].__embedOwner||frames[i].closest('[data-embed-src]');
-        if(owner){
-          clearTimeout(owner._embedTimeout);
-          owner.classList.remove('is-loading','is-error');
-          owner.classList.add('is-loaded');
-        }
+      var owner=frames[i].__embedOwner||frames[i].closest('[data-embed-src]');
+      if(event.data.type==='be4d-replay:ready'&&owner&&owner.hasAttribute('data-embed-ready-message')){
+        markReplayReady(frames[i],owner);
+        frames[i].contentWindow.postMessage({type:'be4d-replay:visible'},event.origin==='null'?'*':event.origin);
+      }else if(location.protocol!=='file:'&&event.origin!==location.origin){
+        break;
+      }else if(event.data.type==='magic-replay:ready'){
+        markReplayReady(frames[i],owner);
       }else if(event.data.type==='magic-replay:toggle-expand'){
         openExpanded(frames[i]);
       }
