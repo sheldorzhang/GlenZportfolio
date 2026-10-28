@@ -60,6 +60,29 @@
     heading.className = "slides-heading";
     heading.textContent = deckTitle(root);
     root.appendChild(heading);
+    var endHref = root.getAttribute("data-end-case-href");
+    var endLink = null;
+    if(endHref){
+      endLink = document.createElement("a");
+      endLink.className = "slides-next-case";
+      endLink.href = endHref;
+      endLink.innerHTML = '<span></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+      var endLabel = root.getAttribute("data-end-case-label") || "下一个案例";
+      endLink.querySelector("span").textContent = endLabel;
+      endLink.setAttribute("aria-label", endLabel);
+      endLink.hidden = true;
+      root.appendChild(endLink);
+    }
+    var topPage = null;
+    if(root.hasAttribute("data-present-slide-title")){
+      var topTitle = document.createElement("div");
+      topTitle.className = "deck-top-title";
+      topTitle.setAttribute("aria-label", "演示文稿与当前页面");
+      topTitle.innerHTML = '<span class="deck-top-project"></span><span class="deck-top-divider" aria-hidden="true">/</span><span class="deck-top-page"></span>';
+      topTitle.querySelector(".deck-top-project").textContent = deckTitle(root);
+      topPage = topTitle.querySelector(".deck-top-page");
+      root.appendChild(topTitle);
+    }
     var back = root.querySelector(".slides-close");
     if(back){
       back.innerHTML = icon('<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>');
@@ -69,6 +92,26 @@
     }
     root.appendChild(chrome);
     chrome.querySelector(".present-title").textContent = deckTitle(root);
+    function syncSlideTitle(){
+      var active = root.querySelector("[data-slide].is-active");
+      var title = active && active.getAttribute("data-title");
+      if(!title) title = deckTitle(root);
+      if(root.hasAttribute("data-present-slide-title")){
+        heading.textContent = title;
+        heading.setAttribute("title", title);
+        if(topPage) topPage.textContent = title;
+        else chrome.querySelector(".present-title").textContent = title;
+      }
+      if(endLink){
+        var allSlides = root.querySelectorAll("[data-slide]");
+        var isLast = !!active && active === allSlides[allSlides.length - 1];
+        endLink.hidden = !isLast;
+        root.classList.toggle("has-end-case-link", isLast);
+        var nextButton = root.querySelector("[data-next], .slides-next");
+        if(nextButton) nextButton.hidden = isLast;
+      }
+    }
+    syncSlideTitle();
     root.querySelectorAll(".slides-grid button").forEach(function(button){
       var label = button.textContent.trim();
       // Fixed-position labels escape the scrollable number rail without clipping.
@@ -111,7 +154,7 @@
       var show = !fill || on || gridOpen();
       root.classList.toggle("is-chrome", fill && show);
       chrome.setAttribute("aria-hidden", fill && show ? "false" : "true");
-      root.querySelectorAll(".slides-gridbtn, .slides-nav, .slides-restart, .present-exit").forEach(function(button){
+      root.querySelectorAll(".slides-gridbtn, .slides-nav, .slides-restart, .slides-next-case, .present-exit").forEach(function(button){
         button.tabIndex = show ? 0 : -1;
       });
     }
@@ -177,6 +220,7 @@
     });
 
     new MutationObserver(function(){
+      syncSlideTitle();
       var grid = root.querySelector(".slides-grid");
       if(grid){
         root.classList.toggle("is-grid", grid.classList.contains("on"));

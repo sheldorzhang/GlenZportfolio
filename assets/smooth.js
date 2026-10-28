@@ -31,8 +31,9 @@ window.__smooth={stop:function(){if(raf)cancelAnimationFrame(raf);raf=0;cur=targ
    · 鼠标滚轮（大步长离散）：× --ix-rail-wheel-mult，lerp --ix-rail-lerp；停后惯性 power --ix-rail-power / timeConstant --ix-rail-time，单次手势最多 --ix-rail-max-cards 张。
    · 拖拽：跟手；松手速度 > --ix-rail-snap-v 才加惯性（同上限），否则只吸附最近卡；吸附只从「当前位置」找最近点，不回弹到起点。
    · 吸附点：每张卡左缘对齐 780 容器；最后一张 = 卡片居中于视口（尾部 padding 足够），焦点缩放按吸附点距离计算，所以末卡居中时 scale=1。 */
-[].forEach.call(document.querySelectorAll('.rail'),function(t){
+[].forEach.call(document.querySelectorAll('.rail, .photo-grid'),function(t){
  t.classList.add('rail-js');
+ var isPhoto=t.classList.contains('photo-grid'),off=isPhoto?1:OFF,snap=isPhoto?0:SNAP;
  var tgt=0,anim=0,idle=0,vel=0,lastT=0,mode=null,kind=null,down=false,moved=false,x0=0,s0=0,samples=[],g0=0,smallRun=0;
  var cards=[].slice.call(t.children),rest=[],cw=0,sp=[];
  var maxX=function(){return t.scrollWidth-t.clientWidth};
@@ -47,7 +48,7 @@ window.__smooth={stop:function(){if(raf)cancelAnimationFrame(raf);raf=0;cur=targ
  function settle(v,useInertia){/* v: px/s */ var x=t.scrollLeft,proj=x;
   if(useInertia&&Math.abs(v)>SNAPV)proj=x+v*POW;
   var i=idxNear(proj),i0=idxNear(g0);if(useInertia&&Math.abs(v)>SNAPV){/* 有速度：顺方向落到下一张，不回退 */ if(v>0){while(i<sp.length-1&&sp[i]<x+1)i++}else{while(i>0&&sp[i]>x-1)i--}}if(useInertia){i=Math.max(i0-MAXC,Math.min(i0+MAXC,i))}
-  if(!SNAP){if(proj!==x)ease(clampX(proj),TC*1.5);return}
+  if(!snap){if(proj!==x)ease(clampX(proj),TC*1.5);return}
   var to=sp[i];if(Math.abs(to-proj)>ZONE&&!(useInertia&&Math.abs(v)>SNAPV)){if(proj!==x)ease(clampX(proj),SNAPD);return} /* 软吸附：离吸附点太远且速度低时就停在原地 */
   ease(to,Math.abs(proj-x)>2?Math.max(SNAPD,TC*1.5):SNAPD)}
  t.addEventListener('wheel',function(e){var dx=norm(e,e.deltaX),dy=norm(e,e.deltaY);var horiz=Math.abs(dx)>Math.abs(dy)||e.shiftKey;if(!horiz)return;
@@ -64,8 +65,8 @@ window.__smooth={stop:function(){if(raf)cancelAnimationFrame(raf);raf=0;cur=targ
  t.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false}},true);
  t.addEventListener('keydown',function(){stop()});
  /* 焦点缩放：k = 当前 scrollLeft 到该卡吸附点的距离 / 相邻吸附点间距；scale = 1 - smoothstep(k)*(1-OFF)；translate 补偿保持紧挨 */
- function layout(){if(!cards.length||!sp.length)return;var x=t.scrollLeft,f=idxNear(x);
-  var sc=cards.map(function(c,i){var gapw=Math.max(1,i<sp.length-1?sp[i+1]-sp[i]:sp[i]-sp[i-1]||1);if(x<sp[i]&&i>0)gapw=Math.max(1,sp[i]-sp[i-1]);var k=Math.min(1,Math.abs(sp[i]-x)/gapw);return 1-k*k*(3-2*k)*(1-OFF)});
+ function layout(){if(isPhoto||!cards.length||!sp.length)return;var x=t.scrollLeft,f=idxNear(x);
+  var sc=cards.map(function(c,i){var gapw=Math.max(1,i<sp.length-1?sp[i+1]-sp[i]:sp[i]-sp[i-1]||1);if(x<sp[i]&&i>0)gapw=Math.max(1,sp[i]-sp[i-1]);var k=Math.min(1,Math.abs(sp[i]-x)/gapw);return 1-k*k*(3-2*k)*(1-off)});
   var sh=new Array(cards.length);sh[f]=0;var acc=-cw*(1-sc[f])/2,i,di;
   for(i=f+1;i<cards.length;i++){di=cw*(1-sc[i]);sh[i]=acc-di/2;acc-=di}
   acc=cw*(1-sc[f])/2;for(i=f-1;i>=0;i--){di=cw*(1-sc[i]);sh[i]=acc+di/2;acc+=di}

@@ -33,7 +33,7 @@ if(gn&&gn.dataset.mode==='home'){
  if(heroAv&&'IntersectionObserver' in window){setNav(false);new IntersectionObserver(function(es){setNav(!es[0].isIntersecting)},{threshold:0}).observe(heroAv)}
 }
 // lightbox (groups via data-group)
-var lb=document.createElement('div');lb.id='lb';lb.setAttribute('role','dialog');lb.setAttribute('aria-modal','true');lb.setAttribute('aria-label','图片放大查看');lb.innerHTML='<div class="lb-panel"><img alt=""><button class="icon-btn btn-close lb-close" aria-label="缩小图片（Esc）" title="缩小图片"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h5V3M21 8h-5V3M3 16h5v5M21 16h-5v5"/></svg></button></div><button class="icon-btn lb-arrow lb-prev" aria-label="上一张"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg></button><button class="icon-btn lb-arrow lb-next" aria-label="下一张"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button><div class="lb-count"></div>';document.body.appendChild(lb);
+var lb=document.createElement('div');lb.id='lb';lb.setAttribute('role','dialog');lb.setAttribute('aria-modal','true');lb.setAttribute('aria-label','图片放大查看');lb.innerHTML='<div class="lb-panel"><img alt=""></div><button class="icon-btn lb-arrow lb-prev" aria-label="上一张"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg></button><button class="icon-btn lb-arrow lb-next" aria-label="下一张"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button><div class="lb-count"></div>';document.body.appendChild(lb);
 var im=lb.querySelector('img'),cnt=lb.querySelector('.lb-count'),list=[],i=0;
 function frameEl(){return lb.querySelector('iframe.lb-frame')}
 function show(arr,k){
@@ -57,9 +57,9 @@ function show(arr,k){
  }
  lb.classList.remove('zoom');cnt.textContent=(i+1)+' / '+list.length;lb.classList.add('on');document.body.style.overflow='hidden'
 }
-function close(){lb.classList.remove('on');document.body.style.overflow='';var frame=frameEl();if(frame){frame.style.display='none';frame.removeAttribute('src')}}
+function close(){lb.classList.remove('on','photo-view');document.body.style.overflow='';var frame=frameEl();if(frame){frame.style.display='none';frame.removeAttribute('src')}}
 var zs=$('img[data-zoom], [data-zoom-src]'),srcs=zs.map(function(z){return z.getAttribute('data-zoom-src')||z.getAttribute('src')});
-function openZoom(z){var k=zs.indexOf(z);if(k>-1)show(srcs,k)}
+function openZoom(z){var k=zs.indexOf(z);if(k>-1){lb.classList.toggle('photo-view',!!(z.closest&&z.closest('.photo-grid')));show(srcs,k)}}
 /* Use one document-level handler so zoom remains available inside draggable galleries. */
 zs.forEach(function(z){
  z.setAttribute('tabindex','0');
@@ -68,7 +68,7 @@ zs.forEach(function(z){
 });
 document.addEventListener('click',function(e){
  var z=e.target.closest&&e.target.closest('img[data-zoom], [data-zoom-src]');
- if(z&&zs.indexOf(z)>-1)openZoom(z);
+ if(z&&zs.indexOf(z)>-1&&!z.closest('.photo-grid.drag'))openZoom(z);
 },true);
 document.addEventListener('keydown',function(e){
  if(e.key!=='Enter'&&e.key!==' ')return;
@@ -147,3 +147,40 @@ document.addEventListener('pointerout',function(ev){if(ev.relatedTarget||(ev.poi
 
 /* v5.4 · 简历长列表默认只显示前 2 条要点 */
 (function(){[].forEach.call(document.querySelectorAll('.cv .cv-list'),function(l){var li=l.querySelectorAll('li');if(li.length<=2)return;for(var k=2;k<li.length;k++)li[k].classList.add('more');var b=document.createElement('button');b.type='button';b.className='cv-list-toggle';b.setAttribute('aria-expanded','false');var n=li.length-2;b.textContent='展开其余 '+n+' 条 +';b.addEventListener('click',function(){var o=l.classList.toggle('open');b.setAttribute('aria-expanded',o);b.textContent=o?'收起 −':'展开其余 '+n+' 条 +'});l.after(b)})})();
+
+/* 摄影区沿用作品网格轨道的桌面拖拽与惯性；触屏使用原生滚动。 */
+(function(){var track=document.querySelector('.photo-grid');if(!track)return;var prev=document.querySelector('.photo-prev'),next=document.querySelector('.photo-next');
+track.addEventListener('dragstart',function(e){e.preventDefault()});
+track.addEventListener('keydown',function(e){if(e.target!==track||!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();stepPhoto(e.key==='ArrowRight'?1:-1)});
+function updateArrows(){if(!prev||!next)return;var max=Math.max(0,track.scrollWidth-track.clientWidth);prev.disabled=track.scrollLeft<=1;next.disabled=track.scrollLeft>=max-1}
+var photoStepFrame=0;
+function stepPhoto(direction){var first=track.firstElementChild;if(!first)return;var gap=parseFloat(getComputedStyle(track).columnGap)||0,from=track.scrollLeft,max=Math.max(0,track.scrollWidth-track.clientWidth),to=Math.max(0,Math.min(max,from+direction*(first.offsetWidth+gap)));
+ if(matchMedia('(prefers-reduced-motion:reduce)').matches){track.scrollLeft=to;return}
+ if(photoStepFrame)cancelAnimationFrame(photoStepFrame);var start=performance.now(),duration=780;
+ function move(now){var p=Math.min(1,(now-start)/duration),ease=1-Math.pow(1-p,3);track.scrollLeft=from+(to-from)*ease;if(p<1)photoStepFrame=requestAnimationFrame(move);else photoStepFrame=0}
+ photoStepFrame=requestAnimationFrame(move)}
+if(prev&&next){prev.addEventListener('click',function(){stepPhoto(-1)});next.addEventListener('click',function(){stepPhoto(1)});track.addEventListener('scroll',updateArrows,{passive:true});addEventListener('resize',updateArrows);updateArrows()}
+/* 减少动态效果时仍保留可控的鼠标拖动，不叠加惯性。 */
+if(matchMedia('(prefers-reduced-motion:reduce)').matches){var down=false,moved=false,x0=0,s0=0;track.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse'||e.button)return;down=true;moved=false;x0=e.clientX;s0=track.scrollLeft});addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-x0;if(Math.abs(dx)>5){moved=true;track.classList.add('drag')}if(moved)track.scrollLeft=s0-dx});addEventListener('pointerup',function(){if(!down)return;down=false;if(moved)setTimeout(function(){track.classList.remove('drag')},0)});addEventListener('pointercancel',function(){down=false;track.classList.remove('drag')})}
+})();
+(function(){
+var status=document.querySelector('.contact-copy-status');
+if(!status)return;
+var resetTimers=new WeakMap();
+function legacyCopy(value){
+ var field=document.createElement('textarea');field.value=value;field.setAttribute('readonly','');field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();
+ var ok=false;try{ok=document.execCommand('copy')}catch(e){}field.remove();return ok;
+}
+document.addEventListener('click',async function(event){
+ var button=event.target.closest('[data-copy-value]');if(!button)return;
+ var ok=false;
+ try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(button.dataset.copyValue);ok=true}}catch(e){}
+ if(!ok)ok=legacyCopy(button.dataset.copyValue);
+ var kind=button.dataset.copyLabel||'联系方式';
+ button.dataset.copyHint=ok?'已复制':'复制失败';
+ button.setAttribute('aria-label',ok?kind+'已复制':'复制'+kind+'失败');
+ status.textContent=ok?kind+'已复制到剪贴板':'复制失败，请手动选择并复制';
+ clearTimeout(resetTimers.get(button));
+ resetTimers.set(button,setTimeout(function(){button.dataset.copyHint='点击复制';button.setAttribute('aria-label','复制'+kind)},1600));
+});
+})();

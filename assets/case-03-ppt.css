@@ -10,6 +10,20 @@
   white-space: nowrap;
   border: 0;
 }
+
+/* Match Case 01's centered project / page title while preserving Songti. */
+.deck-browser .slides[data-present-slide-title] .slides-heading { display: none; }
+.deck-browser .slides[data-present-slide-title] .deck-top-project,
+.deck-browser .slides[data-present-slide-title] .deck-top-page,
+.deck-browser .slides[data-present-slide-title] .present-title {
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+}
+.deck-browser .slides[data-present-slide-title] .present-title { font-weight: var(--fw-display); }
+.deck-browser .slides[data-present-slide-title] .slides-nav:disabled,
+.deck-browser .slides[data-present-slide-title] .slides-nav:disabled:hover,
+.deck-browser .slides[data-present-slide-title] .slides-nav:disabled:focus-visible {
+  transform: none;
+}
 body.case02-ppt .case-main { padding-top: 76px; }
 body.case02-ppt .case-main > .ppt-page,
 body.case02-ppt .case-main > .ppt-page:first-of-type {
