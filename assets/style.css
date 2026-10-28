@@ -305,7 +305,7 @@ body:has(.dock){padding-bottom:calc(var(--dock-h) + var(--space-8))}
 
 /* ===== v5.7 · 首页精简 + 完整简历阅读层 ===== */
 .hero-more{margin-top:var(--space-5);font:var(--fw-regular) var(--fs-small)/var(--lh-small) var(--font-sans)}
-.cv-xp{list-style:none;margin:0;padding:0;display:grid;gap:var(--space-3);font:var(--fw-light) var(--fs-body)/var(--lh-body) var(--font-sans);color:var(--color-fg-2)}
+.cv-xp{list-style:none;margin:0;padding:0;display:grid;gap:var(--space-3);font:var(--fw-light) var(--fs-h3)/var(--lh-body) var(--font-sans);color:var(--color-fg-2)}
 .cv-xp b{font-weight:var(--fw-regular);color:var(--color-fg);margin-right:var(--space-2)}.cv-xp span{float:right;font:var(--fs-mono)/var(--lh-body) var(--font-mono);color:var(--color-fg-3)}
 .cv-more{display:inline-block;margin-top:var(--space-5);font:var(--fw-regular) var(--fs-small)/var(--lh-small) var(--font-sans)}
 html.sheet-lock,html.sheet-lock body{overflow:hidden}
@@ -397,7 +397,7 @@ html,body{overflow-x:clip}
 .card img{border-radius:var(--radius-sm);box-shadow:var(--shadow-float)}
 /* 简历双栏：英文标签降级 */
 .cv>h2 .en,.work-h .en{font:var(--fw-regular) var(--fs-label)/var(--lh-label) var(--font-sans);letter-spacing:var(--ls-label);color:var(--color-fg-3);margin-top:var(--space-1)}
-.cv-xp span{font:var(--fw-regular) var(--fs-mono)/var(--lh-body) var(--font-mono);color:var(--color-fg-3)}
+.cv-xp span{font:var(--fw-regular) var(--fs-label)/var(--lh-body) var(--font-mono);color:var(--color-fg-3)}
 /* 结语：弱于开头 */
 .closing{font:var(--fw-display) var(--fs-h1)/var(--lh-h1) var(--font-serif);padding-top:var(--space-9);padding-bottom:var(--space-8)}
 /* 详情 */
