@@ -1,6 +1,6 @@
-# GlenZ Portfolio
+# GlenZhang Portfolio
 
-静态作品集网站，线上地址：[https://sheldorzhang.github.io/portfolio/](https://sheldorzhang.github.io/portfolio/)
+Hi, I'm a UX Designer. Learn more about me：[https://sheldorzhang.github.io/portfolio/](https://sheldorzhang.github.io/portfolio/)
 
 ## 本地开发
 
