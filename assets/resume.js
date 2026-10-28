@@ -8,6 +8,7 @@ var resumeMarkup=`
     <p>UX / 产品体验设计师</p>
     <ul class="hero-tags"><li>AI-native 体验</li><li>AI Agent</li><li>复杂业务设计</li><li>设计系统</li><li>设计到实现</li></ul>
     <p class="sheet-contact"><a href="tel:18602806752">18602806752</a> ｜ 微信 coda0415 ｜ <a href="mailto:sheldorzhang@gmail.com">sheldorzhang@gmail.com</a></p>
+    <img class="sheet-photo" src="assets/resume-photo.jpg?v=20261028-v1" alt="张耕职业头像" width="600" height="600" loading="lazy" decoding="async">
   </header>
   <section class="sheet-sec sheet-core"><h3>核心能力</h3><ul>
     <li><b>业务驱动与产品判断</b>：具备 10 年 B2B/B2C 产品体验设计经验，覆盖企业 SaaS、IM 与电商营销；通过访谈和场景分析识别问题，平衡用户、业务与技术约束，推动方案落地验证。</li>
@@ -46,6 +47,7 @@ var resumeMarkupEn=`
     <p>UX / Product Experience Designer</p>
     <ul class="hero-tags"><li>AI-native Experience</li><li>AI Agents</li><li>Complex Business Design</li><li>Design Systems</li><li>Design to Delivery</li></ul>
     <p class="sheet-contact"><a href="tel:18602806752">18602806752</a> ｜ WeChat coda0415 ｜ <a href="mailto:sheldorzhang@gmail.com">sheldorzhang@gmail.com</a></p>
+    <img class="sheet-photo" src="assets/resume-photo.jpg?v=20261028-v1" alt="Portrait of Geng Zhang" width="600" height="600" loading="lazy" decoding="async">
   </header>
   <section class="sheet-sec sheet-core"><h3>Core Capabilities</h3><ul>
     <li><b>Business-driven Product Judgment</b>: 10 years of B2B and B2C product experience design across enterprise SaaS, IM, and e-commerce marketing. Identify problems through interviews and scenario analysis, balance user, business, and technical constraints, and validate solutions in practice.</li>

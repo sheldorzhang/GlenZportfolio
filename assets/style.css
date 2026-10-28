@@ -541,12 +541,18 @@ body,.hero-bio,.cv-entry .d,.cv-xp,.sheet-paper,.dock a,.dock-work>a,.work-txt p
 .sheet{--article-measure:650px}
 .sheet-scroll{padding-top:var(--article-pad-top)}
 .sheet-paper{width:100%;max-width:var(--article-measure);font:var(--fw-regular) var(--fs-body)/var(--lh-body) var(--font-sans)}
-.sheet-head{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-3);padding-bottom:0;border-bottom:0}
-.sheet-head h2{font:var(--fw-bold) 36px/1.25 var(--font-sans);letter-spacing:-.01em}
-.sheet-head>p:first-of-type{margin:0;font:var(--fw-regular) var(--fs-body)/var(--lh-body) var(--font-sans);color:var(--color-fg)}
-.sheet-head .hero-tags{margin:0}
-.sheet-head .hero-tags li{font-size:var(--fs-small);color:var(--color-fg)}
-.sheet-head .sheet-contact{margin:0;font:var(--fw-regular) var(--fs-body)/var(--lh-body) var(--font-sans);color:var(--color-fg);overflow-wrap:anywhere}
+.sheet-head{position:relative;display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"name" "role" "tags" "contact";align-items:start;row-gap:var(--space-3);padding-bottom:0;border-bottom:0}
+.sheet-head h2{grid-area:name;max-width:calc(100% - 152px)}
+.sheet-head>p:first-of-type{grid-area:role;max-width:calc(100% - 152px)}
+.sheet-head .hero-tags{grid-area:tags;max-width:calc(100% - 152px)}
+.sheet-head .sheet-contact{grid-area:contact;max-width:calc(100% - 152px)}
+.sheet-head .sheet-photo{position:absolute;top:0;right:0;display:block;width:132px;aspect-ratio:1;object-fit:cover;object-position:center 40%;border:0;border-radius:0}
+.sheet-head h2{font:var(--fw-bold) 32px/1.25 var(--font-sans);letter-spacing:-.01em}
+.sheet-head>p:first-of-type{margin:0;font:var(--fw-regular) 16px/1.5 var(--font-sans);color:var(--color-fg)}
+.sheet-head .hero-tags{margin:0;flex-wrap:nowrap;gap:6px}
+.sheet-head .hero-tags li{padding-inline:8px;font-size:13px;color:var(--color-fg);white-space:nowrap}
+.sheet-head .sheet-contact{margin:0;font:var(--fw-regular) 14px/1.5 var(--font-sans);color:var(--color-fg);overflow-wrap:anywhere}
+.sheet-paper[lang="en"] .sheet-head .hero-tags{flex-wrap:wrap}
 #resume .sheet-contact a{text-decoration:none}
 .sheet-sec,.sheet-paper .sheet-core{padding-top:var(--space-8)}
 .sheet-sec h3{margin:0 0 var(--space-5);padding:0;border:0;font:var(--fw-bold) 25.5px/1.333 var(--font-sans);letter-spacing:0;color:var(--color-fg)}
@@ -561,12 +567,17 @@ body,.hero-bio,.cv-entry .d,.cv-xp,.sheet-paper,.dock a,.dock-work>a,.work-txt p
 .sheet-sec li::marker{color:var(--color-fg-2)}
 @media(max-width:767px){
  .sheet-scroll{padding-top:var(--space-8);padding-left:var(--gutter);padding-right:var(--gutter)}
+ .sheet-head{row-gap:var(--space-2)}
+ .sheet-head h2,.sheet-head>p:first-of-type{max-width:calc(100% - 112px)}
+ .sheet-head .hero-tags,.sheet-head .sheet-contact{max-width:100%;flex-wrap:wrap}
+ .sheet-head .sheet-photo{width:96px}
  .sheet-head h2{font-size:32px}
  .sheet-sec,.sheet-paper .sheet-core{padding-top:var(--space-7)}
  .sheet-sec h3{font-size:24px}
  .sheet-row{align-items:flex-start;gap:var(--space-2)}
  .sheet-row h4{max-width:none}
 }
+@media(max-width:380px){.sheet-head h2,.sheet-head>p:first-of-type{max-width:calc(100% - 96px)}.sheet-head .sheet-photo{width:80px}}
 /* 混排行：Young Serif 拉丁字形偏粗，混排时拉丁改用更细的系统衬线，中文仍走宋体 */
 .closing{font-family:var(--font-serif-mixed)}
 /* 作品标题（营销云 MAGIC Agent / 腾讯云 Mall / 企点商通 IM）同 .closing：拉丁走细衬线，中文仍走宋体 */
