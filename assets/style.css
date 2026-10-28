@@ -515,8 +515,8 @@ body:has(.dock){padding-bottom:0}
 .work-demo{display:inline-flex;align-items:center;margin-left:var(--space-3);font-size:var(--fs-label);color:var(--color-fg-2);vertical-align:middle}.work-demo:hover{color:var(--color-fg)}
 /* ---------- v6.links (2026-10-13)：可点击 = 常驻 1px 下划线（参照 cv.rocorgi.wang .cv-container a）；hover 仅灰 → 黑，无 accent ---------- */
 :root{--link-ul-w:1px;--link-ul-offset:2px;--link-ul-color:var(--color-fg-3);--link-fg:var(--color-fg-2);--link-fg-hover:var(--color-fg);--link-dur:.2s;--link-ease:ease}
-.u,.cv-entry .t:not([data-static]),.contact a,.next-case a,.work-txt h3 a,.work-btn,.work-demo,.sheet-contact a,.cv-list-toggle,.card-pill{color:var(--link-fg);text-decoration-line:underline;text-decoration-thickness:var(--link-ul-w);text-underline-offset:var(--link-ul-offset);text-decoration-color:var(--link-ul-color);transition:color var(--link-dur) var(--link-ease),text-decoration-color var(--link-dur) var(--link-ease)}
-.u:hover,.u:focus-visible,.cv-entry .t:not([data-static]):hover,.contact a:hover,.next-case a:hover,.work-txt h3 a:hover,.work-btn:hover,.work-demo:hover,.sheet-contact a:hover,.cv-list-toggle:hover,.card-pill:hover,.card-pill:focus-visible{color:var(--link-fg-hover);text-decoration-color:currentColor}
+.u,.cv-entry .t:not([data-static]),.contact a,.next-case a,.work-txt h3 a,.work-btn,.work-demo,.cv-list-toggle,.card-pill{color:var(--link-fg);text-decoration-line:underline;text-decoration-thickness:var(--link-ul-w);text-underline-offset:var(--link-ul-offset);text-decoration-color:var(--link-ul-color);transition:color var(--link-dur) var(--link-ease),text-decoration-color var(--link-dur) var(--link-ease)}
+.u:hover,.u:focus-visible,.cv-entry .t:not([data-static]):hover,.contact a:hover,.next-case a:hover,.work-txt h3 a:hover,.work-btn:hover,.work-demo:hover,.cv-list-toggle:hover,.card-pill:hover,.card-pill:focus-visible{color:var(--link-fg-hover);text-decoration-color:currentColor}
 .cv-entry .t[data-static]{text-decoration:none;cursor:default}
 .work-txt h3 a{color:var(--color-fg)}
 .work-btn,.work-btn:hover{min-height:0;padding:0;border:0;border-radius:0;background:none;font-size:var(--fs-small)}
@@ -558,7 +558,11 @@ body,.hero-bio,.cv-entry .d,.cv-xp,.sheet-paper,.dock a,.dock-work>a,.work-txt p
 .sheet-head .hero-tags li{padding-inline:8px;font-size:13px;color:var(--color-fg);white-space:nowrap}
 .sheet-head .sheet-contact{margin:0;font:var(--fw-regular) 14px/1.5 var(--font-sans);color:var(--color-fg);overflow-wrap:anywhere}
 .sheet-paper[lang="en"] .sheet-head .hero-tags{flex-wrap:wrap}
-#resume .sheet-contact a{text-decoration:none}
+.sheet-contact .sheet-copy{position:relative;border:0;padding:0;background:transparent;color:inherit;font:inherit;line-height:inherit;cursor:pointer;transition:color var(--dur-fast)}
+.sheet-contact .sheet-copy:hover,.sheet-contact .sheet-copy:focus-visible{color:var(--color-fg-2)}
+.sheet-contact .sheet-copy:focus-visible{outline:var(--ring-focus-w) solid var(--color-fg);outline-offset:var(--ring-focus-offset)}
+.sheet-contact .sheet-copy::after{content:attr(data-copy-hint);position:absolute;z-index:5;top:calc(100% + 7px);left:50%;transform:translateX(-50%);padding:4px 7px;border-radius:4px;background:var(--color-fg);color:var(--color-bg);font:var(--fw-regular) 11px/1.2 var(--font-sans);white-space:nowrap;opacity:0;visibility:hidden;pointer-events:none;transition:opacity var(--dur-fast),visibility var(--dur-fast)}
+.sheet-contact .sheet-copy:hover::after,.sheet-contact .sheet-copy:focus-visible::after{opacity:1;visibility:visible}
 .sheet-sec,.sheet-paper .sheet-core{padding-top:var(--space-8)}
 .sheet-sec h3{margin:0 0 var(--space-5);padding:0;border:0;font:var(--fw-bold) 25.5px/1.333 var(--font-sans);letter-spacing:0;color:var(--color-fg)}
 .sheet-sec p{margin:var(--space-3) 0 var(--space-5)}

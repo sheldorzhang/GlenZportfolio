@@ -1,13 +1,13 @@
 /* 完整简历阅读层：正文与 2026-10-27 文字简历 PDF 同步。 */
 (function(){
-var PDF='assets/张耕-产品体验设计师-文字简历.pdf?v=20261028-portfolio-url';
+var PDF='assets/张耕-产品体验设计师-文字简历.pdf?v=20261028-pdf-baseline-v3';
 var d=document.createElement('div');d.id='resume';d.className='sheet';d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');d.setAttribute('aria-labelledby','rs-title');d.hidden=true;
 var resumeMarkup=`
   <header class="sheet-head">
     <h2 id="rs-title">张耕</h2>
     <p>UX / 产品体验设计师</p>
     <ul class="hero-tags"><li>AI-native 体验</li><li>AI Agent</li><li>复杂业务设计</li><li>设计系统</li><li>设计到实现</li></ul>
-    <p class="sheet-contact"><a href="tel:18602806752">18602806752</a> ｜ 微信 coda0415 ｜ <a href="mailto:sheldorzhang@gmail.com">sheldorzhang@gmail.com</a></p>
+    <p class="sheet-contact"><button class="sheet-copy" type="button" data-resume-copy="18602806752" data-copy-label="电话" data-copy-hint="点击复制" aria-label="复制电话">18602806752</button> ｜ 微信 <button class="sheet-copy" type="button" data-resume-copy="coda0415" data-copy-label="微信号" data-copy-hint="点击复制" aria-label="复制微信号">coda0415</button> ｜ <button class="sheet-copy" type="button" data-resume-copy="sheldorzhang@gmail.com" data-copy-label="邮箱地址" data-copy-hint="点击复制" aria-label="复制邮箱地址">sheldorzhang@gmail.com</button><span class="vh sheet-copy-status" role="status" aria-live="polite"></span></p>
     <img class="sheet-photo" src="assets/resume-photo.jpg?v=20261028-v1" alt="张耕职业头像" width="600" height="600" loading="lazy" decoding="async">
   </header>
   <section class="sheet-sec sheet-core"><h3>核心能力</h3><ul>
@@ -46,7 +46,7 @@ var resumeMarkupEn=`
     <h2 id="rs-title">Geng Zhang</h2>
     <p>UX / Product Experience Designer</p>
     <ul class="hero-tags"><li>AI-native Experience</li><li>AI Agents</li><li>Complex Business Design</li><li>Design Systems</li><li>Design to Delivery</li></ul>
-    <p class="sheet-contact"><a href="tel:18602806752">18602806752</a> ｜ WeChat coda0415 ｜ <a href="mailto:sheldorzhang@gmail.com">sheldorzhang@gmail.com</a></p>
+    <p class="sheet-contact"><button class="sheet-copy" type="button" data-resume-copy="18602806752" data-copy-label="Phone" data-copy-hint="Click to copy" aria-label="Copy phone number">18602806752</button> ｜ WeChat <button class="sheet-copy" type="button" data-resume-copy="coda0415" data-copy-label="WeChat ID" data-copy-hint="Click to copy" aria-label="Copy WeChat ID">coda0415</button> ｜ <button class="sheet-copy" type="button" data-resume-copy="sheldorzhang@gmail.com" data-copy-label="Email" data-copy-hint="Click to copy" aria-label="Copy email address">sheldorzhang@gmail.com</button><span class="vh sheet-copy-status" role="status" aria-live="polite"></span></p>
     <img class="sheet-photo" src="assets/resume-photo.jpg?v=20261028-v1" alt="Portrait of Geng Zhang" width="600" height="600" loading="lazy" decoding="async">
   </header>
   <section class="sheet-sec sheet-core"><h3>Core Capabilities</h3><ul>
@@ -86,6 +86,19 @@ var last=null,sc=d.querySelector('.sheet-scroll'),paper=d.querySelector('.sheet-
 var isEnglish=false;
 function setLanguage(english){var scrollTop=sc.scrollTop;isEnglish=english;paper.innerHTML=english?resumeMarkupEn:resumeMarkup;paper.lang=english?'en':'zh-CN';langBtn.textContent=english?'中文':'EN';langBtn.setAttribute('aria-pressed',String(english));langBtn.setAttribute('aria-label',english?'Switch resume to Chinese':'Switch resume to English');closeLabel.textContent=english?'Close':'关闭';d.querySelector('.sheet-close').setAttribute('aria-label',english?'Close resume (Esc)':'关闭简历（Esc）');dlLabel.textContent=english?'Download Chinese PDF':'下载 PDF';dlLink.setAttribute('aria-label',english?'Download Chinese PDF':'下载中文 PDF');requestAnimationFrame(function(){sc.scrollTop=scrollTop})}
 langBtn.addEventListener('click',function(){setLanguage(!isEnglish)});
+var copyResetTimers=new WeakMap();
+function legacyCopy(value){var field=document.createElement('textarea');field.value=value;field.setAttribute('readonly','');field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}field.remove();return ok}
+paper.addEventListener('click',async function(event){
+ var button=event.target.closest('.sheet-copy');if(!button)return;
+ var english=isEnglish,value=button.dataset.resumeCopy,ok=false,originalLabel=button.dataset.copyOriginalLabel||(button.dataset.copyOriginalLabel=button.getAttribute('aria-label'));
+ try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(value);ok=true}}catch(e){}
+ if(!ok)ok=legacyCopy(value);
+ var kind=button.dataset.copyLabel;
+ button.dataset.copyHint=ok?(english?'Copied':'已复制'):(english?'Copy failed':'复制失败');
+ button.setAttribute('aria-label',ok?(english?kind+' copied':kind+'已复制'):(english?'Could not copy '+kind:'复制'+kind+'失败'));
+ var status=paper.querySelector('.sheet-copy-status');if(status)status.textContent=ok?(english?kind+' copied to clipboard':kind+'已复制到剪贴板'):(english?'Copy failed. Select the text to copy it.':'复制失败，请手动选择并复制');
+ clearTimeout(copyResetTimers.get(button));copyResetTimers.set(button,setTimeout(function(){button.dataset.copyHint=english?'Click to copy':'点击复制';button.setAttribute('aria-label',originalLabel)},2200));
+});
 function focusables(){return [].slice.call(d.querySelectorAll('a[href],button'))}
 function open(push){if(!d.hidden)return;setLanguage(false);last=document.activeElement;d.hidden=false;document.documentElement.classList.add('sheet-lock');sc.scrollTop=0;requestAnimationFrame(function(){d.classList.add('on')});d.querySelector('.sheet-close').focus({preventScroll:true});if(location.hash!=='#resume')history.replaceState(null,'',location.pathname+location.search+'#resume')}
 function close(){if(d.hidden)return;d.classList.remove('on');d.hidden=true;document.documentElement.classList.remove('sheet-lock');if(location.hash==='#resume')history.replaceState(null,'',location.pathname+location.search);if(last&&last.focus)last.focus({preventScroll:true})}
