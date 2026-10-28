@@ -1,6 +1,6 @@
 /* 完整简历阅读层：正文与 2026-10-27 文字简历 PDF 同步。 */
 (function(){
-var PDF='assets/张耕-产品体验设计师-文字简历.pdf?v=20261027';
+var PDF='assets/张耕-产品体验设计师-文字简历.pdf?v=20261028-portfolio-url';
 var d=document.createElement('div');d.id='resume';d.className='sheet';d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');d.setAttribute('aria-labelledby','rs-title');d.hidden=true;
 var resumeMarkup=`
   <header class="sheet-head">
