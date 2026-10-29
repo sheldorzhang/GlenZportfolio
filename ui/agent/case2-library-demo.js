@@ -19,9 +19,10 @@
     .case2-library-demo__segment span,.case2-library-demo__segment b{padding:6px 15px;border-radius:7px;white-space:nowrap}
     .case2-library-demo__segment span{color:#777;font-weight:400}
     .case2-library-demo__segment b{background:#fff;font-weight:600}
-    .case2-library-demo__back{border:0;background:transparent;color:#505050;font:inherit;font-size:13px;cursor:pointer;padding:8px;border-radius:6px}
-    .case2-library-demo__back:hover{background:#f4f4f4}
-    .case2-library-demo__back:focus-visible,.case2-library-demo__filter button:focus-visible,.case2-library-demo__search:focus-visible{outline:2px solid #5555ec;outline-offset:2px}
+    .case2-library-demo__assistant{border:0;background:transparent;color:#393939;font:inherit;font-size:13px;cursor:pointer;padding:4px 8px;border-radius:18px;display:inline-flex;align-items:center;gap:6px}
+    .case2-library-demo__assistant:hover{background:#f4f4f4}
+    .case2-library-demo__assistant:focus-visible,.case2-library-demo__filter button:focus-visible,.case2-library-demo__search:focus-visible{outline:2px solid #5555ec;outline-offset:2px}
+    .case2-library-demo__assistant img{width:28px;height:28px;object-fit:cover;border-radius:50%}
     .case2-library-demo__body{flex:1;min-height:0;overflow:auto;padding:20px 28px 32px}
     .case2-library-demo__filters{display:flex;align-items:center;gap:22px;margin-bottom:18px}
     .case2-library-demo__filter{display:flex;align-items:center;gap:7px;white-space:nowrap}
@@ -46,7 +47,7 @@
     .case2-library-demo__date{margin-top:auto;color:#929292;font-size:12px}
     .case2-library-demo__empty{padding:56px;text-align:center;color:#777;font-size:14px}
     @media(max-width:1100px){.case2-library-demo__header{height:auto;min-height:64px;padding:10px 16px;gap:10px;flex-wrap:wrap}.case2-library-demo__tabs{gap:10px;font-size:14px}.case2-library-demo__segment{position:relative;inset:auto;left:auto;transform:none;order:3;width:100%;justify-content:center}.case2-library-demo__body{padding:16px}.case2-library-demo__filters{flex-wrap:wrap;gap:10px}.case2-library-demo__filter{flex-wrap:wrap;white-space:normal}.case2-library-demo__search{width:100%;min-width:0;margin-left:0}.case2-library-demo__grid{grid-template-columns:1fr}}
-    @media(max-width:620px){.case2-library-demo__header{height:auto;min-height:64px;padding:10px 16px;gap:10px;flex-wrap:wrap}.case2-library-demo__tabs{gap:10px;font-size:14px}.case2-library-demo__segment{position:relative;inset:auto;left:auto;transform:none;order:3;width:100%;justify-content:center}.case2-library-demo__back{font-size:12px}.case2-library-demo__body{padding:14px}.case2-library-demo__filters{align-items:flex-start;gap:12px}.case2-library-demo__filter{flex-wrap:wrap;white-space:normal;gap:6px}.case2-library-demo__filter>span:not(:first-child){padding:6px 8px;font-size:12px}.case2-library-demo__search{width:100%;min-width:0}.case2-library-demo__grid{gap:12px}.case2-library-demo__card{min-height:0;padding:14px}}
+    @media(max-width:620px){.case2-library-demo__header{height:auto;min-height:64px;padding:10px 16px;gap:10px;flex-wrap:wrap}.case2-library-demo__tabs{gap:10px;font-size:14px}.case2-library-demo__segment{position:relative;inset:auto;left:auto;transform:none;order:3;width:100%;justify-content:center}.case2-library-demo__assistant{font-size:12px}.case2-library-demo__body{padding:14px}.case2-library-demo__filters{align-items:flex-start;gap:12px}.case2-library-demo__filter{flex-wrap:wrap;white-space:normal;gap:6px}.case2-library-demo__filter>span:not(:first-child){padding:6px 8px;font-size:12px}.case2-library-demo__search{width:100%;min-width:0}.case2-library-demo__grid{gap:12px}.case2-library-demo__card{min-height:0;padding:14px}}
   `;
   document.head.appendChild(style);
 
@@ -55,9 +56,25 @@
 
   function renderLibraryList() {
     if (!library) return;
-    const back = library.querySelector('.case2-library-demo__back');
-    back.textContent = '返回策略详情';
-    back.onclick = () => { library.remove(); library = null; document.body.classList.remove('case2-library-open'); document.documentElement.classList.remove('case2-library-open'); };
+    const assistantEntry = library.querySelector('.case2-library-demo__assistant');
+    const nativeAssistantEntry = document.querySelector('.assistant-entry');
+    if (nativeAssistantEntry) {
+      const assistantClone = nativeAssistantEntry.cloneNode(true);
+      assistantClone.classList.add('case2-library-demo__assistant');
+      assistantEntry.replaceWith(assistantClone);
+    } else {
+      assistantEntry.innerHTML = '<img src="./static/ip-copilot-light-CCnwqWL8.png" alt="" aria-hidden="true"><span>助手</span>';
+    }
+    const openAssistant = () => {
+      if (!library) return;
+      const assistantAlreadyOpen = Boolean(document.querySelector('[aria-label="收起 Magic AI"]'));
+      library.remove();
+      library = null;
+      document.body.classList.remove('case2-library-open');
+      document.documentElement.classList.remove('case2-library-open');
+      if (!assistantAlreadyOpen) document.querySelector('.assistant-entry')?.click();
+    };
+    library.querySelector('.case2-library-demo__assistant').addEventListener('click', openAssistant);
     library.querySelector('.case2-library-demo__body').innerHTML = `
       <div class="case2-library-demo__filters">
         <div class="case2-library-demo__filter"><span>状态：</span>${['全部','草稿','待澄清','编译中','失败','已发布'].map((label,index) => `<span class="${index===0?'is-current':''}" aria-disabled="true">${label}</span>`).join('')}</div>
@@ -100,7 +117,7 @@
       <header class="case2-library-demo__header">
         <div class="case2-library-demo__tabs"><strong>活动策略</strong><span aria-disabled="true">活动规则</span></div>
         <div class="case2-library-demo__segment"><span aria-disabled="true">智能策略</span><b>策略库</b></div>
-        <button class="case2-library-demo__back" type="button">返回策略详情</button>
+        <button class="case2-library-demo__assistant" type="button" title="助手" aria-label="助手"><span>助手</span></button>
       </header>
       <div class="case2-library-demo__body"></div>`;
     document.documentElement.appendChild(library);
