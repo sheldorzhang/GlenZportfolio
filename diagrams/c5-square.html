@@ -262,19 +262,19 @@ h3{margin:0;font-family:var(--fig-serif);font-weight:600}
   <section class="shots">
     <figure>
       <figcaption><span class="en">AI</span> 工作流</figcaption>
-      <div class="frame"><img class="fill" src="../assets/c1-wf-overview.png" alt="营销云体验设计 AI 工作流"></div>
+      <div class="frame"><img class="fill" data-src="../assets/c1-wf-overview.png" alt="营销云体验设计 AI 工作流"><noscript><img src="../assets/c1-wf-overview.png" alt=""></noscript></div>
     </figure>
     <figure>
       <figcaption><span class="en">AI</span> 友好规范</figcaption>
-      <div class="frame"><img src="../assets/c1-wf-component.png" alt="在 IDE 中整理面向 AI 的组件库"></div>
+      <div class="frame"><img data-src="../assets/c1-wf-component.png" alt="在 IDE 中整理面向 AI 的组件库"><noscript><img src="../assets/c1-wf-component.png" alt=""></noscript></div>
     </figure>
     <figure>
       <figcaption>页面范式</figcaption>
-      <div class="frame"><img src="../assets/c1-wf-paradigm.png" alt="在 IDE 中查看页面范式"></div>
+      <div class="frame"><img data-src="../assets/c1-wf-paradigm.png" alt="在 IDE 中查看页面范式"><noscript><img src="../assets/c1-wf-paradigm.png" alt=""></noscript></div>
     </figure>
     <figure>
       <figcaption>需求选型</figcaption>
-      <div class="frame"><img class="fill" src="../assets/c1-wf-requirement.png" alt="在 IDE 中完成需求选型"></div>
+      <div class="frame"><img class="fill" data-src="../assets/c1-wf-requirement.png" alt="在 IDE 中完成需求选型"><noscript><img src="../assets/c1-wf-requirement.png" alt=""></noscript></div>
     </figure>
   </section>
   <section class="roles">
@@ -328,6 +328,7 @@ if(location.hash==='#workflow'||location.hash==='#delivery'||location.hash==='#s
   document.body.style.cssText='margin:0;padding:0;gap:0;background:#fafafa;display:block;overflow:hidden';
 
 }
+document.querySelectorAll('img[data-src]').forEach(function(img){img.src=img.dataset.src;});
 </script>
 <script src="../assets/diagram-fit.js"></script>
 </body>

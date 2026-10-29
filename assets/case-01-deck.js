@@ -77,6 +77,14 @@
     });
   }
 
+  function warmSlide(position){
+    var slide=slides[position];
+    if(!slide) return;
+    slide.querySelectorAll('img[loading="lazy"],iframe[loading="lazy"][src]').forEach(function(media){
+      media.loading='eager';
+    });
+  }
+
   document.querySelectorAll("[data-live-demo]").forEach(function(frame){
     var container=frame.closest(".media-frame--live");
     frame.addEventListener("load",function(){container.classList.remove("is-loading");});
@@ -99,6 +107,8 @@
     nextBtn.disabled=index===slides.length-1;
     updateOverview();
     syncLiveDemos();
+    warmSlide(index);
+    warmSlide(index+1);
     document.title="企点营销云 MAGIC AI ｜演示版 - 作品案例";
     if(updateHash){
       history.replaceState(null,"","#p"+(index+1));

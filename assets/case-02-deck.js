@@ -23,9 +23,14 @@
     slides.forEach(function(slide,index){var name=slide.dataset.section||slide.dataset.title||"案例";var last=chapters[chapters.length-1];if(!last||last.name!==name)chapters.push({name:name,index:index})});
     overviewGrid.innerHTML='<div class="g">'+chapters.map(function(chapter,chapterIndex){return '<button type="button" data-index="'+chapter.index+'" data-section="'+chapter.name+'"><span>'+pad(chapterIndex+1)+'</span><b>'+chapter.name+'</b></button>'}).join("")+'</div>';
   }
+  function warmSlide(position){
+    var slide=slides[position];if(!slide)return;
+    var image=slide.querySelector("img[loading=lazy]");if(image)image.loading="eager";
+  }
   function select(index,writeHash){
     current=Math.max(0,Math.min(slides.length-1,index));
     slides.forEach(function(slide,slideIndex){var active=slideIndex===current;slide.classList.toggle("is-active",active);slide.setAttribute("aria-hidden",active?"false":"true")});
+    warmSlide(current);warmSlide(current+1);
     currentEl.textContent=pad(current+1);totalEl.textContent=pad(slides.length);sectionEl.textContent=slides[current].dataset.section||"案例";progressEl.style.width=((current+1)/slides.length*100)+"%";prev.disabled=current===0;next.disabled=current===slides.length-1;
     var section=slides[current].dataset.section||slides[current].dataset.title||"";
     document.querySelectorAll("[data-strip] [data-index]").forEach(function(button){button.classList.toggle("on",Number(button.dataset.index)===current)});
