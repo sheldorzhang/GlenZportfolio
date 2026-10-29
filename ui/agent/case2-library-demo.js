@@ -67,7 +67,9 @@
     }
     const openAssistant = () => {
       if (!library) return;
-      const assistantAlreadyOpen = Boolean(document.querySelector('[aria-label="收起 Magic AI"]'));
+      const assistantCloseButton = document.querySelector('[aria-label="收起 Magic AI"]');
+      const assistantCloseBounds = assistantCloseButton?.getBoundingClientRect();
+      const assistantAlreadyOpen = Boolean(assistantCloseButton && getComputedStyle(assistantCloseButton).visibility !== 'hidden' && assistantCloseBounds?.width && assistantCloseBounds?.height);
       library.remove();
       library = null;
       document.body.classList.remove('case2-library-open');
