@@ -17,7 +17,7 @@
     #status{
       position:absolute;inset:0;z-index:2;display:grid;place-content:center;gap:14px;
       padding:24px;text-align:center;background:linear-gradient(145deg,#f8f9fc,#eef1f7);
-      color:#747982;font:13px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+      color:#626872;font:13px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
       transition:opacity .28s ease,visibility .28s ease;
     }
     html[data-ready="true"] #status{opacity:0;visibility:hidden;pointer-events:none}
@@ -126,6 +126,7 @@
       frame.addEventListener('load', startDemoWhenReady);
       addEventListener('message', function (event) {
         if (event.source !== frame.contentWindow || !event.data) return;
+        if (event.data.type === 'magic-demo:restart') { load(); return; }
         if (event.data.type !== 'magic-demo:ready' && event.data.type !== 'magic-demo:state') return;
         markReady();
         document.documentElement.dataset.replayState = event.data.phase || 'ready';

@@ -36,6 +36,19 @@
     <script>window.__MICRO_APP_BASE_ROUTE__ = new URL('.', document.baseURI).pathname;</script>
     <script src="./static-mocks.js"></script>
     <script>
+      if (new URLSearchParams(location.search).get('demo') === 'case2') {
+        var case2Imports = {};
+        ['ChatLayout-CbsvB0uY.js', 'StrategyDetailPage-Cto8P5Qb.js', 'DemoRunBar-C2hs4Uau.js'].forEach(function (name) {
+          var moduleUrl = new URL('./static/' + name, document.baseURI).href;
+          case2Imports[moduleUrl] = moduleUrl + '?case2=20261029b';
+        });
+        System.addImportMap({ imports: case2Imports });
+        var case2LibraryScript = document.createElement('script');
+        case2LibraryScript.src = './case2-library-demo.js?v=20261029e';
+        document.head.appendChild(case2LibraryScript);
+      }
+    </script>
+    <script>
       (function () {
         var params = new URLSearchParams(location.search);
         var seedCase3 = params.get('seedCase3') === '1';
