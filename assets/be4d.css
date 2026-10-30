@@ -52,7 +52,7 @@ body.be4d .case .be4d-visual>img{padding:0;border-radius:var(--radius-md)}
 body.be4d .case .fig figcaption{line-height:var(--lh-small);font-size:var(--fs-small)}
 body.be4d .be4d-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-3);margin-top:var(--space-4);margin-bottom:var(--space-7)}
 body.be4d .be4d-card{min-width:0;padding:var(--space-4);border:1px solid var(--article-line);border-radius:var(--radius-md);background:var(--color-surface)}
-body.be4d .be4d-card>span{display:block;margin-bottom:var(--space-5);font:var(--fw-regular) var(--fs-mono)/var(--lh-label) var(--font-mono);letter-spacing:var(--ls-mono);color:var(--color-fg-2)}
+body.be4d .be4d-card>span{display:block;margin-bottom:var(--space-5);font:var(--fw-regular) var(--fs-label)/var(--lh-label) var(--font-sans);color:var(--color-fg-2)}
 body.be4d .be4d-card h3{margin:0;font:var(--fw-medium) var(--fs-h3)/var(--lh-h3) var(--font-serif)}
 body.be4d .be4d-card p{margin:var(--space-3) 0 0;color:var(--color-fg-2);font-size:var(--fs-small);line-height:var(--lh-small)}
 body.be4d .be4d-spark{margin-top:var(--space-8);padding:var(--space-5) 0;border-top:1px solid var(--color-line);border-bottom:1px solid var(--color-line)}
@@ -68,7 +68,7 @@ body.be4d .be4d-diagram-tools{display:flex;justify-content:flex-end;margin-top:v
 body.be4d .be4d-zoom{border:0;background:none;padding:var(--space-1) 0;cursor:pointer;font:var(--fw-regular) var(--fs-small)/var(--lh-small) var(--font-sans)}
 body.be4d .be4d-placeholder{display:grid;align-content:center;gap:var(--space-3);min-height:calc(var(--space-9) * 3);padding:var(--space-7);background:var(--color-surface-sunken);border:1px dashed var(--color-fg-3);color:var(--color-fg-2)}
 body.be4d .be4d-placeholder p{margin:0;font-size:var(--fs-body);line-height:var(--lh-body)}
-body.be4d .be4d-placeholder .placeholder-label{font:var(--fw-regular) var(--fs-mono)/var(--lh-label) var(--font-mono);letter-spacing:var(--ls-mono)}
+body.be4d .be4d-placeholder .placeholder-label{font:var(--fw-regular) var(--fs-label)/var(--lh-label) var(--font-sans)}
 body.be4d .be4d-placeholder h4{margin:0;color:var(--color-fg);font:var(--fw-medium) var(--fs-h3)/var(--lh-h3) var(--font-serif)}
 body.be4d .be4d-mobile-bar{display:none}
 /* 左侧目录节奏与 Case 01 文章模式一致 */
@@ -150,11 +150,12 @@ body.be4d .be4d-spark small{display:block;margin-top:var(--space-4);padding-top:
 
 /* First chapter: one question panel, a vertical mechanism and a brief product origin. */
 body.detail.be4d #questions .be4d-observation-head{margin-bottom:0}
-body.detail.be4d #questions .be4d-observation-head h2{margin:0 0 8px;font:var(--fw-regular) var(--fs-chapter)/1.3 var(--font-mono);letter-spacing:.08em;color:var(--color-muted,#8a8a90)}
+body.detail.be4d #questions .be4d-observation-head h2{margin:0 0 8px;font:var(--fw-regular) var(--fs-chapter)/1.3 var(--font-sans);color:var(--color-muted,#8a8a90)}
 body.detail.be4d #questions .be4d-observation-head h3{margin:0;font:var(--fw-bold) clamp(22px,2.3vw,28px)/1.4 var(--font-sans)}
 body.detail.be4d #questions .be4d-observation-head .txt{margin-top:var(--space-4)}
 body.detail.be4d #questions .be4d-observation-head .txt p{margin:0 0 var(--space-4)}
-body.detail.be4d .case-main > #questions > .be4d-question-panel{width:min(var(--article-measure),calc(100% - 2 * var(--gutter)));max-width:none;margin:var(--space-5) auto 0;padding:var(--space-4);border:1px solid var(--article-line);border-radius:calc(var(--radius-md) * 2);background:var(--color-surface);box-sizing:border-box}
+body.detail.be4d .case-main > #questions > .be4d-question-panel{width:min(var(--article-measure),calc(100% - 2 * var(--gutter)));max-width:none;margin:var(--space-5) auto 0;padding:0;border:0;background:transparent;box-sizing:border-box}
+body.detail.be4d .case-main .be4d-chapter-num{font-family:var(--font-mono);letter-spacing:var(--ls-mono)}
 body.be4d .be4d-question-panel .be4d-card-heading{margin:0}
 body.be4d .be4d-question-panel .be4d-card-heading h3{margin:0;font:var(--fw-bold) var(--fs-body)/1.4 var(--font-sans)}
 body.be4d .be4d-question-panel .be4d-card-heading p{font-size:var(--fs-body)}
@@ -195,7 +196,7 @@ body.be4d .be4d-spark p.be4d-spark-question{margin-top:var(--space-5);font-weigh
 body.be4d .be4d-spark small{margin-top:0;padding-top:0}
 @media(max-width:767px){
  body.detail.be4d #questions .be4d-observation-head h2{margin-bottom:8px}
- body.detail.be4d .case-main > #questions > .be4d-question-panel{margin-left:auto;margin-right:auto;padding:var(--space-4)}
+ body.detail.be4d .case-main > #questions > .be4d-question-panel{margin-left:auto;margin-right:auto;padding:0}
  body.be4d .be4d-question-panel .be4d-card{min-height:0}
  body.be4d .be4d-question-panel .be4d-card>span{margin-bottom:var(--space-3)}
  body.detail.be4d .case-main > #questions > .be4d-bridge{margin-left:var(--c1-left);margin-right:var(--c1-right)}
@@ -209,7 +210,7 @@ body.be4d .be4d-spark small{margin-top:0;padding-top:0}
 
 /* Second chapter uses the same type hierarchy and aligned content column. */
 body.detail.be4d #model .be4d-concept-head{margin-bottom:0}
-body.detail.be4d #model .be4d-concept-head h2{margin:0 0 8px;font:var(--fw-regular) var(--fs-chapter)/1.3 var(--font-mono);letter-spacing:.08em;color:var(--color-muted,#8a8a90)}
+body.detail.be4d #model .be4d-concept-head h2{margin:0 0 8px;font:var(--fw-regular) var(--fs-chapter)/1.3 var(--font-sans);color:var(--color-muted,#8a8a90)}
 body.detail.be4d #model .be4d-concept-head h3{margin:0;font:var(--fw-bold) clamp(22px,2.3vw,28px)/1.4 var(--font-sans)}
 body.detail.be4d #model .be4d-concept-head .txt{margin-top:var(--space-4)}
 body.detail.be4d #model .be4d-concept-head .txt p{margin:0}
@@ -249,7 +250,7 @@ body.be4d .be4d-model-frame{aspect-ratio:10/9;border:0;border-radius:calc(var(--
 
 /* Second chapter: tabbed product slices with a sliding screenshot rail. */
 body.detail.be4d #evidence .be4d-evidence-head{margin-bottom:0}
-body.detail.be4d #evidence .be4d-evidence-head h2{margin:0 0 8px;font:var(--fw-regular) var(--fs-chapter)/1.3 var(--font-mono);letter-spacing:.08em;color:var(--color-muted,#8a8a90)}
+body.detail.be4d #evidence .be4d-evidence-head h2{margin:0 0 8px;font:var(--fw-regular) var(--fs-chapter)/1.3 var(--font-sans);color:var(--color-muted,#8a8a90)}
 body.detail.be4d #evidence .be4d-evidence-head h3{margin:0;font:var(--fw-bold) clamp(22px,2.3vw,28px)/1.4 var(--font-sans)}
 body.detail.be4d #evidence .be4d-evidence-head .txt{margin-top:var(--space-4)}
 body.detail.be4d #evidence .be4d-evidence-head .txt p{margin:0}
@@ -284,7 +285,7 @@ body.be4d .be4d-evidence-caption p{margin:var(--space-2) 0 0;color:var(--color-f
 
 /* Fourth chapter: matched headings, three activities, one focused flow, one closing thought. */
 body.detail.be4d #reflection .be4d-reflection-head{margin-bottom:0}
-body.detail.be4d #reflection .be4d-reflection-head h2{margin:0 0 8px;font:var(--fw-regular) var(--fs-chapter)/1.3 var(--font-mono);letter-spacing:.08em;color:var(--color-muted,#8a8a90)}
+body.detail.be4d #reflection .be4d-reflection-head h2{margin:0 0 8px;font:var(--fw-regular) var(--fs-chapter)/1.3 var(--font-sans);color:var(--color-muted,#8a8a90)}
 body.detail.be4d #reflection .be4d-reflection-head h3{margin:0;font:var(--fw-bold) clamp(22px,2.3vw,28px)/1.4 var(--font-sans)}
 body.detail.be4d #reflection .be4d-reflection-head .txt{margin-top:var(--space-4)}
 body.detail.be4d #reflection .be4d-reflection-head .txt p{margin:0 0 var(--space-4)}

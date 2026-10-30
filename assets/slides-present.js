@@ -66,10 +66,19 @@
       endLink = document.createElement("a");
       endLink.className = "slides-next-case";
       endLink.href = endHref;
-      endLink.innerHTML = '<span></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+      endLink.innerHTML = '<span class="slides-next-case-copy"></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
       var endLabel = root.getAttribute("data-end-case-label") || "下一个案例";
-      endLink.querySelector("span").textContent = endLabel;
-      endLink.setAttribute("aria-label", endLabel);
+      var endAction = root.getAttribute("data-end-case-kind");
+      var endCopy = endLink.querySelector(".slides-next-case-copy");
+      if(endAction){
+        var action = document.createElement("small");
+        action.textContent = endAction;
+        endCopy.appendChild(action);
+      }
+      var target = document.createElement("strong");
+      target.textContent = endLabel;
+      endCopy.appendChild(target);
+      endLink.setAttribute("aria-label", endAction ? endAction + " " + endLabel : endLabel);
       endLink.hidden = true;
       root.appendChild(endLink);
     }
@@ -205,7 +214,7 @@
     });
     document.addEventListener("pointermove", function(event){
       if(!root.classList.contains("is-fill")) return;
-      if(inBand(event) || chrome.contains(event.target) || event.target.closest(".slides-gridbtn, .slides-nav, .slides-count, .slides-restart, .slides-help")) reveal();
+      if(inBand(event) || chrome.contains(event.target) || event.target.closest(".slides-gridbtn, .slides-nav, .slides-count, .slides-restart")) reveal();
     });
     document.addEventListener("keydown", function(event){
       if(!root.classList.contains("is-fill")) return;
