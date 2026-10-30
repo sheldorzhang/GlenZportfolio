@@ -12,7 +12,7 @@
 :root{
  /* ① primitive -------------------------------------------------- */
  --p-white:#fff; --p-gray-50:#f4f4f4; --p-ink:#171717;
- --p-ink-a64:rgba(23,23,23,.64); --p-ink-a45:rgba(23,23,23,.45); --p-ink-a12:rgba(23,23,23,.12); --p-ink-a05:rgba(23,23,23,.05);
+ --p-ink-a72:rgba(23,23,23,.72); --p-ink-a64:rgba(23,23,23,.64); --p-ink-a12:rgba(23,23,23,.12); --p-ink-a05:rgba(23,23,23,.05);
  --p-white-a20:rgba(255,255,255,.2); --p-white-a97:rgba(255,255,255,.97);
  --p-purple-500:#A855F7; --p-purple-700:#7E3AF2;
  --p-amber-700:#B45309; --p-amber-50:#FFFBEB;
@@ -31,7 +31,7 @@
  /* ② semantic --------------------------------------------------- */
  /* color */
  --color-bg:var(--p-white); --color-surface:var(--p-white); --color-surface-sunken:var(--p-gray-50);
- --color-fg:var(--p-ink); --color-fg-2:var(--p-ink-a64); --color-fg-3:var(--p-ink-a45); /* ≈#6B6B6B 5.3:1 / ≈#8F8F8F 3.2:1 */
+ --color-fg:var(--p-ink); --color-fg-2:var(--p-ink-a72); --color-fg-3:var(--p-ink-a64); /* 白底约 6.8:1 / 5.3:1；浅灰底也保持正文可读 */
  --color-line:var(--p-ink-a12); --color-hover:var(--p-ink-a05);
  --color-accent:var(--p-purple-500); /* 图形：线、圆点、进度 */ --color-accent-text:var(--p-purple-700); /* 文字：角色线、结果数字（≈5.9:1） */
  --color-inverse-bg:var(--p-ink); --color-inverse-fg:var(--p-white); --color-inverse-line:var(--p-white-a20);

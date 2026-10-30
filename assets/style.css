@@ -267,7 +267,7 @@ body:has(.dock){padding-bottom:calc(var(--dock-h) + var(--space-8))}
 .work[data-view=list] .work-item{display:block}.work[data-view=list] .work-no{line-height:var(--lh-label);margin-bottom:var(--space-1)}
 .dock-work{position:relative}
 .dock-menu{position:absolute;left:50%;bottom:calc(100% + var(--space-3));transform:translateX(-50%);display:flex;flex-direction:column;min-width:220px;padding:var(--space-1);background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-md);box-shadow:var(--shadow-pop)}
-.dock-menu[hidden]{display:none}.dock .dock-menu a{height:auto;min-height:40px;padding:0 var(--space-3);font:var(--fs-label)/var(--lh-snug) var(--font-sans)}.dock .dock-menu .dock-all{color:var(--color-fg-3);font-family:var(--font-mono)}
+.dock-menu[hidden]{display:none}.dock .dock-menu a{height:auto;min-height:40px;padding:0 var(--space-3);font:var(--fs-label)/var(--lh-snug) var(--font-sans)}
 .dock{padding:0 var(--space-1)}
 
 .nw{white-space:nowrap}
@@ -507,9 +507,6 @@ body:has(.dock){padding-bottom:0}
 }
 #dock.dock .dock-menu a:hover,#dock.dock .dock-menu a:focus-visible{
   background:var(--color-hover);color:var(--color-fg)
-}
-#dock.dock .dock-menu .dock-all{
-  color:var(--color-fg-3);font-family:var(--font-mono);font-size:var(--fs-mono)
 }
 .work-demo{display:inline-flex;align-items:center;margin-left:var(--space-3);font-size:var(--fs-label);color:var(--color-fg-2);vertical-align:middle}.work-demo:hover{color:var(--color-fg)}
 /* ---------- v6.links (2026-10-13)：可点击 = 常驻 1px 下划线（参照 cv.rocorgi.wang .cv-container a）；hover 仅灰 → 黑，无 accent ---------- */
@@ -1245,6 +1242,15 @@ body.detail .case .fig.fig-full figcaption{
 @media(max-width:767px){.hero-mark-row{align-items:center;gap:var(--space-2);margin-bottom:var(--space-2)}.hero-mark-row .hero-tags-wrap{transform:none}.hero-mark-row .hero-tags{column-gap:var(--space-3);row-gap:2px}}
 @media(max-width:560px){.hero-mark-row .hero-tags-wrap{max-width:320px}}
 @media(prefers-reduced-motion:reduce){.hero-mark-row .hero-tags-shimmer{display:none}}
+
+/* 手机端入口提示：放在导航上方，不遮挡菜单与首屏。 */
+.mobile-viewing-hint{display:none}
+@media(max-width:767px){
+  .mobile-viewing-hint{display:flex;align-items:center;justify-content:center;position:fixed;inset:0 0 auto;z-index:calc(var(--z-pill) + 2);height:calc(var(--space-6) + env(safe-area-inset-top));padding:env(safe-area-inset-top) var(--gutter) 0;background:var(--color-surface-sunken);color:var(--color-fg-2);font:var(--fw-regular) var(--fs-label)/var(--lh-snug) var(--font-sans)}
+  body:has(.mobile-viewing-hint) #dock.dock{top:calc(var(--space-6) + env(safe-area-inset-top))}
+  body:has(.mobile-viewing-hint) .nav{top:calc(var(--space-6) + env(safe-area-inset-top) + var(--space-3))}
+  body:has(.mobile-viewing-hint) .hero{padding-top:calc(var(--space-page-top) + var(--topbar-h) + var(--space-6))}
+}
 
 /* 首页摄影：首图与右栏文案对齐，照片可完整滑过左侧标题轴。 */
 .photo-content{min-width:0}
